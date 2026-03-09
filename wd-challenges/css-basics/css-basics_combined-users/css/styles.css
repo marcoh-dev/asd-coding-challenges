@@ -84,6 +84,25 @@ li {
   like <body>, <main>, <aside>, <ul>, and .user with labeled overlays for easy identification.
 */
 
+aside .user {
+  max-width: 250px;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+aside .user .name {
+  font-size: 16px;
+}
+
+aside .user .location {
+  font-size: 10px;
+}
+
+aside .user .bio {
+  font-size: 12px;
+  margin: 6px 0;
+}
+
 /*
   Part 2
 
@@ -95,3 +114,11 @@ li {
 
   💡 You can use the display property to hide elements.
 */
+
+ul .user .bio {
+  display: none;
+}
+
+ul .user .location {
+  color: darkslategray;
+}
