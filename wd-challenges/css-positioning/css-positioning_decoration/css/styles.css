@@ -30,10 +30,12 @@ Hint: The z-index can also be negative!
 .hero-card {
   max-width: 550px;
   margin-inline: auto;
-  background-color: rgb(213, 212, 218);
+  background-color: rgba(213, 212, 218, 1);
   color: rgb(28, 33, 56);
   padding: 24px 32px;
   border-radius: 12px;
+
+  position: relative;
 }
 
 .blob-1 {
@@ -42,6 +44,11 @@ Hint: The z-index can also be negative!
   background: linear-gradient(to bottom left, #f6997d, #ff4a11, #943215);
   border-radius: 16px;
   rotate: -15deg;
+
+  position: absolute;
+  z-index: -2;
+  top: -30px;
+  right: 80px;
 }
 
 .blob-2 {
@@ -56,4 +63,9 @@ Hint: The z-index can also be negative!
   );
   border-radius: 999px;
   rotate: 280deg;
+
+  position: absolute;
+  z-index: -1;
+  top: 80px;
+  right: 90px;
 }
