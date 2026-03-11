@@ -1,0 +1,97 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+.flex-layer-1 {
+  margin: 0 auto;
+  border: solid 20px transparent;
+  max-width: 800px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+header {
+  color: white;
+  background-color: rgb(255, 44, 150);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+footer {
+  color: white;
+  background-color: rgb(112, 10, 214);
+  border-radius: 10px;
+  padding: 20px;
+}
+footer p {
+  margin: 0;
+}
+
+header h1 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+main {
+  border-radius: 10px;
+  padding: 20px;
+  background-color: rgb(241, 194, 62);
+}
+
+.flex-layer-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  justify-content: space-between;
+  flex: 1;
+}
+
+.sections {
+  flex-grow: 1;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sections section {
+  background-color: rgb(0, 255, 157);
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+}
+
+.sections section:first-child {
+  background-color: blue;
+  color: white;
+}
+
+aside {
+  background-color: rgb(0, 174, 255);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+aside section {
+}
+
+@media screen and (min-width: 700px) {
+  .flex-layer-2 {
+    flex-direction: row;
+  }
+
+  aside {
+    width: 300px;
+    flex-shrink: 0;
+  }
+}
