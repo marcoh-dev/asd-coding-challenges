@@ -273,11 +273,6 @@ CSS based on conditions such as viewport width, etc. */
     right: 0;
   }
 
-  .intro-text,
-  .product-card {
-    width: calc(50% - calc(var(--gap) * 2));
-  }
-
   .product-card:first-child {
     height: 500px;
     width: 100%;
