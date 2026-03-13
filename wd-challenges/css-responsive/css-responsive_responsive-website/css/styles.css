@@ -243,7 +243,6 @@ CSS based on conditions such as viewport width, etc. */
 
 @media (min-width: 900px) {
   .card-section {
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
