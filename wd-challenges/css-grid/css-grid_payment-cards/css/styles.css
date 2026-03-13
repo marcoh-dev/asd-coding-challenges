@@ -1,5 +1,3 @@
-
-
 :root {
   --primary-dark: #2e016d;
   --primary: #3f0097;
@@ -36,6 +34,9 @@ body {
   max-width: 50rem;
 
   /* Add styles to the container */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
 }
 
 .cards__option {

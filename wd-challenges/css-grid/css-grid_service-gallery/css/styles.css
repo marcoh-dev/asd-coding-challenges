@@ -1,4 +1,3 @@
-
 :root {
   --primary-dark: #2e016d;
   --primary: #3f0097;
@@ -34,6 +33,8 @@ body {
   margin: auto;
 
   /* Add styles to the container */
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr 1fr;
 }
 
 .services__item {

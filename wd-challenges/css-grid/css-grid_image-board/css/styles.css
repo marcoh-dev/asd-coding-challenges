@@ -9,8 +9,6 @@ body {
   font-family: system-ui;
 }
 
-
-
 .image-board__container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -18,6 +16,10 @@ body {
   gap: 1rem;
   padding: 1rem;
   /* Add styles here */
+  grid-template-areas:
+    "banana pineapple melon"
+    "apple pineapple cauliflower"
+    "apple tomato cauliflower";
 }
 
 .image-board__image {
@@ -25,29 +27,49 @@ body {
   height: 100%;
   object-fit: cover;
   border-radius: 14px;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .image-board__image--1 {
   /* Add styles here */
+  /* grid-row: 1 / span 1;
+  grid-column: 1; */
+  grid-area: banana;
 }
 
 .image-board__image--2 {
   /* Add styles here */
+  /* grid-row: 2 / span 2;
+  grid-column: 1; */
+  grid-area: apple;
 }
 
 .image-board__image--3 {
   /* Add styles here */
+  /* grid-row: 1 / span 1;
+  grid-column: 3; */
+  grid-area: melon;
 }
 
 .image-board__image--4 {
   /* Add styles here */
+  /* grid-row: 1 / span 2;
+  grid-column: 2; */
+  grid-area: pineapple;
 }
 
 .image-board__image--5 {
   /* Add styles here */
+  /* grid-row: 3 / span 1;
+  grid-column: 2; */
+  grid-area: tomato;
 }
 
 .image-board__image--6 {
   /* Add styles here */
+  /* grid-row: 2 / span 2;
+  grid-column: 3; */
+  grid-area: cauliflower;
 }
