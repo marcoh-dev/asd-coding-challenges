@@ -240,10 +240,51 @@ CSS based on conditions such as viewport width, etc. */
 
 /* Media Query Tablet */
 /* --- */
-/* Replace this comment with your media query. */
+
+@media (min-width: 900px) {
+  .card-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--gap) 0px;
+    justify-content: space-around;
+  }
+
+  .intro-text,
+  .product-card {
+    width: calc(50% - calc(var(--gap) * 2));
+  }
+}
+
 /* --- */
 
 /* Media Query Desktop */
 /* --- */
-/* Replace this comment with your media query. */
+
+@media (min-width: 1200px) {
+  .main-header,
+  .navbar,
+  .main-content,
+  .main-footer {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
+
+  .intro-text,
+  .product-card {
+    width: calc(50% - calc(var(--gap) * 2));
+  }
+
+  .product-card:first-child {
+    height: 500px;
+    width: 100%;
+    box-shadow: none;
+    margin-top: calc(var(--gap) * (-1));
+  }
+}
+
 /* --- */
