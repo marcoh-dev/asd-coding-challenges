@@ -1,0 +1,23 @@
+.navbar {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-normal);
+}
+
+.navbar__element-link {
+  color: var(--highlight-color);
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  border: var(--border-width) solid;
+  padding: var(--padding-small);
+}
+
+.navbar__element-link:hover {
+  border-color: transparent;
+  background-color: var(--highlight-color);
+  color: var(--hover-color);
+}

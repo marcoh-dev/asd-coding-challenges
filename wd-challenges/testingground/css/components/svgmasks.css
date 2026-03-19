@@ -1,0 +1,100 @@
+.svgmasks {
+  background-color: #fde2d8;
+}
+
+:root {
+  --svgmasks-image-width: 100px;
+  --svgmasks-image-height: 100px;
+}
+
+/* svg html inline */
+
+.svgmasks__svg {
+  width: 100px;
+}
+
+.svgmasks__svg--outline path {
+  fill: transparent;
+  stroke: #000000;
+}
+
+.svgmasks__svg--solid path {
+  fill: #000000;
+  stroke: #000000;
+}
+
+.svgmasks__svg-style--pink path {
+  stroke: palevioletred;
+  fill: pink;
+}
+
+/* svg html image */
+
+.svgmasks__image {
+  width: 100px;
+}
+
+.svgmasks_background-image {
+  width: var(--svgmasks-image-width);
+  height: var(--svgmasks-image-height);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  display: inline-block;
+}
+
+/* svg background-image */
+
+.svgmasks_background-image--outline {
+  background-image: url(../../assets/bookmark-outline.svg);
+}
+
+.svgmasks_background-image--solid {
+  background-image: url(../../assets/bookmark-solid.svg);
+}
+
+/* svg content image */
+
+.svgmasks_background-content {
+  width: var(--svgmasks-image-width);
+  display: inline-block;
+}
+
+.svgmasks_background-content--outline {
+  content: url(../../assets/bookmark-outline.svg);
+}
+
+.svgmasks_background-content--solid {
+  content: url(../../assets/bookmark-solid.svg);
+}
+
+/* svg content image mask */
+
+.svgmasks_background-content-mask {
+  width: var(--svgmasks-image-width);
+  display: inline-block;
+  background-color: #000;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center center;
+}
+
+.svgmasks_background-content-mask--outline {
+  mask-image: url(../../assets/bookmark-outline.svg);
+  content: url(../../assets/bookmark-outline.svg);
+}
+
+.svgmasks_background-content-mask--solid {
+  mask-image: url(../../assets/bookmark-solid.svg);
+  content: url(../../assets/bookmark-solid.svg);
+}
+
+.svgmasks_background-content-mask--catimage {
+  mask-image: url(../../assets/bookmark-solid.svg);
+  content: url(../../assets/bookmark-solid.svg);
+  background-image: url(../../assets/catimage.png);
+  background-color: transparent;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

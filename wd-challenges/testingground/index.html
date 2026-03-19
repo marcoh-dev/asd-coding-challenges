@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <ul class="navbar">
+        <li class="navbar__element">
+          <a class="navbar__element-link" href="#svgmasks">SVG and Masks</a>
+        </li>
+      </ul>
+    </header>
+    <main>
+      <section>
+        <h1>Testpage</h1>
+        <p>
+          This page contains various test elements, divided into different
+          sections. They can be navigated via the navigation bar in the header
+        </p>
+      </section>
+      <section class="svgmasks">
+        <h2 id="svgmasks">SVG and Masks</h2>
+        <p>
+          testing techniques to implement SVGs with an outline and a solid image
+        </p>
+        <section class="section-borderless">
+          <h3>SVG inline as an <code>&lt;svg&gt;</code> tag</h3>
+          <svg
+            class="svgmasks__svg svgmasks__svg--outline"
+            viewBox="0 0 48 48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="Layer_2" data-name="Layer 2">
+              <g id="invisible_box" data-name="invisible box">
+                <rect width="48" height="48" fill="none" />
+              </g>
+              <g id="icons_Q2" data-name="icons Q2">
+                <path
+                  d="M12,5a2,2,0,0,0-2,2V41a2,2,0,0,0,2,2,2.4,2.4,0,0,0,1.4-.5L24,34.4l10.6,8.1A2.4,2.4,0,0,0,36,43a2,2,0,0,0,2-2V7a2,2,0,0,0-2-2Z"
+                />
+              </g>
+            </g>
+          </svg>
+          <svg
+            class="svgmasks__svg svgmasks__svg--solid"
+            viewBox="0 0 48 48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="Layer_2" data-name="Layer 2">
+              <g id="invisible_box" data-name="invisible box">
+                <rect width="48" height="48" fill="none" />
+              </g>
+              <g id="icons_Q2" data-name="icons Q2">
+                <path
+                  d="M12,5a2,2,0,0,0-2,2V41a2,2,0,0,0,2,2,2.4,2.4,0,0,0,1.4-.5L24,34.4l10.6,8.1A2.4,2.4,0,0,0,36,43a2,2,0,0,0,2-2V7a2,2,0,0,0-2-2Z"
+                />
+              </g>
+            </g>
+          </svg>
+          <svg
+            class="svgmasks__svg svgmasks__svg--outline svgmasks__svg-style--pink"
+            viewBox="0 0 48 48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="Layer_2" data-name="Layer 2">
+              <g id="invisible_box" data-name="invisible box">
+                <rect width="48" height="48" fill="none" />
+              </g>
+              <g id="icons_Q2" data-name="icons Q2">
+                <path
+                  d="M12,5a2,2,0,0,0-2,2V41a2,2,0,0,0,2,2,2.4,2.4,0,0,0,1.4-.5L24,34.4l10.6,8.1A2.4,2.4,0,0,0,36,43a2,2,0,0,0,2-2V7a2,2,0,0,0-2-2Z"
+                />
+              </g>
+            </g>
+          </svg>
+        </section>
+        <section class="section-borderless">
+          <h3>SVG in an HTML <code>&lt;img&gt;</code> tag</h3>
+          <img
+            src="./assets/bookmark-outline.svg"
+            alt="bookmark svg with an outline"
+            class="svgmasks__image"
+          />
+          <img
+            src="./assets/bookmark-solid.svg"
+            alt="bookmark svg with one full color"
+            class="svgmasks__image"
+          />
+        </section>
+        <section class="section-borderless">
+          <h3>SVG as a CSS <code>background-image</code></h3>
+          <div
+            class="svgmasks_background-image svgmasks_background-image--outline"
+          ></div>
+          <div
+            class="svgmasks_background-image svgmasks_background-image--solid"
+          ></div>
+        </section>
+        <section class="section-borderless">
+          <h3>SVG as CSS <code>content</code></h3>
+          <div
+            class="svgmasks_background-content svgmasks_background-content--outline"
+          ></div>
+          <div
+            class="svgmasks_background-content svgmasks_background-content--solid"
+          ></div>
+        </section>
+        <section class="section-borderless">
+          <h3>SVG as CSS <code>content</code> and <code>mask-image</code></h3>
+          <div
+            class="svgmasks_background-content-mask svgmasks_background-content-mask--outline"
+          ></div>
+          <div
+            class="svgmasks_background-content-mask svgmasks_background-content-mask--solid"
+          ></div>
+          <div
+            class="svgmasks_background-content-mask svgmasks_background-content-mask--catimage"
+          ></div>
+        </section>
+      </section>
+    </main>
+    <footer>&copy; 2026</footer>
+  </body>
+</html>
