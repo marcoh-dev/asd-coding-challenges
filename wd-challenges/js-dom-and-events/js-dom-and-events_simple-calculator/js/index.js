@@ -1,5 +1,14 @@
 console.clear();
 
+let t1 = null;
+let t2;
+
+console.log(t1);
+console.log(t2);
+
+t2 = null;
+console.log(t2);
+
 let operand1 = 12;
 const operand2 = 4;
 
