@@ -7,12 +7,6 @@ function calculateScrollPercentage() {
   const viewportHeight = window.innerHeight;
   const pageHeight = document.body.clientHeight;
 
-  console.log(
-    "pageHeight:" + pageHeight,
-    "viewportHeight:" + viewportHeight,
-    "scrollPosition:" + scrollPosition,
-  );
-
   const scrollPercentage =
     (scrollPosition / (pageHeight - viewportHeight)) * 100;
   return Math.round(scrollPercentage * 100) / 100;
