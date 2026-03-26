@@ -1,6 +1,27 @@
 console.clear();
+console.log(Object.keys(window));
+console.log("---");
+console.log(globalThis);
+console.log("-");
+console.log(close);
+console.log(length);
+console.log("-name-");
+var name = "test123";
+const name = "testvar";
+console.log(name);
+//const name = "testconst";
 
-const name = "Queen angelfish";
+console.log(name);
+console.log("-location-");
+console.log(location);
+//const location = "test";
+console.log(window.location);
+
+//const name = "Queen angelfish";
+var test = "bla";
+console.dir(window);
+console.log(window.test);
+
 const description =
   "With their bright colors and deep, laterally compressed bodies, marine angelfishes are some of the more conspicuous residents of the aquarium. The queen angelfish grows to be 45 cm. With neon blue and yellow scales and iridescent purple and orange markings, surprisingly it is not conspicuous, and actually hides very well, and is very shy.";
 const category1 = "Freshwater";
@@ -18,6 +39,8 @@ function createProductTeaser(
   productPrice,
   productImageSrc,
 ) {
+  const name = "TextDecoderStream";
+  console.log(name);
   const newProduct = document.createElement("article");
   const newProductBody = document.createElement("section");
   const newProductTextContainer = document.createElement("div");
@@ -50,6 +73,14 @@ function createProductTeaser(
   newProductImage.src = productImageSrc;
   newProductImage.alt = "";
   newProductBuyButton.type = "button";
+  newProductBuyButton.addEventListener("click", (e) => {
+    const product = e.target.closest(".product");
+    console.log(
+      product.querySelector(".product__name").textContent +
+        ": " +
+        product.querySelector(".product__price").textContent,
+    );
+  });
 
   for (let i = 0; i < productCategories.length; i++) {
     const newProductCategory = document.createElement("li");
@@ -72,5 +103,11 @@ function createProductTeaser(
 }
 
 document.body.append(
-  createProductTeaser(name, description, categories, price, imageSrc),
+  createProductTeaser(closed, description, categories, price, imageSrc),
 );
+console.log(name);
+document.addEventListener("DOMContentLoaded", (event) => {
+  console.log(window.name);
+  console.log(name);
+  console.log(closed);
+});
