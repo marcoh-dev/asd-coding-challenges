@@ -4,53 +4,25 @@ const animals = [
   {
     name: "cat",
     weight: 4,
-    continents: [
-      "Europe",
-      "Asia",
-      "Africa",
-      "Australia",
-      "North-America",
-      "South-America",
-    ],
+    continents: ["Europe", "Asia", "Africa", "Australia", "North-America", "South-America"],
   },
   {
     name: "dog",
     weight: 10,
-    continents: [
-      "Europe",
-      "Asia",
-      "Africa",
-      "Australia",
-      "North-America",
-      "South-America",
-    ],
+    continents: ["Europe", "Asia", "Africa", "Australia", "North-America", "South-America"],
   },
   { name: "elephant", weight: 4000, continents: ["Africa", "Asia"] },
   {
     name: "rabbit",
     weight: 2,
-    continents: [
-      "Europe",
-      "Asia",
-      "Africa",
-      "Australia",
-      "North-America",
-      "South-America",
-    ],
+    continents: ["Europe", "Asia", "Africa", "Australia", "North-America", "South-America"],
   },
   { name: "lion", weight: 200, continents: ["Africa"] },
   { name: "tiger", weight: 150, continents: ["Asia"] },
   {
     name: "horse",
     weight: 500,
-    continents: [
-      "Europe",
-      "Asia",
-      "Africa",
-      "Australia",
-      "North-America",
-      "South-America",
-    ],
+    continents: ["Europe", "Asia", "Africa", "Australia", "North-America", "South-America"],
   },
   { name: "giraffe", weight: 600, continents: ["Africa"] },
   { name: "zebra", weight: 300, continents: ["Africa"] },
@@ -78,9 +50,9 @@ const animals = [
 ];
 
 // Hint: Besides the array method, check out the string method `startsWith()`.
-const firstAnimalStartingWithLetterG = null;
+const firstAnimalStartingWithLetterG = animals.find((animal) => animal.name.startsWith("g"));
 
-const indexOfAnimalWithNameLongerFive = null;
+const indexOfAnimalWithNameLongerFive = animals.findIndex((animal) => animal.name.length > 5);
 
 // Note:
 // - Sorting strings is slightly more complicated than sorting numbers.
@@ -91,26 +63,38 @@ const indexOfAnimalWithNameLongerFive = null;
 // Hint: sort() mutates the original array, which is bad.
 // Make sure to use toSorted() instead.
 
-const animalsSortedAlphabetically = null;
+const animalsSortedAlphabetically = animals.toSorted((a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0));
 
-const animalsSortedByWeightStartingWithLowest = null;
+const animalsSortedByWeightStartingWithLowest = animals.toSorted((a, b) => a.weight - b.weight);
 
 // Note:
 // - reverse() mutates the original array (like sort() does), which is bad.
 // Use toReversed() instead (or any other method to get the expected result)
 
-const animalsSortedByWeightReversed = null;
+const animalsSortedByWeightReversed = animals.toSorted((a, b) => a.weight - b.weight).toReversed();
+// OR
+//const animalsSortedByWeightReversed = animals.toSorted((a, b) => b.weight - a.weight);
 
-const animalWithWeightMoreThanFivehundredExists = null;
+const animalWithWeightMoreThanFivehundredExists = animals.some((element) => element.weight > 500);
 
 // Hint: Filter for Europe first, then check every animal for its weight.
-const allAnimalsInEuropeWeighLessThanOnehundred = null;
+const allAnimalsInEuropeWeighLessThanOnehundred = animals
+  .filter((element) => element.continents.includes("Europe"))
+  .every((element) => element.weight < 100);
 
 // Hint: filter + map + reduce
-const weightOfAllAnimalsInAfrica = null;
+const weightOfAllAnimalsInAfrica = animals
+  .filter((element) => element.continents.includes("Africa"))
+  .map((element) => element.weight)
+  .reduce((total, current) => total + current);
 
 // Hint: As above, but divided by the number of animals in Africa.
-const averageWeightOfAllAnimalsInAfrica = null;
+const averageWeightOfAllAnimalsInAfrica =
+  animals
+    .filter((element) => element.continents.includes("Africa"))
+    .map((element) => element.weight)
+    .reduce((total, current) => total + current) /
+  animals.filter((element) => element.continents.includes("Africa")).length;
 
 export {
   firstAnimalStartingWithLetterG,

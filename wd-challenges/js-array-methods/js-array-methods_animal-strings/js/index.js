@@ -21,15 +21,15 @@ const animalStrings = [
   "rhino",
 ];
 
-const hippoExists = null;
+const hippoExists = animalStrings.includes("hippo");
 
 // Hint: You can pass the starting index as second parameter.
-const catStartingFromIndexFiveExists = null;
+const catStartingFromIndexFiveExists = animalStrings.includes("cat", 4);
 
 // Hint: Besides the array method, check out the string method `startsWith()`.
-const firstAnimalStartingWithLetterP = null;
+const firstAnimalStartingWithLetterP = animalStrings.find((element) => element.startsWith("p"));
 
-const indexOfGiraffe = null;
+const indexOfGiraffe = animalStrings.findIndex((element) => element === "giraffe");
 
 // Note:
 // - Sorting strings is slightly more complicated than sorting numbers.
@@ -39,18 +39,23 @@ const indexOfGiraffe = null;
 // Hint: There is no need to upper-/lowercase the strings before sorting them.
 // Hint: sort() mutates the original array, which is bad.
 // That's why we use toSorted()
-const animalsSortedAlphabetically = null;
+const animalsSortedAlphabetically = animalStrings.toSorted();
 
 // Hint: Guess what? There is a string method called `endsWith()`.
-const anyAnimalEndsWithLetterZ = null;
+const anyAnimalEndsWithLetterZ = animalStrings.some((element) => element.endsWith("z"));
 
-const everyAnimalHasMoreThanTwoLetters = null;
+const everyAnimalHasMoreThanTwoLetters = animalStrings.every((element) => element.length > 2);
 
 // Hint: There are several ways to go here. Let's focus on two options:
 // Option 1: Concatenate all characters with `reduce()` and check for the `length` property of the result.
 // Option 2: Use `map()` to create an array with the length values of all strings,
 // 				then sum them up with `reduce()` (keyword: method chaining)
-const sumOfAllAnimalCharacters = null;
+
+//const sumOfAllAnimalCharacters = animalStrings.reduce((total, current) => total + current).length;
+// OR
+const sumOfAllAnimalCharacters = animalStrings
+  .map((element) => element.length)
+  .reduce((total, current) => total + current);
 
 export {
   hippoExists,

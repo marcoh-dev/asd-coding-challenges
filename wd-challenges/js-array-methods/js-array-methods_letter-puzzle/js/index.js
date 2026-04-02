@@ -1,5 +1,5 @@
 import { employees } from "../utils/data.js";
-
+console.clear();
 // EXAMPLE:
 // QUESTION 1: Is there any employee that is older than 65 years?
 // Hint: use some()
@@ -11,61 +11,94 @@ const hasEmployeesOlderThan65 = employees.some((employee) => employee.age > 65);
 // QUESTION 2: Is there any employee with first name 'Frederique'?
 // Hint: use some()
 
-const employeeNamedFrederique = null;
+const employeeNamedFrederique = employees.some(
+  (element) => element.firstName === "Frederique"
+);
+console.log(employeeNamedFrederique);
 
 //----------------------------------------
 // QUESTION 3: Is there any employee younger than 18 years?
 // Hint: use some()
 
-const employeeYoungerThan18 = null;
+const employeeYoungerThan18 = employees.some((element) => element.age < 18);
+console.log(employeeYoungerThan18);
 
 //----------------------------------------
 // QUESTION 4: Has every employee a phone number?
 // Hint: use every()
 
-const everyEmployeeHasPhoneNumber = null;
+const everyEmployeeHasPhoneNumber = employees.every((element) => element.phone);
+console.log(everyEmployeeHasPhoneNumber);
 
 //----------------------------------------
 // QUESTION 5: Does every id start with '0'?
 // Hint: Use every()
 
-const everyIdStartsWith0 = null;
+const everyIdStartsWith0 = employees.every((element) =>
+  element.id.startsWith("0")
+);
+console.log(everyIdStartsWith0);
 
 //----------------------------------------
 // QUESTION 6: Has every employee a first name AND a last name?
 // Hint: use every()
 
-const everyEmployeeHasFirstAndLastName = null;
+const everyEmployeeHasFirstAndLastName = employees.every(
+  (element) => element.firstName && element.lastName
+);
+console.log(everyEmployeeHasFirstAndLastName);
 
 //----------------------------------------
 // QUESTION 7: Can you find the employee named 'Louise' that is 33 years old?
 // Hint: use find()
 
-const employeeLouise33 = null;
+const employeeLouise33 = employees.find(
+  (element) => element.firstName === "Louise" && element.age === 33
+);
+console.log(employeeLouise33);
 
 //----------------------------------------
 // QUESTION 8: We need to find the employee with the id '0.0795620650485831'
 // Hint: Use find()
 
-const employeeWithId = null;
+const employeeWithId = employees.find(
+  (element) => element.id === "0.0795620650485831"
+);
+console.log(employeeWithId);
 
 //----------------------------------------
 // QUESTION 9: Please find the employee with first name 'Edna' and profession 'Investment Manager'
 // Hint: use find()
 
-const ednaInvestment = null;
+const ednaInvestment = employees.find(
+  (element) =>
+    element.firstName === "Edna" && element.profession === "Investment Manager"
+);
+console.log(ednaInvestment);
 
 //----------------------------------------
 // QUESTION 10: We need a new employees array now sorted by age ascending (1 -> 100)
 // Hint: Use toSorted()
 
-const employeesSortedByAge = null;
+const employeesSortedByAge = employees.toSorted((a, b) => a.age - b.age);
+console.log(employeesSortedByAge);
 
 //----------------------------------------
 // QUESTION 11: We want a new employees array sorted by last name descending (Z -> A)
 // Hint use toSorted()
 
-const employeesSortedByLastName = null;
+const employeesSortedByLastName = employees.toSorted((a, b) =>
+  a.lastName.toLowerCase() < b.lastName.toLowerCase()
+    ? 1
+    : a.lastName.toLowerCase() > b.lastName.toLowerCase()
+      ? -1
+      : 0
+);
+
+// const employeesSortedByLastName = employees.toSorted((a, b) =>
+//   b.lastName.localeCompare(a.lastName)
+// );
+console.log(employeesSortedByLastName);
 
 // Great! 🎉 You got it! 🚀 Now you can read the solution of the letter puzzle. 💪
 
