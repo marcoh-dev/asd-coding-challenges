@@ -1,4 +1,4 @@
-import { getAlbumDetail, getAlbum } from "./types.ts";
+import { getAlbumDetail, getAlbum } from "./functions.ts";
 
 const albumDetail = document.getElementById("album-detail") as HTMLElement;
 

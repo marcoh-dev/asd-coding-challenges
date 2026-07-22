@@ -1,28 +1,6 @@
-import albumData from "./assets/albums.json";
+import type { IAlbum, ISong } from "./types";
+import albumData from "../assets/albums.json";
 const albums = albumData as IAlbum[];
-
-interface ISong {
-	id: number;
-	title: string;
-	link: string;
-	duration: number;
-}
-
-interface IArtist {
-	id: number;
-	name: string;
-	picture: string;
-}
-
-export interface IAlbum {
-	id: number;
-	title: string;
-	link: string;
-	cover: string;
-	cover_big: string;
-	artist: IArtist;
-	tracks: ISong[];
-}
 
 function getAlbumTrack(track: ISong): HTMLElement {
 	const minutes = Math.floor(track.duration / 60);
@@ -48,7 +26,7 @@ export function getAlbumCard(album: IAlbum): HTMLElement {
 	albumHeadline.textContent = album.title;
 
 	const albumLink = document.createElement("a");
-	albumLink.href = `./album.html?album-id=${album.id}`;
+	albumLink.href = `/album?album-id=${album.id}`;
 
 	const albumArtist = document.createElement("p");
 	albumArtist.textContent = album.artist ? `Artist: ${album.artist.name}` : ``;
