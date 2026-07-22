@@ -20,3 +20,7 @@ export interface IAlbum {
 	artist: IArtist;
 	tracks: ISong[];
 }
+
+export interface IAlbumSearchResult {
+	data: IAlbum[];
+}
