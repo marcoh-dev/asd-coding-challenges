@@ -17,9 +17,26 @@
 	<main class="container">
 		<section id="albums">
 			<header>
-				<h2>Album list</h2>
+				<h2>Album list (all)</h2>
 			</header>
 			<div class="grid" id="album-cards"></div>
+		</section>
+		<section id="search">
+			<header>
+				<h2>Search for albums (in available album list (see above))</h2>
+			</header>
+			<form id="album-search">
+				<input name="album_query" type="text" placeholder="in album title" />
+				<input name="artist_query" type="text" placeholder="in artist" hidden />
+				<button>search</button>
+			</form>
+			<div class="grid" id="search-album-cards"></div>
+		</section>
+		<section id="my-albums">
+			<header>
+				<h2>my albums</h2>
+			</header>
+			<div class="grid" id="my-album-cards"></div>
 		</section>
 	</main>
 </body>
