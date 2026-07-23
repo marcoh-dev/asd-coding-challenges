@@ -1,0 +1,92 @@
+[
+	{
+		"id": 1,
+		"title": "The Hobbit",
+		"author": "J.R.R. Tolkien",
+		"isbn": "9780547928227",
+		"isAvailable": true,
+		"createdAt": "2024-01-10T09:00:00.000Z",
+		"updatedAt": "2024-01-10T09:00:00.000Z"
+	},
+	{
+		"id": 2,
+		"title": "The Fellowship of the Ring",
+		"author": "J.R.R. Tolkien",
+		"isbn": "9780547928210",
+		"isAvailable": false,
+		"createdAt": "2024-01-12T11:30:00.000Z",
+		"updatedAt": "2024-02-01T15:20:00.000Z"
+	},
+	{
+		"id": 3,
+		"title": "1984",
+		"author": "George Orwell",
+		"isbn": "9780451524935",
+		"isAvailable": true,
+		"createdAt": "2024-01-15T08:45:00.000Z",
+		"updatedAt": "2024-01-15T08:45:00.000Z"
+	},
+	{
+		"id": 4,
+		"title": "Animal Farm",
+		"author": "George Orwell",
+		"isbn": "9780451526342",
+		"isAvailable": true,
+		"createdAt": "2024-01-18T10:15:00.000Z",
+		"updatedAt": "2024-03-05T13:10:00.000Z"
+	},
+	{
+		"id": 5,
+		"title": "Dune",
+		"author": "Frank Herbert",
+		"isbn": "9780441172719",
+		"isAvailable": false,
+		"createdAt": "2024-02-01T14:00:00.000Z",
+		"updatedAt": "2024-02-20T16:45:00.000Z"
+	},
+	{
+		"id": 6,
+		"title": "Dune Messiah",
+		"author": "Frank Herbert",
+		"isbn": "9780441172696",
+		"isAvailable": true,
+		"createdAt": "2024-02-08T09:20:00.000Z",
+		"updatedAt": "2024-02-08T09:20:00.000Z"
+	},
+	{
+		"id": 7,
+		"title": "Pride and Prejudice",
+		"author": "Jane Austen",
+		"isbn": "9780141439518",
+		"isAvailable": true,
+		"createdAt": "2024-02-15T12:10:00.000Z",
+		"updatedAt": "2024-02-28T17:30:00.000Z"
+	},
+	{
+		"id": 8,
+		"title": "Emma",
+		"author": "Jane Austen",
+		"isbn": "9780141439587",
+		"isAvailable": false,
+		"createdAt": "2024-03-01T08:00:00.000Z",
+		"updatedAt": "2024-03-12T11:45:00.000Z"
+	},
+	{
+		"id": 9,
+		"title": "To Kill a Mockingbird",
+		"author": "Harper Lee",
+		"isbn": "9780061120084",
+		"isAvailable": true,
+		"createdAt": "2024-03-10T15:00:00.000Z",
+		"updatedAt": "2024-03-10T15:00:00.000Z"
+	},
+	{
+		"id": 10,
+		"title": "The Great Gatsby",
+		"author": "F. Scott Fitzgerald",
+		"isbn": "9780743273565",
+		"isAvailable": false,
+		"createdAt": "2024-03-20T10:30:00.000Z",
+		"updatedAt": "2024-04-02T09:15:00.000Z"
+	}
+]
