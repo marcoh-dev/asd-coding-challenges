@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "macros/events.html" as eventMacros %}
+{% block title %}
+  Upcoming Events - Event Hub
+{% endblock %}
+{% block content %}
+  <h2>Upcoming Events</h2>
+  <p>Browse our upcoming events below.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in events %}
+        {{
+          eventMacros.eventListElement( event.name ,
+          event.date ,  event.location, event.soldOut )
+        }}
+      {% else %}
+        <tr>
+          <td colspan="3">No events scheduled.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% macro eventListElement(name, date, location, soldOut=false) %}
+  <tr class="event">
+    <td>
+      {{ name }}
+      {% if soldOut %}
+        <span class="badge">(SOLD&nbsp;OUT)</span>
+      {% endif %}
+    </td>
+    <td>{{ date }}</td>
+    <td>{{ location }}</td>
+  </tr>
+{% endmacro %}

@@ -1,0 +1,45 @@
+{% extends "_base.njk" %}
+
+{% block title %}
+  All blog posts | Nunjuck Blog
+{% endblock %}
+
+{% block header %}
+  <header
+    class="masthead"
+    style="background-image: url('assets/img/post-bg.jpg')"
+  >
+    <div class="container position-relative px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <div class="page-heading">
+            <h1>All blog posts</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+  {% for blogTeaser in blogTeaserData | sort(attribute="createdAt", reverse="true") %}
+    <!-- Post preview-->
+    <div class="post-preview">
+      <a href="/posts/{{ blogTeaser.slug }}">
+        <h2 class="post-title">{{ blogTeaser.title }}</h2>
+        <h3 class="post-subtitle">{{ blogTeaser.teaser }}</h3>
+      </a>
+      <p class="post-meta">
+        Posted by
+        <a href="#!">{{ blogTeaser.author }}</a>
+        on {{ blogTeaser.createdAt | formatDate }}
+      </p>
+    </div>
+    {% if not loop.last %}
+      <!-- Divider-->
+      <hr class="my-4" />
+    {% endif %}
+  {% else %}
+    <p>no blog data found :/</p>
+  {% endfor %}
+{% endblock %}
