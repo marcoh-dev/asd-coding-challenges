@@ -1,0 +1,38 @@
+{% macro renderFormField(id, label = "", shortLabel = label, type="text", required = false) %}
+  <div class="form-floating">
+    {% if type == "textarea" %}
+      <textarea
+        class="form-control"
+        id="{{ id }}"
+        placeholder="Enter your {{ shortLabel | lower }} here..."
+        style="height: 12rem"
+        {% if required %}data-sb-validations="required"{% endif %}
+      ></textarea>
+      <label for="{{ id }}">{{ label }}</label>
+    {% else %}
+      <input
+        class="form-control"
+        id="{{ id }}"
+        type="{{ type }}"
+        placeholder="Enter your {{ shortLabel | lower }}..."
+        {% if required or type == "email" %}
+          data-sb-validations="{% if required %}required{% endif %}{% if required and type == 'email' %},{% endif %}{% if type == 'email' %}email{% endif %}"
+        {% endif %}
+      />
+      <label for="{{ id }}">{{ label }}</label>
+    {% endif %}
+
+    {% if required %}
+      <div class="invalid-feedback" data-sb-feedback="{{ id }}:required">
+        {{ shortLabel | indefiniteArticle | capitalize }}
+        {{ shortLabel | lower }} is required.
+      </div>
+    {% endif %}
+
+    {% if type == "email" %}
+      <div class="invalid-feedback" data-sb-feedback="{{ id }}:email">
+        Email is not valid.
+      </div>
+    {% endif %}
+  </div>
+{% endmacro %}
