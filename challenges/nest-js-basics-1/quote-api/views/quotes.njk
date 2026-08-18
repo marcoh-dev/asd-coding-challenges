@@ -1,0 +1,38 @@
+{% extends "_base.njk" %}
+
+{% block title %}All Quotes{% endblock title %}
+
+{% block main %}
+  <h1>All Quotes</h1>
+  {% if filters | length > 0 %}
+    <h3>filtered by:</h3>
+    <ul>
+      {% for key, value in filters %}
+        <li>{{ key }}: {{ value }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% if quotes | length > 0 %}
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>quote</th>
+          <th>author</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for quote in quotes %}
+          <tr>
+            <td>{{ quote.id }}</td>
+            <td>{{ quote.quote }}</td>
+            <td>{{ quote.author }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No quotes found.</p>
+  {% endif %}
+{% endblock main %}
