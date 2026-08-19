@@ -7,3 +7,5 @@ export type Comment = {
 };
 
 export type CommentPayload = Pick<Comment, "author" | "body">;
+
+export type CommentData = Pick<Comment, "author" | "body" | "threadId">;

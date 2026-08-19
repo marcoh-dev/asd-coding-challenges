@@ -21,7 +21,9 @@ export class ThreadsService {
 			throw new BadRequestException("Body is required and must be at least 10 characters");
 		}
 
-		return this.threadsRepository.create({ title, body });
+		const author = "unknown";
+
+		return this.threadsRepository.create({ title, body, author });
 	}
 
 	deleteThreadById(id: number): boolean {

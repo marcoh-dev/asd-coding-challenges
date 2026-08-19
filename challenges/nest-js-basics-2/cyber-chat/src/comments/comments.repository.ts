@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import type { Comment, CommentPayload } from "./comments.type";
+import type { Comment, CommentData } from "./comments.type";
 import commentsData from "../../data/comments.seed.json";
 
 @Injectable()
@@ -23,30 +23,29 @@ export class CommentsRepository {
 	}
 
 	findById(id: number): Comment | undefined {
-		// return this.comments.get(id)
-		return this.comments.get(id)
-			? this.comments.get(id)?.body !== "deleted"
-				? this.comments.get(id)
-				: undefined
-			: undefined;
+		return this.comments.get(id);
 	}
 
-	create(threadId: number, data: CommentPayload): Comment {
+	create(data: CommentData): Comment {
 		const newId = Math.max(...this.comments.keys()) + 1;
-		const comment: Comment = { id: newId, threadId, createdAt: new Date(), ...data };
+		const comment: Comment = { id: newId, createdAt: new Date(), ...data };
 		this.comments.set(comment.id, comment);
 		return comment;
 	}
 
-	deleteById(id: number): boolean {
-		// return this.comments.delete(id);
+	update(id: number, data: Partial<Comment>): Comment | undefined {
 		const comment = this.findById(id);
 
-		if (!comment || comment.body === "deleted") return false;
+		if (!comment) return undefined;
 
-		comment.body = "deleted";
+		const updatedComment = {
+			...comment,
+			...data,
+		};
 
-		return true;
+		this.comments.set(id, updatedComment);
+
+		return updatedComment;
 	}
 
 	deleteByThread(threadId: number): number {

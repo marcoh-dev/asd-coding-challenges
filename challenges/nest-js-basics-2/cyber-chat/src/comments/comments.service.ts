@@ -14,7 +14,8 @@ export class CommentsService {
 	}
 
 	getCommentById(id: number): Comment | undefined {
-		return this.commentsRepository.findById(id);
+		const comment = this.commentsRepository.findById(id);
+		return comment?.body !== "deleted" ? comment : undefined;
 	}
 
 	addNewComment(threadId: number, { author, body }: CommentPayload): Comment {
@@ -26,11 +27,21 @@ export class CommentsService {
 			throw new BadRequestException("Body is required and must be at least 3 characters");
 		}
 
-		return this.commentsRepository.create(threadId, { author, body });
+		return this.commentsRepository.create({ author, body, threadId });
 	}
 
 	deleteCommentById(id: number): boolean {
-		return this.commentsRepository.deleteById(id);
+		const comment = this.commentsRepository.findById(id);
+
+		if (!comment || comment.body === "deleted") {
+			return false;
+		}
+
+		return (
+			this.commentsRepository.update(id, {
+				body: "deleted",
+			}) !== undefined
+		);
 	}
 
 	deleteCommentsByThreadId(threadId: number): number {
