@@ -13,3 +13,4 @@ export type ThreadWithComments = Thread & {
 };
 
 export type ThreadPayload = Pick<Thread, "title" | "body">;
+export type ThreadData = Pick<Thread, "title" | "body" | "author">;

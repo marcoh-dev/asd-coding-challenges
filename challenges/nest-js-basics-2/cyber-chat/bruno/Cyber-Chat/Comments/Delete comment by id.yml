@@ -8,7 +8,7 @@ http:
   url: "{{baseURL}}/api/comments/:id"
   params:
     - name: id
-      value: "8"
+      value: "2"
       type: path
   auth: inherit
 

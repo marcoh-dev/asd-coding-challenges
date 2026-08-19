@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import type { Thread, ThreadPayload } from "./threads.type";
+import type { Thread, ThreadData } from "./threads.type";
 import threadsData from "../../data/threads.seed.json";
 
 @Injectable()
@@ -22,9 +22,9 @@ export class ThreadsRepository {
 		return this.threads.get(id);
 	}
 
-	create(data: ThreadPayload): Thread {
+	create(data: ThreadData): Thread {
 		const newId = Math.max(...this.threads.keys()) + 1;
-		const thread: Thread = { id: newId, author: "", createdAt: new Date(), ...data };
+		const thread: Thread = { id: newId, createdAt: new Date(), ...data };
 		this.threads.set(thread.id, thread);
 		return thread;
 	}
