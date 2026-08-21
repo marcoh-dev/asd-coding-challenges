@@ -1,0 +1,22 @@
+info:
+  name: Create a thread with title and body
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseURL}}/api/threads"
+  body:
+    type: json
+    data: |-
+      {
+        "title": "My first thread",
+        "body": "This is the content of my thread."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

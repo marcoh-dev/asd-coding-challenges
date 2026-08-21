@@ -1,0 +1,58 @@
+[
+	{
+		"id": 1,
+		"threadId": 1,
+		"author": "bob",
+		"body": "I usually keep each feature in its own module and avoid putting too much shared logic in a global module.",
+		"createdAt": "2026-08-10T10:20:00Z"
+	},
+	{
+		"id": 2,
+		"threadId": 1,
+		"author": "diana",
+		"body": "Same here. I have found that feature-based organization scales much better as the project grows.",
+		"createdAt": "2026-08-10T12:05:00Z"
+	},
+	{
+		"id": 3,
+		"threadId": 2,
+		"author": "alice",
+		"body": "JWT with short-lived access tokens and refresh tokens has worked well for me.",
+		"createdAt": "2026-08-11T15:10:00Z"
+	},
+	{
+		"id": 4,
+		"threadId": 2,
+		"author": "eric",
+		"body": "Make sure you have a strategy for revoking refresh tokens when users log out or change their password.",
+		"createdAt": "2026-08-11T16:45:00Z"
+	},
+	{
+		"id": 5,
+		"threadId": 3,
+		"author": "fiona",
+		"body": "For a forum, I would probably choose PostgreSQL. Threads and comments have a pretty natural relational structure.",
+		"createdAt": "2026-08-12T13:20:00Z"
+	},
+	{
+		"id": 6,
+		"threadId": 3,
+		"author": "george",
+		"body": "Agreed. PostgreSQL also gives you some nice options for indexing and full-text search.",
+		"createdAt": "2026-08-12T14:05:00Z"
+	},
+	{
+		"id": 7,
+		"threadId": 5,
+		"author": "alice",
+		"body": "I try to keep each test focused on one behavior and use descriptive test names.",
+		"createdAt": "2026-08-14T17:25:00Z"
+	},
+	{
+		"id": 8,
+		"threadId": 5,
+		"author": "charlie",
+		"body": "Mocking external dependencies has also made my tests much faster and less fragile.",
+		"createdAt": "2026-08-15T08:15:00Z"
+	}
+]

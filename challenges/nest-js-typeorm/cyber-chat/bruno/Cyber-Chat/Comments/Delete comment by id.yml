@@ -1,0 +1,19 @@
+info:
+  name: Delete comment by id
+  type: http
+  seq: 3
+
+http:
+  method: DELETE
+  url: "{{baseURL}}/api/comments/:id"
+  params:
+    - name: id
+      value: cdfd9e5a-b97b-4430-85fe-46250bf3ae4f
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
