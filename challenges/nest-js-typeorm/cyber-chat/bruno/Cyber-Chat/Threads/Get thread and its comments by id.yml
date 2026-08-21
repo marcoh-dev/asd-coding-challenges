@@ -1,0 +1,19 @@
+info:
+  name: Get thread and its comments by id
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseURL}}/api/threads/:id"
+  params:
+    - name: id
+      value: 449e4729-6bac-4340-9830-3ff3dfff8925
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
