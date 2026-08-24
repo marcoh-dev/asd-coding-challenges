@@ -1,0 +1,27 @@
+info:
+  name: Create a comment with thread id, author and body
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseURL}}/api/threads/:id/comments"
+  params:
+    - name: id
+      value: a2096ae8-c26a-462c-9f08-fb0cb63e6c52
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "author": "Alice123",
+        "body": "I recommend starting with controllers for HTTP handling and services for your business logic."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true

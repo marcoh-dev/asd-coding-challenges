@@ -1,0 +1,40 @@
+{
+	"name": "cyber-chat",
+	"private": true,
+	"scripts": {
+		"build": "nest build",
+		"dev": "nest start --watch",
+		"start": "nest start",
+		"db:seed": "ts-node ./src/db/seed.ts",
+		"typeorm": "ts-node ./node_modules/typeorm/cli.js -d ./src/db/data-source.ts",
+		"migration:generate": "npm run typeorm -- migration:generate",
+		"migration:run": "npm run typeorm -- migration:run",
+		"migration:revert": "npm run typeorm -- migration:revert"
+	},
+	"devDependencies": {
+		"@nestjs/cli": "^11.0.24",
+		"@nestjs/schematics": "^11.1.0",
+		"@types/better-sqlite3": "^9.6.0",
+		"@types/bun": "latest",
+		"@types/node": "^26.2.0",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.9.0"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"@nestjs/common": "^11.2.1",
+		"@nestjs/core": "^11.2.1",
+		"@nestjs/mapped-types": "^2.1.1",
+		"@nestjs/platform-express": "^11.2.1",
+		"@nestjs/typeorm": "^11.0.3",
+		"better-sqlite3": "^12.11.1",
+		"class-transformer": "^0.5.1",
+		"class-validator": "^0.15.1",
+		"dotenv": "^17.4.2",
+		"reflect-metadata": "^0.2.2",
+		"typeorm": "^1.1.0"
+	},
+	"rootDir": "src"
+}
