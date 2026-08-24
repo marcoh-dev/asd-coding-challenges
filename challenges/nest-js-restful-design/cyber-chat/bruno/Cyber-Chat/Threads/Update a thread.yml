@@ -1,0 +1,26 @@
+info:
+  name: Update a thread
+  type: http
+  seq: 5
+
+http:
+  method: PATCH
+  url: "{{baseURL}}/api/threads/:id"
+  params:
+    - name: id
+      value: 8544c4d9-ea36-4b29-aa3d-6fc713b5f908
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "title": "I updated my thread title"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
