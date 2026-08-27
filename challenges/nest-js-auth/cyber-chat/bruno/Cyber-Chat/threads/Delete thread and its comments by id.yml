@@ -1,0 +1,22 @@
+info:
+  name: Delete thread and its comments by id
+  type: http
+  seq: 6
+
+http:
+  method: DELETE
+  url: "{{baseURL}}/threads/:id"
+  params:
+    - name: id
+      value: f3b38735-86be-4224-9c72-0a267d7c1a61
+      type: path
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwic3ViIjoiYzRiNmIwYTUtYjc1NC00ZWE3LThiMDktMDAyZGRlYTYzOTE3IiwiY3JlYXRlZEF0IjoiMjAyNi0wOC0yN1QwNjo0MjozNS4wMDBaIiwiaWF0IjoxNzg3ODEzMTA5LCJleHAiOjE3ODc4MTY3MDl9.3bCIlKapq5YDLpSWi03BEWx-6k_y8PeUlyrJf_X5uIs
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
