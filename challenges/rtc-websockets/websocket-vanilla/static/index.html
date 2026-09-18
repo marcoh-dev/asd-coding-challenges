@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+	<body>
+		<h1>WebSocket Test</h1>
+
+		<script>
+			const socket = new WebSocket("ws://localhost:3000");
+
+			socket.addEventListener("open", () => {
+				console.log("connected");
+				socket.send("hello from the client");
+			});
+
+			socket.addEventListener("message", (event) => {
+				console.log("received:", event.data);
+			});
+		</script>
+	</body>
+</html>
