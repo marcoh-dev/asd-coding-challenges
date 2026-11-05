@@ -74,10 +74,18 @@ export const createStyles = (theme: AppTheme) =>
 			marginBottom: 16,
 		},
 
+		submitButtonDisabled: {
+			backgroundColor: theme.border,
+		},
+
 		submitButtonText: {
 			color: theme.background,
 			fontSize: 14,
 			fontWeight: "600",
+		},
+
+		submitButtonTextDisabled: {
+			color: theme.textSecondary,
 		},
 
 		itemList: {

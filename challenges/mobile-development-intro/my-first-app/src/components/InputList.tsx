@@ -15,6 +15,7 @@ export default function InputList() {
 	const [input, setInput] = useState("");
 	const [items, setItems] = useState<Item[]>([]);
 	const nextId = useRef(0);
+	const canSubmit = input.trim().length > 0;
 
 	function handleSubmit() {
 		const text = input.trim();
@@ -41,8 +42,18 @@ export default function InputList() {
 				style={styles.textInput}
 			/>
 
-			<Pressable onPress={handleSubmit} style={styles.submitButton}>
-				<Text style={styles.submitButtonText}>Submit</Text>
+			<Pressable
+				onPress={handleSubmit}
+				disabled={!canSubmit}
+				accessibilityRole="button"
+				accessibilityState={{ disabled: !canSubmit }}
+				style={[styles.submitButton, !canSubmit && styles.submitButtonDisabled]}
+			>
+				<Text
+					style={[styles.submitButtonText, !canSubmit && styles.submitButtonTextDisabled]}
+				>
+					Submit
+				</Text>
 			</Pressable>
 
 			<View style={styles.itemList}>
