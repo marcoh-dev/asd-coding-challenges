@@ -33,13 +33,17 @@ function Home() {
 
 				<ScrollView style={styles.scrollView} keyboardShouldPersistTaps="handled">
 					<View style={styles.card}>
-						<Text style={styles.cardTitle}>Welcome</Text>
+						<Text style={styles.cardTitle} accessibilityRole="header">
+							Welcome
+						</Text>
 
 						<Text style={styles.text}>Hello World!</Text>
 					</View>
 
 					<View style={styles.card}>
-						<Text style={styles.cardTitle}>My Input List</Text>
+						<Text style={styles.cardTitle} accessibilityRole="header">
+							My Input List
+						</Text>
 
 						<InputList />
 					</View>
