@@ -1,60 +1,50 @@
 import { StatusBar } from "expo-status-bar";
-import { useMemo, useState } from "react";
-import { ScrollView, Text, useColorScheme, View } from "react-native";
+import { useState } from "react";
+import { ScrollView, Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 import Header from "./components/Header";
 import InputList from "./components/InputList";
 import Menu from "./components/Menu";
-import { createStyles } from "./theme/createStyles";
-import { darkTheme, lightTheme, type ThemeMode } from "./theme/themes";
+import { ThemeProvider, useTheme } from "./theme/ThemeProvider";
 
 export default function App() {
-	const systemColorScheme = useColorScheme();
+	return (
+		<ThemeProvider>
+			<SafeAreaProvider>
+				<Home />
+			</SafeAreaProvider>
+		</ThemeProvider>
+	);
+}
 
-	const [themeMode, setThemeMode] = useState<ThemeMode>("system");
+function Home() {
+	const { styles, isDark } = useTheme();
 	const [menuVisible, setMenuVisible] = useState(false);
 
-	const isDark = themeMode === "system" ? systemColorScheme === "dark" : themeMode === "dark";
-
-	const theme = isDark ? darkTheme : lightTheme;
-	const styles = useMemo(() => createStyles(theme), [theme]);
-
 	return (
-		<SafeAreaProvider>
-			<SafeAreaView style={styles.screen}>
-				<StatusBar style={isDark ? "light" : "dark"} />
+		<SafeAreaView style={styles.screen}>
+			<StatusBar style={isDark ? "light" : "dark"} />
 
-				<View style={styles.container}>
-					<Header
-						title="My First App"
-						theme={theme}
-						onMenuPress={() => setMenuVisible(true)}
-					/>
+			<View style={styles.container}>
+				<Header title="My First App" onMenuPress={() => setMenuVisible(true)} />
 
-					<Menu
-						visible={menuVisible}
-						onClose={() => setMenuVisible(false)}
-						themeMode={themeMode}
-						setThemeMode={setThemeMode}
-						theme={theme}
-					/>
+				<Menu visible={menuVisible} onClose={() => setMenuVisible(false)} />
 
-					<ScrollView style={styles.scrollView} keyboardShouldPersistTaps="handled">
-						<View style={styles.card}>
-							<Text style={styles.cardTitle}>Welcome</Text>
+				<ScrollView style={styles.scrollView} keyboardShouldPersistTaps="handled">
+					<View style={styles.card}>
+						<Text style={styles.cardTitle}>Welcome</Text>
 
-							<Text style={styles.text}>Hello World!</Text>
-						</View>
+						<Text style={styles.text}>Hello World!</Text>
+					</View>
 
-						<View style={styles.card}>
-							<Text style={styles.cardTitle}>My Input List</Text>
+					<View style={styles.card}>
+						<Text style={styles.cardTitle}>My Input List</Text>
 
-							<InputList theme={theme} />
-						</View>
-					</ScrollView>
-				</View>
-			</SafeAreaView>
-		</SafeAreaProvider>
+						<InputList />
+					</View>
+				</ScrollView>
+			</View>
+		</SafeAreaView>
 	);
 }
