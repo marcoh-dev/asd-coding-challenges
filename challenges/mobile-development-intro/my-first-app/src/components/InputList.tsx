@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { View, Text, TextInput, Pressable } from "react-native";
+import { Pressable, Text, TextInput, View } from "react-native";
 
-import { createStyles } from "../theme/createStyles";
-import type { AppTheme } from "../theme/themes";
+import { createStyles } from "@/theme/createStyles";
+import type { AppTheme } from "@/theme/themes";
 
 type Props = {
 	theme: AppTheme;

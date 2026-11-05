@@ -1,10 +1,9 @@
-import { View, Text, Pressable, Modal } from "react-native";
+import { Moon, Smartphone, Sun, X } from "lucide-react-native";
+import { Modal, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { X, Smartphone, Sun, Moon } from "lucide-react-native";
-
-import { createStyles } from "../theme/createStyles";
-import type { ThemeMode, AppTheme } from "../theme/themes";
+import { createStyles } from "@/theme/createStyles";
+import type { AppTheme, ThemeMode } from "@/theme/themes";
 
 type Props = {
 	visible: boolean;

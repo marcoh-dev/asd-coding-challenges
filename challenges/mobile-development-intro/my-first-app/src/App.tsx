@@ -1,16 +1,13 @@
+import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { View, useColorScheme, Text, ScrollView } from "react-native";
+import { ScrollView, Text, useColorScheme, View } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 import Header from "./components/Header";
-import Menu from "./components/Menu";
-
-import { lightTheme, darkTheme, ThemeMode } from "./theme/themes";
-
-import { createStyles } from "./theme/createStyles";
-
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import InputList from "./components/InputList";
-import { StatusBar } from "expo-status-bar";
+import Menu from "./components/Menu";
+import { createStyles } from "./theme/createStyles";
+import { darkTheme, lightTheme, type ThemeMode } from "./theme/themes";
 
 export default function App() {
 	const systemColorScheme = useColorScheme();

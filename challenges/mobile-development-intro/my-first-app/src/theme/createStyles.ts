@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+
 import type { AppTheme } from "./themes";
 
 export const createStyles = (theme: AppTheme) =>
