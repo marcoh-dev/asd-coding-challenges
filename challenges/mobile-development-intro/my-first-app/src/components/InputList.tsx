@@ -23,6 +23,9 @@ export default function InputList() {
 				placeholderTextColor={theme.textSecondary}
 				value={input}
 				onChangeText={setInput}
+				onSubmitEditing={handleSubmit}
+				returnKeyType="done"
+				submitBehavior="submit"
 				style={styles.textInput}
 			/>
 
