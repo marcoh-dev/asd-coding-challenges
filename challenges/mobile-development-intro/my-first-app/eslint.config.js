@@ -20,6 +20,7 @@ module.exports = defineConfig([
 			],
 			"import/no-duplicates": "error",
 			"react/jsx-uses-react": "off",
+			"@typescript-eslint/no-explicit-any": "error",
 			"@typescript-eslint/no-unused-vars": [
 				"error",
 				{ vars: "all", args: "none", ignoreRestSiblings: true, caughtErrors: "all" },
