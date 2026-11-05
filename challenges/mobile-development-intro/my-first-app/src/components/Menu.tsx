@@ -25,12 +25,9 @@ export default function Menu({ visible, onClose, themeMode, setThemeMode, theme 
 	return (
 		<Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
 			<View style={styles.drawerOverlay}>
-				{/* Backdrop */}
 				<Pressable style={styles.drawerBackdrop} onPress={onClose} />
 
-				{/* Drawer */}
 				<SafeAreaView style={styles.drawer} edges={["top", "bottom"]}>
-					{/* Header */}
 					<View style={styles.drawerHeader}>
 						<Text style={styles.drawerTitle}>Menu</Text>
 
@@ -39,7 +36,6 @@ export default function Menu({ visible, onClose, themeMode, setThemeMode, theme 
 						</Pressable>
 					</View>
 
-					{/* Appearance */}
 					<Text style={styles.menuItemText}>Appearance</Text>
 
 					<View style={styles.themeSelector}>
