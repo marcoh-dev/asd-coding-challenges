@@ -1,18 +1,25 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 
 import { useTheme } from "@/theme/ThemeProvider";
+
+type Item = {
+	id: number;
+	text: string;
+};
 
 export default function InputList() {
 	const { theme, styles } = useTheme();
 
 	const [input, setInput] = useState("");
-	const [items, setItems] = useState<string[]>([]);
+	const [items, setItems] = useState<Item[]>([]);
+	const nextId = useRef(0);
 
 	function handleSubmit() {
-		if (!input.trim()) return;
+		const text = input.trim();
+		if (!text) return;
 
-		setItems((prev) => [...prev, input.trim()]);
+		setItems((prev) => [...prev, { id: nextId.current++, text }]);
 		setInput("");
 	}
 
@@ -34,9 +41,9 @@ export default function InputList() {
 			</Pressable>
 
 			<View style={styles.itemList}>
-				{items.map((val, i) => (
-					<View key={i} style={styles.listItem}>
-						<Text style={styles.text}>{val}</Text>
+				{items.map((item) => (
+					<View key={item.id} style={styles.listItem}>
+						<Text style={styles.text}>{item.text}</Text>
 					</View>
 				))}
 			</View>
