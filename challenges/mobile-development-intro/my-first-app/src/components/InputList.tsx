@@ -33,6 +33,7 @@ export default function InputList() {
 		<View>
 			<TextInput
 				placeholder="Enter text..."
+				accessibilityLabel="New list item"
 				placeholderTextColor={theme.textSecondary}
 				value={input}
 				onChangeText={setInput}
