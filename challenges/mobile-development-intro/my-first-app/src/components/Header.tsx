@@ -15,7 +15,12 @@ export default function Header({ title, onMenuPress }: Props) {
 		<View style={styles.header}>
 			<Text style={styles.headerTitle}>{title}</Text>
 
-			<Pressable onPress={onMenuPress}>
+			<Pressable
+				onPress={onMenuPress}
+				accessibilityRole="button"
+				accessibilityLabel="Open menu"
+				hitSlop={10}
+			>
 				<Menu size={26} color={theme.text} />
 			</Pressable>
 		</View>
