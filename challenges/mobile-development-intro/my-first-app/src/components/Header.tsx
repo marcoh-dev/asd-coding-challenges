@@ -1,4 +1,5 @@
 import { Menu } from "lucide-react-native";
+import { useMemo } from "react";
 import { Pressable, Text, View } from "react-native";
 
 import { createStyles } from "@/theme/createStyles";
@@ -11,7 +12,7 @@ type Props = {
 };
 
 export default function Header({ title, onMenuPress, theme }: Props) {
-	const styles = createStyles(theme);
+	const styles = useMemo(() => createStyles(theme), [theme]);
 
 	return (
 		<View style={styles.header}>
