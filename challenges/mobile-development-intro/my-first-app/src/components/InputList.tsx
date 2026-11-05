@@ -1,6 +1,6 @@
 import { X } from "lucide-react-native";
 import { useRef, useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { AccessibilityInfo, Pressable, Text, TextInput, View } from "react-native";
 
 import { useTheme } from "@/theme/ThemeProvider";
 
@@ -23,10 +23,12 @@ export default function InputList() {
 
 		setItems((prev) => [...prev, { id: nextId.current++, text }]);
 		setInput("");
+		AccessibilityInfo.announceForAccessibility(`Added: ${text}`);
 	}
 
-	function handleDelete(id: number) {
-		setItems((prev) => prev.filter((item) => item.id !== id));
+	function handleDelete(deleted: Item) {
+		setItems((prev) => prev.filter((item) => item.id !== deleted.id));
+		AccessibilityInfo.announceForAccessibility(`Deleted: ${deleted.text}`);
 	}
 
 	return (
@@ -63,7 +65,7 @@ export default function InputList() {
 						<Text style={[styles.text, styles.listItemText]}>{item.text}</Text>
 
 						<Pressable
-							onPress={() => handleDelete(item.id)}
+							onPress={() => handleDelete(item)}
 							accessibilityRole="button"
 							accessibilityLabel={`Delete ${item.text}`}
 							hitSlop={12}
