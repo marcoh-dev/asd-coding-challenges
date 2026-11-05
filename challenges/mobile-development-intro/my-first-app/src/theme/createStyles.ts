@@ -23,7 +23,7 @@ export const createStyles = (theme: AppTheme) =>
 			flexDirection: "row",
 			justifyContent: "space-between",
 			alignItems: "center",
-			paddingVertical: 15,
+			paddingVertical: 16,
 		},
 
 		headerTitle: {
@@ -57,19 +57,20 @@ export const createStyles = (theme: AppTheme) =>
 		textInput: {
 			borderWidth: 1,
 			borderColor: theme.border,
-			backgroundColor: theme.background,
+			backgroundColor: theme.input,
 			color: theme.text,
 			padding: 12,
 			borderRadius: 8,
-			marginBottom: 10,
+			marginBottom: 12,
 			fontSize: 16,
 		},
 
 		submitButton: {
 			alignSelf: "flex-start",
 			backgroundColor: theme.primary,
+			minHeight: 44,
+			justifyContent: "center",
 			paddingHorizontal: 20,
-			paddingVertical: 9,
 			borderRadius: 8,
 			marginBottom: 16,
 		},
@@ -89,7 +90,7 @@ export const createStyles = (theme: AppTheme) =>
 		},
 
 		itemList: {
-			gap: 6,
+			gap: 8,
 			marginTop: 4,
 		},
 
@@ -99,7 +100,7 @@ export const createStyles = (theme: AppTheme) =>
 			gap: 8,
 			backgroundColor: theme.listItem,
 			borderRadius: 6,
-			padding: 10,
+			padding: 12,
 		},
 
 		listItemText: {
@@ -137,7 +138,7 @@ export const createStyles = (theme: AppTheme) =>
 			flexDirection: "row",
 			justifyContent: "space-between",
 			alignItems: "center",
-			marginBottom: 30,
+			marginBottom: 24,
 		},
 
 		drawerTitle: {
@@ -165,7 +166,7 @@ export const createStyles = (theme: AppTheme) =>
 
 		themeButton: {
 			padding: 12,
-			borderRadius: 8,
+			borderRadius: 4,
 			alignItems: "center",
 			justifyContent: "center",
 		},
