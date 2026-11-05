@@ -4,8 +4,8 @@ export const lightTheme = {
 	drawer: "#FAFAF8",
 	listItem: "#ECEEF1",
 	text: "#252932",
-	textSecondary: "#707783",
-	primary: "#3478D4",
+	textSecondary: "#606671",
+	primary: "#2A6CC6",
 	border: "#D9DCE2",
 	drawerBorder: "#E0E2E5",
 };
