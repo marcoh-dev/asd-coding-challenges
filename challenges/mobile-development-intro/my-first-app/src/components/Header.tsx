@@ -13,7 +13,9 @@ export default function Header({ title, onMenuPress }: Props) {
 
 	return (
 		<View style={styles.header}>
-			<Text style={styles.headerTitle}>{title}</Text>
+			<Text style={styles.headerTitle} accessibilityRole="header">
+				{title}
+			</Text>
 
 			<Pressable
 				onPress={onMenuPress}

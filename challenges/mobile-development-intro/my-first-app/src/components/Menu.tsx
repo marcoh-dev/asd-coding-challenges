@@ -25,7 +25,9 @@ export default function Menu({ visible, onClose }: Props) {
 
 				<SafeAreaView style={styles.drawer} edges={["top", "bottom"]}>
 					<View style={styles.drawerHeader}>
-						<Text style={styles.drawerTitle}>Menu</Text>
+						<Text style={styles.drawerTitle} accessibilityRole="header">
+							Menu
+						</Text>
 
 						<Pressable
 							onPress={onClose}
@@ -37,7 +39,9 @@ export default function Menu({ visible, onClose }: Props) {
 						</Pressable>
 					</View>
 
-					<Text style={styles.menuItemText}>Appearance</Text>
+					<Text style={styles.menuItemText} accessibilityRole="header">
+						Appearance
+					</Text>
 
 					<View style={styles.themeSelector}>
 						{themeOptions.map(({ mode, Icon }) => (
