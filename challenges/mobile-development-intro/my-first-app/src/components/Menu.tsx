@@ -21,7 +21,12 @@ export default function Menu({ visible, onClose }: Props) {
 	return (
 		<Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
 			<View style={styles.drawerOverlay}>
-				<Pressable style={styles.drawerBackdrop} onPress={onClose} />
+				<Pressable
+					style={styles.drawerBackdrop}
+					onPress={onClose}
+					accessible={false}
+					importantForAccessibility="no"
+				/>
 
 				<SafeAreaView style={styles.drawer} edges={["top", "bottom"]}>
 					<View style={styles.drawerHeader}>
