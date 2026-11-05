@@ -1,3 +1,4 @@
+import { X } from "lucide-react-native";
 import { useRef, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 
@@ -23,6 +24,10 @@ export default function InputList() {
 		setInput("");
 	}
 
+	function handleDelete(id: number) {
+		setItems((prev) => prev.filter((item) => item.id !== id));
+	}
+
 	return (
 		<View>
 			<TextInput
@@ -43,7 +48,16 @@ export default function InputList() {
 			<View style={styles.itemList}>
 				{items.map((item) => (
 					<View key={item.id} style={styles.listItem}>
-						<Text style={styles.text}>{item.text}</Text>
+						<Text style={[styles.text, styles.listItemText]}>{item.text}</Text>
+
+						<Pressable
+							onPress={() => handleDelete(item.id)}
+							accessibilityRole="button"
+							accessibilityLabel={`Delete ${item.text}`}
+							hitSlop={12}
+						>
+							<X size={18} color={theme.textSecondary} />
+						</Pressable>
 					</View>
 				))}
 			</View>
