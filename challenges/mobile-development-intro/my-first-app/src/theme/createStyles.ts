@@ -86,9 +86,16 @@ export const createStyles = (theme: AppTheme) =>
 		},
 
 		listItem: {
+			flexDirection: "row",
+			alignItems: "center",
+			gap: 8,
 			backgroundColor: theme.listItem,
 			borderRadius: 6,
 			padding: 10,
+		},
+
+		listItemText: {
+			flex: 1,
 		},
 
 		drawerOverlay: {
