@@ -1,31 +1,21 @@
 import { Menu } from "lucide-react-native";
 import { Pressable, Text, View } from "react-native";
 
+import { createStyles } from "@/theme/createStyles";
+import type { AppTheme } from "@/theme/themes";
+
 type Props = {
 	title: string;
 	onMenuPress: () => void;
-	theme: any;
+	theme: AppTheme;
 };
 
 export default function Header({ title, onMenuPress, theme }: Props) {
+	const styles = createStyles(theme);
+
 	return (
-		<View
-			style={{
-				flexDirection: "row",
-				justifyContent: "space-between",
-				alignItems: "center",
-				paddingVertical: 15,
-			}}
-		>
-			<Text
-				style={{
-					fontSize: 22,
-					fontWeight: "bold",
-					color: theme.text,
-				}}
-			>
-				{title}
-			</Text>
+		<View style={styles.header}>
+			<Text style={styles.headerTitle}>{title}</Text>
 
 			<Pressable onPress={onMenuPress}>
 				<Menu size={26} color={theme.text} />

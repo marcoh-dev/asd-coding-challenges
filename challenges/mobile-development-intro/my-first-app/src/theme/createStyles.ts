@@ -43,22 +43,10 @@ export const createStyles = (theme: AppTheme) =>
 		},
 
 		// Text
-		heading: {
-			fontSize: 24,
-			fontWeight: "bold",
-			color: theme.text,
-			marginBottom: 12,
-		},
-
 		text: {
 			fontSize: 16,
 			lineHeight: 24,
 			color: theme.text,
-		},
-
-		secondaryText: {
-			fontSize: 14,
-			color: theme.textSecondary,
 		},
 
 		// Input
