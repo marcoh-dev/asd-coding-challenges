@@ -4,14 +4,12 @@ import type { AppTheme } from "./themes";
 
 export const createStyles = (theme: AppTheme) =>
 	StyleSheet.create({
-		// General layout
 		container: {
 			flex: 1,
 			paddingHorizontal: 20,
 			backgroundColor: theme.background,
 		},
 
-		// Header
 		header: {
 			flexDirection: "row",
 			justifyContent: "space-between",
@@ -25,7 +23,6 @@ export const createStyles = (theme: AppTheme) =>
 			color: theme.text,
 		},
 
-		// Cards
 		card: {
 			backgroundColor: theme.surface,
 			borderColor: theme.border,
@@ -42,14 +39,12 @@ export const createStyles = (theme: AppTheme) =>
 			marginBottom: 12,
 		},
 
-		// Text
 		text: {
 			fontSize: 16,
 			lineHeight: 24,
 			color: theme.text,
 		},
 
-		// Input
 		textInput: {
 			borderWidth: 1,
 			borderColor: theme.border,
@@ -76,7 +71,6 @@ export const createStyles = (theme: AppTheme) =>
 			fontWeight: "600",
 		},
 
-		// Submitted items
 		itemList: {
 			gap: 6,
 			marginTop: 4,
@@ -88,7 +82,6 @@ export const createStyles = (theme: AppTheme) =>
 			padding: 10,
 		},
 
-		// Menu / Drawer
 		drawerOverlay: {
 			flex: 1,
 			flexDirection: "row",
@@ -135,7 +128,6 @@ export const createStyles = (theme: AppTheme) =>
 			color: theme.text,
 		},
 
-		// Theme selector
 		themeSelector: {
 			flexDirection: "row",
 			justifyContent: "space-around",
