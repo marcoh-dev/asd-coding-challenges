@@ -1,4 +1,5 @@
 import { Moon, Smartphone, Sun, X } from "lucide-react-native";
+import { useMemo } from "react";
 import { Modal, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -14,7 +15,7 @@ type Props = {
 };
 
 export default function Menu({ visible, onClose, themeMode, setThemeMode, theme }: Props) {
-	const styles = createStyles(theme);
+	const styles = useMemo(() => createStyles(theme), [theme]);
 
 	const themeOptions = [
 		{ mode: "system", Icon: Smartphone },
