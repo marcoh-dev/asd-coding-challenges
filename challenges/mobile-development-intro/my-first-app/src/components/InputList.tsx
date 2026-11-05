@@ -1,15 +1,10 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 
-import { createStyles } from "@/theme/createStyles";
-import type { AppTheme } from "@/theme/themes";
+import { useTheme } from "@/theme/ThemeProvider";
 
-type Props = {
-	theme: AppTheme;
-};
-
-export default function InputList({ theme }: Props) {
-	const styles = useMemo(() => createStyles(theme), [theme]);
+export default function InputList() {
+	const { theme, styles } = useTheme();
 
 	const [input, setInput] = useState("");
 	const [items, setItems] = useState<string[]>([]);
