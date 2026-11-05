@@ -27,7 +27,7 @@ module.exports = defineConfig([
 			],
 			"no-restricted-imports": [
 				"error",
-				{ patterns: [{ regex: "^\\.\\./", message: 'Use "@/…" instead of "../".' }] },
+				{ patterns: [{ regex: "(^|/)\\.\\./", message: 'Use "@/…" instead of "../".' }] },
 			],
 		},
 	},
