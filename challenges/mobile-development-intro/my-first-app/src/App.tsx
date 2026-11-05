@@ -22,7 +22,7 @@ export default function App() {
 
 	return (
 		<SafeAreaProvider>
-			<SafeAreaView style={{ flex: 1, backgroundColor: theme.background }}>
+			<SafeAreaView style={styles.screen}>
 				<StatusBar style={isDark ? "light" : "dark"} />
 
 				<View style={styles.container}>
@@ -40,7 +40,7 @@ export default function App() {
 						theme={theme}
 					/>
 
-					<ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps="handled">
+					<ScrollView style={styles.scrollView} keyboardShouldPersistTaps="handled">
 						<View style={styles.card}>
 							<Text style={styles.cardTitle}>Welcome</Text>
 

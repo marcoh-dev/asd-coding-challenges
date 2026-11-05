@@ -4,6 +4,15 @@ import type { AppTheme } from "./themes";
 
 export const createStyles = (theme: AppTheme) =>
 	StyleSheet.create({
+		screen: {
+			flex: 1,
+			backgroundColor: theme.background,
+		},
+
+		scrollView: {
+			flex: 1,
+		},
+
 		container: {
 			flex: 1,
 			paddingHorizontal: 20,
