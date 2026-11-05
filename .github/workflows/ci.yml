@@ -77,6 +77,11 @@ jobs:
           script() { node -p "require('./package.json').scripts?.['$1'] ?? ''"; }
           run() { echo "::group::$pm run $1"; "$pm" run "$1"; status=$?; echo "::endgroup::"; return $status; }
 
+          if [ -n "$(script ci)" ]; then
+            run ci
+            exit 0
+          fi
+
           if [ -n "$(script check)" ]; then
             run check
           else
