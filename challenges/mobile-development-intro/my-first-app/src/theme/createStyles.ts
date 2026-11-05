@@ -1,0 +1,167 @@
+import { StyleSheet } from "react-native";
+import type { AppTheme } from "./themes";
+
+export const createStyles = (theme: AppTheme) =>
+	StyleSheet.create({
+		// General layout
+		container: {
+			flex: 1,
+			paddingHorizontal: 20,
+			backgroundColor: theme.background,
+		},
+
+		// Header
+		header: {
+			flexDirection: "row",
+			justifyContent: "space-between",
+			alignItems: "center",
+			paddingVertical: 15,
+		},
+
+		headerTitle: {
+			fontSize: 22,
+			fontWeight: "bold",
+			color: theme.text,
+		},
+
+		// Cards
+		card: {
+			backgroundColor: theme.surface,
+			borderColor: theme.border,
+			borderWidth: 1,
+			borderRadius: 12,
+			padding: 16,
+			marginBottom: 16,
+		},
+
+		cardTitle: {
+			fontSize: 18,
+			fontWeight: "600",
+			color: theme.text,
+			marginBottom: 12,
+		},
+
+		// Text
+		heading: {
+			fontSize: 24,
+			fontWeight: "bold",
+			color: theme.text,
+			marginBottom: 12,
+		},
+
+		text: {
+			fontSize: 16,
+			lineHeight: 24,
+			color: theme.text,
+		},
+
+		secondaryText: {
+			fontSize: 14,
+			color: theme.textSecondary,
+		},
+
+		// Input
+		textInput: {
+			borderWidth: 1,
+			borderColor: theme.border,
+			backgroundColor: theme.background,
+			color: theme.text,
+			padding: 12,
+			borderRadius: 8,
+			marginBottom: 10,
+			fontSize: 16,
+		},
+
+		submitButton: {
+			alignSelf: "flex-start",
+			backgroundColor: theme.primary,
+			paddingHorizontal: 20,
+			paddingVertical: 9,
+			borderRadius: 8,
+			marginBottom: 16,
+		},
+
+		submitButtonText: {
+			color: theme.background,
+			fontSize: 14,
+			fontWeight: "600",
+		},
+
+		// Submitted items
+		itemList: {
+			gap: 6,
+			marginTop: 4,
+		},
+
+		listItem: {
+			backgroundColor: theme.listItem,
+			borderRadius: 6,
+			padding: 10,
+		},
+
+		// Menu / Drawer
+		drawerOverlay: {
+			flex: 1,
+			flexDirection: "row",
+			backgroundColor: "rgba(0,0,0,0.5)",
+		},
+
+		drawerBackdrop: {
+			flex: 1,
+		},
+
+		drawer: {
+			width: 280,
+			padding: 20,
+			backgroundColor: theme.drawer,
+			borderLeftWidth: 1,
+			borderLeftColor: theme.drawerBorder,
+
+			shadowColor: "#000000",
+			shadowOffset: {
+				width: -4,
+				height: 0,
+			},
+			shadowOpacity: 0.3,
+			shadowRadius: 12,
+			elevation: 12,
+		},
+
+		drawerHeader: {
+			flexDirection: "row",
+			justifyContent: "space-between",
+			alignItems: "center",
+			marginBottom: 30,
+		},
+
+		drawerTitle: {
+			fontSize: 22,
+			fontWeight: "bold",
+			color: theme.text,
+		},
+
+		menuItemText: {
+			fontSize: 16,
+			fontWeight: "600",
+			color: theme.text,
+		},
+
+		// Theme selector
+		themeSelector: {
+			flexDirection: "row",
+			justifyContent: "space-around",
+			marginTop: 12,
+			padding: 8,
+			backgroundColor: theme.background,
+			borderRadius: 12,
+			borderWidth: 1,
+			borderColor: theme.border,
+		},
+
+		themeButton: {
+			padding: 12,
+			borderRadius: 8,
+			alignItems: "center",
+			justifyContent: "center",
+		},
+	});
