@@ -13,9 +13,9 @@ export default function Menu({ visible, onClose }: Props) {
 	const { theme, styles, themeMode, setThemeMode } = useTheme();
 
 	const themeOptions = [
-		{ mode: "system", Icon: Smartphone },
-		{ mode: "light", Icon: Sun },
-		{ mode: "dark", Icon: Moon },
+		{ mode: "system", label: "System", Icon: Smartphone },
+		{ mode: "light", label: "Light", Icon: Sun },
+		{ mode: "dark", label: "Dark", Icon: Moon },
 	] as const;
 
 	return (
@@ -48,16 +48,18 @@ export default function Menu({ visible, onClose }: Props) {
 						Appearance
 					</Text>
 
-					<View style={styles.themeSelector}>
-						{themeOptions.map(({ mode, Icon }) => (
+					<View
+						style={styles.themeSelector}
+						accessibilityRole="radiogroup"
+						accessibilityLabel="Theme"
+					>
+						{themeOptions.map(({ mode, label, Icon }) => (
 							<Pressable
 								key={mode}
 								onPress={() => setThemeMode(mode)}
-								accessibilityRole="button"
-								accessibilityLabel={`${mode} theme`}
-								accessibilityState={{
-									selected: themeMode === mode,
-								}}
+								accessibilityRole="radio"
+								accessibilityLabel={label}
+								accessibilityState={{ checked: themeMode === mode }}
 								style={[
 									styles.themeButton,
 									{
