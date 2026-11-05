@@ -27,7 +27,12 @@ export default function Menu({ visible, onClose }: Props) {
 					<View style={styles.drawerHeader}>
 						<Text style={styles.drawerTitle}>Menu</Text>
 
-						<Pressable onPress={onClose}>
+						<Pressable
+							onPress={onClose}
+							accessibilityRole="button"
+							accessibilityLabel="Close menu"
+							hitSlop={10}
+						>
 							<X size={24} color={theme.text} />
 						</Pressable>
 					</View>
