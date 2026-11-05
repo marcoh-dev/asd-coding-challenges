@@ -1,0 +1,93 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      projects: ${{ steps.find.outputs.projects }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - id: find
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [ -z "$BASE" ] || ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+            BASE=$(git rev-parse HEAD~1)
+          fi
+          projects=$(git diff --name-only "$BASE" HEAD | while read -r file; do
+            dir=$(dirname "$file")
+            while [ "$dir" != "." ]; do
+              if [ -f "$dir/package.json" ]; then
+                echo "$dir"
+                break
+              fi
+              dir=$(dirname "$dir")
+            done
+          done | sort -u | jq -R . | jq -sc .)
+          echo "Changed projects: $projects"
+          echo "projects=$projects" >> "$GITHUB_OUTPUT"
+
+  check:
+    needs: changes
+    if: needs.changes.outputs.projects != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ${{ fromJSON(needs.changes.outputs.projects) }}
+    name: ${{ matrix.project }}
+    defaults:
+      run:
+        working-directory: ${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: env
+        run: |
+          echo "node=$(cat .nvmrc 2>/dev/null || echo 24)" >> "$GITHUB_OUTPUT"
+          if [ -f bun.lock ] || [ -f bun.lockb ]; then
+            echo "manager=bun" >> "$GITHUB_OUTPUT"
+          else
+            echo "manager=npm" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ steps.env.outputs.node }}
+      - if: steps.env.outputs.manager == 'bun'
+        uses: oven-sh/setup-bun@v2
+      - name: Install
+        run: |
+          if [ "${{ steps.env.outputs.manager }}" = bun ]; then
+            bun install
+          elif [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+      - name: Check, test and build
+        run: |
+          pm="${{ steps.env.outputs.manager }}"
+          script() { node -p "require('./package.json').scripts?.['$1'] ?? ''"; }
+          run() { echo "::group::$pm run $1"; "$pm" run "$1"; status=$?; echo "::endgroup::"; return $status; }
+
+          if [ -n "$(script check)" ]; then
+            run check
+          else
+            for name in lint typecheck; do
+              if [ -n "$(script "$name")" ]; then run "$name"; fi
+            done
+          fi
+
+          test_script=$(script test)
+          if [ -n "$test_script" ] && [[ "$test_script" != *"no test specified"* ]]; then
+            run test
+          fi
+
+          if [ -n "$(script build)" ]; then run build; fi
