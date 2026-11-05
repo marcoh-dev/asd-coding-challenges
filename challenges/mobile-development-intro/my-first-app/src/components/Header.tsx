@@ -1,6 +1,5 @@
-import React from "react";
-import { View, Text, Pressable } from "react-native";
 import { Menu } from "lucide-react-native";
+import { Pressable, Text, View } from "react-native";
 
 type Props = {
 	title: string;
