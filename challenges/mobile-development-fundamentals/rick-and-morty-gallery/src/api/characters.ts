@@ -2,21 +2,32 @@ import type { Character } from "@/types/character";
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
-type CharacterResponse = {
+export type CharacterPage = {
+	info: {
+		count: number;
+		pages: number;
+		next: string | null;
+		prev: string | null;
+	};
 	results: Character[];
 };
 
-export async function fetchCharacters({ signal }: { signal: AbortSignal }) {
+export async function fetchCharacters({
+	pageParam,
+	signal,
+}: {
+	pageParam: number;
+	signal: AbortSignal;
+}): Promise<CharacterPage> {
 	if (!API_URL) {
 		throw new Error("EXPO_PUBLIC_API_URL is not set");
 	}
 
-	const response = await fetch(`${API_URL}/character`, { signal });
+	const response = await fetch(`${API_URL}/character?page=${pageParam}`, { signal });
 
 	if (!response.ok) {
 		throw new Error(`Request failed with status ${response.status}`);
 	}
 
-	const data: CharacterResponse = await response.json();
-	return data.results;
+	return response.json();
 }

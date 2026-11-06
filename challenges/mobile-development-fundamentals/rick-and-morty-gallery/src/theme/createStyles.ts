@@ -70,6 +70,11 @@ export const createStyles = (theme: AppTheme) =>
 			gap: 12,
 		},
 
+		galleryFooter: {
+			alignItems: "center",
+			gap: 12,
+		},
+
 		characterCard: {
 			flex: 1,
 			backgroundColor: theme.surface,
