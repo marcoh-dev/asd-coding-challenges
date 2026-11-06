@@ -1,17 +1,22 @@
 {
 	"name": "rick-and-morty-gallery",
 	"version": "1.0.0",
-	"main": "src/index.ts",
+	"main": "expo-router/entry",
 	"dependencies": {
 		"@tanstack/react-query": "^5.106.1",
 		"expo": "~58.0.23",
+		"expo-constants": "~58.0.15",
 		"expo-image": "~58.0.18",
+		"expo-linking": "~58.0.16",
+		"expo-router": "~58.0.30",
 		"expo-splash-screen": "~58.0.13",
 		"expo-status-bar": "~58.0.4",
 		"lucide-react-native": "^1.69.0",
 		"react": "19.3.0",
+		"react-dom": "19.3.0",
 		"react-native": "0.88.1",
 		"react-native-safe-area-context": "~5.11.1",
+		"react-native-screens": "~4.30.1",
 		"react-native-svg": "15.16.0"
 	},
 	"devDependencies": {
@@ -31,7 +36,7 @@
 		"lint:fix": "expo lint --fix",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
-		"typecheck": "tsc --noEmit",
+		"typecheck": "expo customize tsconfig.json && tsc --noEmit",
 		"check": "npm run lint && npm run format:check && npm run typecheck"
 	},
 	"private": true,

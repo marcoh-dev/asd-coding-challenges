@@ -4,10 +4,10 @@ import { useState } from "react";
 import { View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
-import Gallery from "./components/Gallery";
-import Header from "./components/Header";
-import Menu from "./components/Menu";
-import { ThemeProvider, useTheme } from "./theme/ThemeProvider";
+import Gallery from "@/components/Gallery";
+import Header from "@/components/Header";
+import Menu from "@/components/Menu";
+import { ThemeProvider, useTheme } from "@/theme/ThemeProvider";
 
 const queryClient = new QueryClient();
 
