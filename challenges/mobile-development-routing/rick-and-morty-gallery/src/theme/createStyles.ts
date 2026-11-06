@@ -228,4 +228,28 @@ export const createStyles = (theme: AppTheme) =>
 			fontSize: 15,
 			fontWeight: "600",
 		},
+
+		resetButton: {
+			alignSelf: "flex-end",
+			minHeight: 44,
+			justifyContent: "center",
+			paddingHorizontal: 20,
+			borderRadius: 8,
+			borderWidth: 1,
+			borderColor: theme.primary,
+		},
+
+		resetButtonDisabled: {
+			borderColor: theme.border,
+		},
+
+		resetButtonText: {
+			color: theme.primary,
+			fontSize: 14,
+			fontWeight: "600",
+		},
+
+		resetButtonTextDisabled: {
+			color: theme.textSecondary,
+		},
 	});
