@@ -6,20 +6,29 @@ import type { ThemeMode } from "@/theme/themes";
 
 type ReducedMotionMode = "system" | "on" | "off";
 
-type SettingsState = {
+type Settings = {
 	themeMode: ThemeMode;
 	reducedMotion: ReducedMotionMode;
+};
+
+type SettingsState = Settings & {
 	setThemeMode: (themeMode: ThemeMode) => void;
 	setReducedMotion: (reducedMotion: ReducedMotionMode) => void;
+	resetSettings: () => void;
+};
+
+const defaultSettings: Settings = {
+	themeMode: "system",
+	reducedMotion: "system",
 };
 
 export const useSettingsStore = create<SettingsState>()(
 	persist(
 		(set) => ({
-			themeMode: "system",
-			reducedMotion: "system",
+			...defaultSettings,
 			setThemeMode: (themeMode) => set({ themeMode }),
 			setReducedMotion: (reducedMotion) => set({ reducedMotion }),
+			resetSettings: () => set(defaultSettings),
 		}),
 		{
 			name: "settings",

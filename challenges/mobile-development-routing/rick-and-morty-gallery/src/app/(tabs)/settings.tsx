@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
 import OptionSelector from "@/components/OptionSelector";
 import { useSettingsStore } from "@/stores/settingsStore";
@@ -22,6 +22,9 @@ export default function Settings() {
 	const setThemeMode = useSettingsStore((state) => state.setThemeMode);
 	const reducedMotion = useSettingsStore((state) => state.reducedMotion);
 	const setReducedMotion = useSettingsStore((state) => state.setReducedMotion);
+	const resetSettings = useSettingsStore((state) => state.resetSettings);
+
+	const isDefault = themeMode === "system" && reducedMotion === "system";
 
 	return (
 		<View style={styles.container}>
@@ -52,6 +55,23 @@ export default function Settings() {
 					accessibilityLabel="Reduce motion"
 				/>
 			</View>
+
+			<Pressable
+				style={({ pressed }) => [
+					styles.resetButton,
+					pressed && styles.pressed,
+					isDefault && styles.resetButtonDisabled,
+				]}
+				onPress={resetSettings}
+				disabled={isDefault}
+				accessibilityRole="button"
+				accessibilityState={{ disabled: isDefault }}
+				accessibilityHint="Sets all settings back to System"
+			>
+				<Text style={[styles.resetButtonText, isDefault && styles.resetButtonTextDisabled]}>
+					Reset to defaults
+				</Text>
+			</Pressable>
 		</View>
 	);
 }
