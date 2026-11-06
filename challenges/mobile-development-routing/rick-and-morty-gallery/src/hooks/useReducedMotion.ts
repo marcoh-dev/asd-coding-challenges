@@ -1,16 +1,18 @@
 import { useSyncExternalStore } from "react";
 import { AccessibilityInfo } from "react-native";
 
-let reducedMotion = false;
+import { useSettingsStore } from "@/stores/settingsStore";
+
+let systemReducedMotion = false;
 const listeners = new Set<() => void>();
 
-function setReducedMotion(value: boolean) {
-	reducedMotion = value;
+function setSystemReducedMotion(value: boolean) {
+	systemReducedMotion = value;
 	listeners.forEach((listener) => listener());
 }
 
-AccessibilityInfo.isReduceMotionEnabled().then(setReducedMotion);
-AccessibilityInfo.addEventListener("reduceMotionChanged", setReducedMotion);
+AccessibilityInfo.isReduceMotionEnabled().then(setSystemReducedMotion);
+AccessibilityInfo.addEventListener("reduceMotionChanged", setSystemReducedMotion);
 
 function subscribe(listener: () => void) {
 	listeners.add(listener);
@@ -21,9 +23,12 @@ function subscribe(listener: () => void) {
 }
 
 function getSnapshot() {
-	return reducedMotion;
+	return systemReducedMotion;
 }
 
 export function useReducedMotion() {
-	return useSyncExternalStore(subscribe, getSnapshot);
+	const mode = useSettingsStore((state) => state.reducedMotion);
+	const system = useSyncExternalStore(subscribe, getSnapshot);
+
+	return mode === "system" ? system : mode === "on";
 }
