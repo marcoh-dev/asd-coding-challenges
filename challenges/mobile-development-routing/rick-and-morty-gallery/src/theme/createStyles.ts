@@ -30,6 +30,22 @@ export const createStyles = (theme: AppTheme) =>
 			color: theme.text,
 		},
 
+		card: {
+			backgroundColor: theme.surface,
+			borderColor: theme.border,
+			borderWidth: 1,
+			borderRadius: 12,
+			padding: 16,
+			marginVertical: 16,
+		},
+
+		cardTitle: {
+			fontSize: 18,
+			fontWeight: "600",
+			color: theme.text,
+			marginBottom: 12,
+		},
+
 		text: {
 			fontSize: 16,
 			lineHeight: 24,
