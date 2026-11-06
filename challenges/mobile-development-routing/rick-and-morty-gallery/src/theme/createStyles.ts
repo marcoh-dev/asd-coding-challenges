@@ -10,6 +10,17 @@ export const createStyles = (theme: AppTheme) =>
 			backgroundColor: theme.background,
 		},
 
+		logo: {
+			width: "100%",
+			aspectRatio: 1280 / 391,
+			marginTop: 24,
+		},
+
+		link: {
+			color: theme.primary,
+			textDecorationLine: "underline",
+		},
+
 		card: {
 			backgroundColor: theme.surface,
 			borderColor: theme.border,
