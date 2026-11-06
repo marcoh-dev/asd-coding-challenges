@@ -13,7 +13,7 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 	return StyleSheet.create({
 		container: {
 			flex: 1,
-			paddingHorizontal: 20,
+			paddingHorizontal: 16,
 			backgroundColor: theme.background,
 		},
 
@@ -165,7 +165,7 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 		},
 
 		detailsContent: {
-			padding: 20,
+			padding: 16,
 			gap: 16,
 		},
 
