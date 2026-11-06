@@ -1,4 +1,3 @@
-import { Moon, Pause, Play, Smartphone, Sun } from "lucide-react-native";
 import { Text, View } from "react-native";
 
 import OptionSelector from "@/components/OptionSelector";
@@ -6,15 +5,15 @@ import { useSettingsStore } from "@/stores/settingsStore";
 import { useTheme } from "@/theme/ThemeProvider";
 
 const themeOptions = [
-	{ value: "system", label: "System", Icon: Smartphone },
-	{ value: "light", label: "Light", Icon: Sun },
-	{ value: "dark", label: "Dark", Icon: Moon },
+	{ value: "system", label: "System" },
+	{ value: "light", label: "Light" },
+	{ value: "dark", label: "Dark" },
 ] as const;
 
 const reducedMotionOptions = [
-	{ value: "system", label: "System", Icon: Smartphone },
-	{ value: "on", label: "On", Icon: Pause },
-	{ value: "off", label: "Off", Icon: Play },
+	{ value: "system", label: "System" },
+	{ value: "on", label: "On" },
+	{ value: "off", label: "Off" },
 ] as const;
 
 export default function Settings() {

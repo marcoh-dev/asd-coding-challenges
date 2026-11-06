@@ -206,7 +206,7 @@ export const createStyles = (theme: AppTheme) =>
 
 		optionSelector: {
 			flexDirection: "row",
-			justifyContent: "space-around",
+			gap: 8,
 			marginTop: 12,
 			padding: 8,
 			backgroundColor: theme.background,
@@ -216,9 +216,16 @@ export const createStyles = (theme: AppTheme) =>
 		},
 
 		optionButton: {
-			padding: 12,
+			flex: 1,
+			minHeight: 44,
+			paddingHorizontal: 8,
 			borderRadius: 4,
 			alignItems: "center",
 			justifyContent: "center",
+		},
+
+		optionText: {
+			fontSize: 15,
+			fontWeight: "600",
 		},
 	});
