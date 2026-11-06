@@ -266,7 +266,7 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 		},
 
 		resetButtonTextDisabled: {
-			color: theme.textSecondary,
+			color: theme.textDisabled,
 		},
 	});
 };
