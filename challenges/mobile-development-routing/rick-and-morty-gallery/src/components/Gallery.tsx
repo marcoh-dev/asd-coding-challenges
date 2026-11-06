@@ -20,13 +20,16 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useTheme } from "@/theme/ThemeProvider";
 import type { Character } from "@/types/character";
 
+const LARGE_FONT_SCALE = 1.5;
+
 export default function Gallery() {
 	const { theme, styles } = useTheme();
 	const queryClient = useQueryClient();
 	const [isRefreshing, setIsRefreshing] = useState(false);
 	const [showScrollTop, setShowScrollTop] = useState(false);
 	const listRef = useRef<FlatList<Character>>(null);
-	const { height } = useWindowDimensions();
+	const { height, fontScale } = useWindowDimensions();
+	const numColumns = fontScale >= LARGE_FONT_SCALE ? 1 : 2;
 	const reducedMotion = useReducedMotion();
 
 	useScrollToTop(listRef);
@@ -110,13 +113,14 @@ export default function Gallery() {
 	return (
 		<View style={styles.gallery}>
 			<FlatList
+				key={numColumns}
 				ref={listRef}
 				style={styles.gallery}
 				data={characters}
 				keyExtractor={(character) => String(character.id)}
 				renderItem={({ item }) => <CharacterItem character={item} />}
-				numColumns={2}
-				columnWrapperStyle={styles.galleryRow}
+				numColumns={numColumns}
+				columnWrapperStyle={numColumns > 1 ? styles.galleryRow : undefined}
 				contentContainerStyle={styles.galleryContent}
 				onScroll={handleScroll}
 				scrollEventThrottle={100}
