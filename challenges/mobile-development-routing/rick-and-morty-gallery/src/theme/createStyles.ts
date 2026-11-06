@@ -2,8 +2,15 @@ import { StyleSheet } from "react-native";
 
 import type { AppTheme } from "./themes";
 
-export const createStyles = (theme: AppTheme) =>
-	StyleSheet.create({
+const fontWeights = {
+	regular: { regular: "400", semibold: "600", bold: "700" },
+	bold: { regular: "600", semibold: "700", bold: "800" },
+} as const;
+
+export const createStyles = (theme: AppTheme, boldText: boolean) => {
+	const fontWeight = fontWeights[boldText ? "bold" : "regular"];
+
+	return StyleSheet.create({
 		container: {
 			flex: 1,
 			paddingHorizontal: 20,
@@ -33,7 +40,7 @@ export const createStyles = (theme: AppTheme) =>
 
 		cardTitle: {
 			fontSize: 18,
-			fontWeight: "600",
+			fontWeight: fontWeight.semibold,
 			color: theme.text,
 			marginBottom: 12,
 		},
@@ -44,6 +51,7 @@ export const createStyles = (theme: AppTheme) =>
 
 		text: {
 			fontSize: 16,
+			fontWeight: fontWeight.regular,
 			lineHeight: 24,
 			color: theme.text,
 		},
@@ -66,7 +74,7 @@ export const createStyles = (theme: AppTheme) =>
 		buttonText: {
 			color: theme.background,
 			fontSize: 14,
-			fontWeight: "600",
+			fontWeight: fontWeight.semibold,
 		},
 
 		gallery: {
@@ -134,7 +142,7 @@ export const createStyles = (theme: AppTheme) =>
 
 		characterName: {
 			fontSize: 16,
-			fontWeight: "600",
+			fontWeight: fontWeight.semibold,
 			color: theme.text,
 		},
 
@@ -152,6 +160,7 @@ export const createStyles = (theme: AppTheme) =>
 
 		characterDetail: {
 			fontSize: 14,
+			fontWeight: fontWeight.regular,
 			color: theme.textSecondary,
 		},
 
@@ -172,7 +181,7 @@ export const createStyles = (theme: AppTheme) =>
 
 		detailsName: {
 			fontSize: 24,
-			fontWeight: "bold",
+			fontWeight: fontWeight.bold,
 			color: theme.text,
 		},
 
@@ -194,14 +203,20 @@ export const createStyles = (theme: AppTheme) =>
 
 		detailLabel: {
 			fontSize: 16,
+			fontWeight: fontWeight.regular,
 			color: theme.textSecondary,
 		},
 
 		detailValue: {
 			flexShrink: 1,
 			fontSize: 16,
+			fontWeight: fontWeight.regular,
 			color: theme.text,
 			textAlign: "right",
+		},
+
+		settingGroups: {
+			gap: 20,
 		},
 
 		optionSelector: {
@@ -226,7 +241,7 @@ export const createStyles = (theme: AppTheme) =>
 
 		optionText: {
 			fontSize: 15,
-			fontWeight: "600",
+			fontWeight: fontWeight.semibold,
 		},
 
 		resetButton: {
@@ -246,10 +261,11 @@ export const createStyles = (theme: AppTheme) =>
 		resetButtonText: {
 			color: theme.primary,
 			fontSize: 14,
-			fontWeight: "600",
+			fontWeight: fontWeight.semibold,
 		},
 
 		resetButtonTextDisabled: {
 			color: theme.textSecondary,
 		},
 	});
+};

@@ -49,7 +49,8 @@ export default function Home() {
 					</Text>
 
 					<Text style={styles.text} {...paragraphProps}>
-						You can switch between light and dark mode or reduce motion in the{" "}
+						You can switch between light and dark mode and adjust accessibility options
+						in the{" "}
 						<Link href="/settings" style={styles.link}>
 							settings
 						</Link>

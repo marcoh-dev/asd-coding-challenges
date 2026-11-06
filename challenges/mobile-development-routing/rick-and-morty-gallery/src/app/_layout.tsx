@@ -26,7 +26,7 @@ export default function RootLayout() {
 }
 
 function RootStack() {
-	const { theme, isDark } = useTheme();
+	const { theme, isDark, boldText } = useTheme();
 
 	const navigationTheme = useMemo(() => {
 		const baseTheme = isDark ? DarkTheme : DefaultTheme;
@@ -41,8 +41,16 @@ function RootStack() {
 				text: theme.text,
 				border: theme.border,
 			},
+			fonts: boldText
+				? {
+						regular: { ...baseTheme.fonts.regular, fontWeight: "600" as const },
+						medium: { ...baseTheme.fonts.medium, fontWeight: "700" as const },
+						bold: { ...baseTheme.fonts.bold, fontWeight: "700" as const },
+						heavy: { ...baseTheme.fonts.heavy, fontWeight: "800" as const },
+					}
+				: baseTheme.fonts,
 		};
-	}, [theme, isDark]);
+	}, [theme, isDark, boldText]);
 
 	return (
 		<NavigationThemeProvider value={navigationTheme}>

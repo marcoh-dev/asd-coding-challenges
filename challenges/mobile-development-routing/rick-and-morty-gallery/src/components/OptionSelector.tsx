@@ -5,6 +5,7 @@ import { useTheme } from "@/theme/ThemeProvider";
 type Option<T extends string> = {
 	value: T;
 	label: string;
+	disabled?: boolean;
 };
 
 type Props<T extends string> = {
@@ -30,24 +31,25 @@ export default function OptionSelector<T extends string>({
 		>
 			{options.map((option) => {
 				const selected = option.value === value;
+				const textColor = selected
+					? theme.background
+					: option.disabled
+						? theme.textDisabled
+						: theme.text;
 
 				return (
 					<Pressable
 						key={option.value}
 						onPress={() => onChange(option.value)}
+						disabled={option.disabled}
 						accessibilityRole="radio"
-						accessibilityState={{ checked: selected }}
+						accessibilityState={{ checked: selected, disabled: option.disabled }}
 						style={[
 							styles.optionButton,
 							{ backgroundColor: selected ? theme.primary : "transparent" },
 						]}
 					>
-						<Text
-							style={[
-								styles.optionText,
-								{ color: selected ? theme.background : theme.text },
-							]}
-						>
+						<Text style={[styles.optionText, { color: textColor }]}>
 							{option.label}
 						</Text>
 					</Pressable>

@@ -1,7 +1,7 @@
-import { Pressable, Text, View } from "react-native";
+import { Platform, Pressable, Text, View } from "react-native";
 
 import OptionSelector from "@/components/OptionSelector";
-import { useSettingsStore } from "@/stores/settingsStore";
+import { defaultSettings, useSettingsStore } from "@/stores/settingsStore";
 import { useTheme } from "@/theme/ThemeProvider";
 
 const themeOptions = [
@@ -10,11 +10,18 @@ const themeOptions = [
 	{ value: "dark", label: "Dark" },
 ] as const;
 
-const reducedMotionOptions = [
+const accessibilityOptions = [
 	{ value: "system", label: "System" },
 	{ value: "on", label: "On" },
 	{ value: "off", label: "Off" },
 ] as const;
+
+const boldTextOptions = accessibilityOptions.map((option) => ({
+	...option,
+	disabled: option.value === "system" && Platform.OS !== "ios",
+}));
+
+const settingKeys = Object.keys(defaultSettings) as (keyof typeof defaultSettings)[];
 
 export default function Settings() {
 	const { styles } = useTheme();
@@ -22,9 +29,13 @@ export default function Settings() {
 	const setThemeMode = useSettingsStore((state) => state.setThemeMode);
 	const reducedMotion = useSettingsStore((state) => state.reducedMotion);
 	const setReducedMotion = useSettingsStore((state) => state.setReducedMotion);
+	const boldText = useSettingsStore((state) => state.boldText);
+	const setBoldText = useSettingsStore((state) => state.setBoldText);
 	const resetSettings = useSettingsStore((state) => state.resetSettings);
 
-	const isDefault = themeMode === "system" && reducedMotion === "system";
+	const isDefault = useSettingsStore((state) =>
+		settingKeys.every((key) => state[key] === defaultSettings[key]),
+	);
 
 	return (
 		<View style={styles.container}>
@@ -46,14 +57,29 @@ export default function Settings() {
 					Accessibility
 				</Text>
 
-				<Text style={styles.text}>Reduce motion</Text>
+				<View style={styles.settingGroups}>
+					<View>
+						<Text style={styles.text}>Reduce motion</Text>
 
-				<OptionSelector
-					options={reducedMotionOptions}
-					value={reducedMotion}
-					onChange={setReducedMotion}
-					accessibilityLabel="Reduce motion"
-				/>
+						<OptionSelector
+							options={accessibilityOptions}
+							value={reducedMotion}
+							onChange={setReducedMotion}
+							accessibilityLabel="Reduce motion"
+						/>
+					</View>
+
+					<View>
+						<Text style={styles.text}>Bold text</Text>
+
+						<OptionSelector
+							options={boldTextOptions}
+							value={boldText}
+							onChange={setBoldText}
+							accessibilityLabel="Bold text"
+						/>
+					</View>
+				</View>
 			</View>
 
 			<Pressable
@@ -66,7 +92,7 @@ export default function Settings() {
 				disabled={isDefault}
 				accessibilityRole="button"
 				accessibilityState={{ disabled: isDefault }}
-				accessibilityHint="Sets all settings back to System"
+				accessibilityHint="Sets all settings back to their defaults"
 			>
 				<Text style={[styles.resetButtonText, isDefault && styles.resetButtonTextDisabled]}>
 					Reset to defaults
