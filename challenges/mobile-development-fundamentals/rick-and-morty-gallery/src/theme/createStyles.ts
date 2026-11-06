@@ -11,10 +11,6 @@ export const createStyles = (theme: AppTheme) =>
 			backgroundColor: theme.background,
 		},
 
-		scrollView: {
-			flex: 1,
-		},
-
 		container: {
 			flex: 1,
 			paddingHorizontal: 20,
@@ -34,26 +30,44 @@ export const createStyles = (theme: AppTheme) =>
 			color: theme.text,
 		},
 
-		card: {
-			backgroundColor: theme.surface,
-			borderColor: theme.border,
-			borderWidth: 1,
-			borderRadius: 12,
-			padding: 16,
-			marginBottom: 16,
-		},
-
-		cardTitle: {
-			fontSize: 18,
-			fontWeight: "600",
-			color: theme.text,
-			marginBottom: 12,
-		},
-
 		text: {
 			fontSize: 16,
 			lineHeight: 24,
 			color: theme.text,
+		},
+
+		centered: {
+			flex: 1,
+			justifyContent: "center",
+			alignItems: "center",
+			gap: 16,
+		},
+
+		button: {
+			backgroundColor: theme.primary,
+			minHeight: 44,
+			justifyContent: "center",
+			paddingHorizontal: 20,
+			borderRadius: 8,
+		},
+
+		buttonText: {
+			color: theme.background,
+			fontSize: 14,
+			fontWeight: "600",
+		},
+
+		gallery: {
+			flex: 1,
+		},
+
+		galleryContent: {
+			gap: 12,
+			paddingBottom: 20,
+		},
+
+		galleryRow: {
+			gap: 12,
 		},
 
 		characterCard: {
