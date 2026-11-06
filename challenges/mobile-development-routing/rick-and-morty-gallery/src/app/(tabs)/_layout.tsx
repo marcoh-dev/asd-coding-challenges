@@ -15,7 +15,6 @@ export default function TabLayout() {
 				name="gallery"
 				options={{
 					title: "Gallery",
-					headerShown: false,
 					tabBarIcon: ({ color, size }) => <Images color={color} size={size} />,
 				}}
 			/>

@@ -2,32 +2,12 @@ import { StyleSheet } from "react-native";
 
 import type { AppTheme } from "./themes";
 
-export const DRAWER_WIDTH = 280;
-
 export const createStyles = (theme: AppTheme) =>
 	StyleSheet.create({
-		screen: {
-			flex: 1,
-			backgroundColor: theme.background,
-		},
-
 		container: {
 			flex: 1,
 			paddingHorizontal: 20,
 			backgroundColor: theme.background,
-		},
-
-		header: {
-			flexDirection: "row",
-			justifyContent: "space-between",
-			alignItems: "center",
-			paddingVertical: 16,
-		},
-
-		headerTitle: {
-			fontSize: 22,
-			fontWeight: "bold",
-			color: theme.text,
 		},
 
 		card: {
@@ -79,6 +59,7 @@ export const createStyles = (theme: AppTheme) =>
 
 		galleryContent: {
 			gap: 12,
+			paddingTop: 16,
 			paddingBottom: 20,
 		},
 
@@ -131,53 +112,6 @@ export const createStyles = (theme: AppTheme) =>
 		characterDetail: {
 			fontSize: 14,
 			color: theme.textSecondary,
-		},
-
-		drawerOverlay: {
-			flex: 1,
-			flexDirection: "row",
-			justifyContent: "flex-end",
-		},
-
-		drawerBackdrop: {
-			...StyleSheet.absoluteFill,
-			backgroundColor: "rgba(0,0,0,0.5)",
-		},
-
-		drawer: {
-			width: DRAWER_WIDTH,
-			padding: 20,
-			backgroundColor: theme.drawer,
-			borderLeftWidth: 1,
-			borderLeftColor: theme.drawerBorder,
-
-			shadowColor: "#000000",
-			shadowOffset: {
-				width: -4,
-				height: 0,
-			},
-			shadowOpacity: 0.3,
-			shadowRadius: 12,
-			elevation: 12,
-		},
-
-		drawerHeader: {
-			flexDirection: "row",
-			justifyContent: "space-between",
-			alignItems: "center",
-			marginBottom: 24,
-		},
-
-		drawerTitle: {
-			fontSize: 22,
-			fontWeight: "bold",
-			color: theme.text,
-		},
-
-		menuItemText: {
-			fontSize: 16,
-			fontWeight: "600",
-			color: theme.text,
 		},
 
 		themeSelector: {
