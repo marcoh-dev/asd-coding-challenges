@@ -11,6 +11,7 @@ type Settings = {
 	themeMode: ThemeMode;
 	reducedMotion: AccessibilityMode;
 	boldText: AccessibilityMode;
+	highContrast: AccessibilityMode;
 };
 
 export type AccessibilitySetting = Exclude<keyof Settings, "themeMode">;
@@ -19,6 +20,7 @@ type SettingsState = Settings & {
 	setThemeMode: (themeMode: ThemeMode) => void;
 	setReducedMotion: (reducedMotion: AccessibilityMode) => void;
 	setBoldText: (boldText: AccessibilityMode) => void;
+	setHighContrast: (highContrast: AccessibilityMode) => void;
 	resetSettings: () => void;
 };
 
@@ -26,6 +28,7 @@ export const defaultSettings: Settings = {
 	themeMode: "system",
 	reducedMotion: "system",
 	boldText: Platform.OS === "ios" ? "system" : "off",
+	highContrast: "system",
 };
 
 export const useSettingsStore = create<SettingsState>()(
@@ -35,6 +38,7 @@ export const useSettingsStore = create<SettingsState>()(
 			setThemeMode: (themeMode) => set({ themeMode }),
 			setReducedMotion: (reducedMotion) => set({ reducedMotion }),
 			setBoldText: (boldText) => set({ boldText }),
+			setHighContrast: (highContrast) => set({ highContrast }),
 			resetSettings: () => set(defaultSettings),
 		}),
 		{

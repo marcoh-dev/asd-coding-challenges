@@ -23,4 +23,28 @@ export const darkTheme = {
 };
 
 export type AppTheme = typeof lightTheme;
+
+export const highContrastLightTheme: AppTheme = {
+	background: "#FFFFFF",
+	surface: "#F2F1EE",
+	text: "#000000",
+	textSecondary: "#3A3833",
+	textDisabled: "#8C8880",
+	primary: "#0B4A9C",
+	statusAlive: "#1B5E20",
+	statusDead: "#A31515",
+	border: "#6E6A63",
+};
+
+export const highContrastDarkTheme: AppTheme = {
+	background: "#000000",
+	surface: "#15181E",
+	text: "#FFFFFF",
+	textSecondary: "#E1E4EA",
+	textDisabled: "#7D8594",
+	primary: "#A3C8FF",
+	statusAlive: "#8BD48F",
+	statusDead: "#FF8F87",
+	border: "#A3ABB8",
+};
 export type ThemeMode = "system" | "light" | "dark";

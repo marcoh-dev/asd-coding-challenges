@@ -1,4 +1,4 @@
-import { Platform, Pressable, Text, View } from "react-native";
+import { Platform, Pressable, ScrollView, Text, View } from "react-native";
 
 import OptionSelector from "@/components/OptionSelector";
 import { defaultSettings, useSettingsStore } from "@/stores/settingsStore";
@@ -31,6 +31,8 @@ export default function Settings() {
 	const setReducedMotion = useSettingsStore((state) => state.setReducedMotion);
 	const boldText = useSettingsStore((state) => state.boldText);
 	const setBoldText = useSettingsStore((state) => state.setBoldText);
+	const highContrast = useSettingsStore((state) => state.highContrast);
+	const setHighContrast = useSettingsStore((state) => state.setHighContrast);
 	const resetSettings = useSettingsStore((state) => state.resetSettings);
 
 	const isDefault = useSettingsStore((state) =>
@@ -38,7 +40,7 @@ export default function Settings() {
 	);
 
 	return (
-		<View style={styles.container}>
+		<ScrollView style={styles.container}>
 			<View style={styles.card}>
 				<Text style={styles.cardTitle} accessibilityRole="header">
 					Appearance
@@ -81,6 +83,17 @@ export default function Settings() {
 							accessibilityLabel="Bold text"
 						/>
 					</View>
+
+					<View>
+						<Text style={styles.text}>High contrast</Text>
+
+						<OptionSelector
+							options={accessibilityOptions}
+							value={highContrast}
+							onChange={setHighContrast}
+							accessibilityLabel="High contrast"
+						/>
+					</View>
 				</View>
 			</View>
 
@@ -100,6 +113,6 @@ export default function Settings() {
 					Reset to defaults
 				</Text>
 			</Pressable>
-		</View>
+		</ScrollView>
 	);
 }
