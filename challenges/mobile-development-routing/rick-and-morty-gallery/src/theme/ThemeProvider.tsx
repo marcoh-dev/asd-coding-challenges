@@ -1,6 +1,7 @@
 import { createContext, type ReactNode, use, useMemo } from "react";
 import { useColorScheme } from "react-native";
 
+import { useBoldText } from "@/hooks/useBoldText";
 import { useSettingsStore } from "@/stores/settingsStore";
 
 import { createStyles } from "./createStyles";
@@ -10,6 +11,7 @@ type ThemeContextValue = {
 	theme: AppTheme;
 	styles: ReturnType<typeof createStyles>;
 	isDark: boolean;
+	boldText: boolean;
 };
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
@@ -17,13 +19,14 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 export function ThemeProvider({ children }: { children: ReactNode }) {
 	const systemColorScheme = useColorScheme();
 	const themeMode = useSettingsStore((state) => state.themeMode);
+	const boldText = useBoldText();
 
 	const isDark = themeMode === "system" ? systemColorScheme === "dark" : themeMode === "dark";
 
 	const value = useMemo(() => {
 		const theme = isDark ? darkTheme : lightTheme;
-		return { theme, styles: createStyles(theme), isDark };
-	}, [isDark]);
+		return { theme, styles: createStyles(theme, boldText), isDark, boldText };
+	}, [isDark, boldText]);
 
 	return <ThemeContext value={value}>{children}</ThemeContext>;
 }

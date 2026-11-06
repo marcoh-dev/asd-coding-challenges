@@ -1,25 +1,31 @@
 import Storage from "expo-sqlite/kv-store";
+import { Platform } from "react-native";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 import type { ThemeMode } from "@/theme/themes";
 
-type ReducedMotionMode = "system" | "on" | "off";
+type AccessibilityMode = "system" | "on" | "off";
 
 type Settings = {
 	themeMode: ThemeMode;
-	reducedMotion: ReducedMotionMode;
+	reducedMotion: AccessibilityMode;
+	boldText: AccessibilityMode;
 };
+
+export type AccessibilitySetting = Exclude<keyof Settings, "themeMode">;
 
 type SettingsState = Settings & {
 	setThemeMode: (themeMode: ThemeMode) => void;
-	setReducedMotion: (reducedMotion: ReducedMotionMode) => void;
+	setReducedMotion: (reducedMotion: AccessibilityMode) => void;
+	setBoldText: (boldText: AccessibilityMode) => void;
 	resetSettings: () => void;
 };
 
-const defaultSettings: Settings = {
+export const defaultSettings: Settings = {
 	themeMode: "system",
 	reducedMotion: "system",
+	boldText: Platform.OS === "ios" ? "system" : "off",
 };
 
 export const useSettingsStore = create<SettingsState>()(
@@ -28,6 +34,7 @@ export const useSettingsStore = create<SettingsState>()(
 			...defaultSettings,
 			setThemeMode: (themeMode) => set({ themeMode }),
 			setReducedMotion: (reducedMotion) => set({ reducedMotion }),
+			setBoldText: (boldText) => set({ boldText }),
 			resetSettings: () => set(defaultSettings),
 		}),
 		{
