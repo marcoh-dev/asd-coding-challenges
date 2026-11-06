@@ -12,8 +12,8 @@ const themeOptions = [
 
 const accessibilityOptions = [
 	{ value: "system", label: "System" },
-	{ value: "on", label: "On" },
 	{ value: "off", label: "Off" },
+	{ value: "on", label: "On" },
 ] as const;
 
 const boldTextOptions = accessibilityOptions.map((option) => ({
