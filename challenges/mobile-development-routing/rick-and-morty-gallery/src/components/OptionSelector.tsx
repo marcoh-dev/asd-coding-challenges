@@ -1,12 +1,10 @@
-import type { LucideIcon } from "lucide-react-native";
-import { Pressable, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
 import { useTheme } from "@/theme/ThemeProvider";
 
 type Option<T extends string> = {
 	value: T;
 	label: string;
-	Icon: LucideIcon;
 };
 
 type Props<T extends string> = {
@@ -38,14 +36,20 @@ export default function OptionSelector<T extends string>({
 						key={option.value}
 						onPress={() => onChange(option.value)}
 						accessibilityRole="radio"
-						accessibilityLabel={option.label}
 						accessibilityState={{ checked: selected }}
 						style={[
 							styles.optionButton,
 							{ backgroundColor: selected ? theme.primary : "transparent" },
 						]}
 					>
-						<option.Icon size={22} color={selected ? theme.background : theme.text} />
+						<Text
+							style={[
+								styles.optionText,
+								{ color: selected ? theme.background : theme.text },
+							]}
+						>
+							{option.label}
+						</Text>
 					</Pressable>
 				);
 			})}
