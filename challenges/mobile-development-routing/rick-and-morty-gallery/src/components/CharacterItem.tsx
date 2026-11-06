@@ -1,23 +1,18 @@
 import { Image } from "expo-image";
 import { Text, View } from "react-native";
 
+import CharacterStatus from "@/components/CharacterStatus";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useTheme } from "@/theme/ThemeProvider";
-import type { Character, CharacterStatus } from "@/types/character";
+import type { Character } from "@/types/character";
 
 type Props = {
 	character: Character;
 };
 
 export default function CharacterItem({ character }: Props) {
-	const { theme, styles } = useTheme();
+	const { styles } = useTheme();
 	const reducedMotion = useReducedMotion();
-
-	const statusColors: Record<CharacterStatus, string> = {
-		Alive: theme.statusAlive,
-		Dead: theme.statusDead,
-		unknown: theme.textSecondary,
-	};
 
 	return (
 		<View
@@ -37,15 +32,7 @@ export default function CharacterItem({ character }: Props) {
 					{character.name}
 				</Text>
 
-				<View style={styles.characterStatus}>
-					<View
-						style={[
-							styles.statusDot,
-							{ backgroundColor: statusColors[character.status] },
-						]}
-					/>
-					<Text style={styles.characterDetail}>{character.status}</Text>
-				</View>
+				<CharacterStatus status={character.status} />
 
 				<Text style={styles.characterDetail} numberOfLines={1}>
 					{character.species} · {character.gender}

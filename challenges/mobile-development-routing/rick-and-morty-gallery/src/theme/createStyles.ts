@@ -114,6 +114,55 @@ export const createStyles = (theme: AppTheme) =>
 			color: theme.textSecondary,
 		},
 
+		detailsContent: {
+			padding: 20,
+			gap: 16,
+		},
+
+		detailsImage: {
+			width: "100%",
+			aspectRatio: 1,
+			borderRadius: 12,
+		},
+
+		detailsHeading: {
+			gap: 6,
+		},
+
+		detailsName: {
+			fontSize: 24,
+			fontWeight: "bold",
+			color: theme.text,
+		},
+
+		detailsList: {
+			backgroundColor: theme.surface,
+			borderColor: theme.border,
+			borderWidth: 1,
+			borderRadius: 12,
+			paddingHorizontal: 16,
+			paddingVertical: 4,
+		},
+
+		detailRow: {
+			flexDirection: "row",
+			justifyContent: "space-between",
+			gap: 16,
+			paddingVertical: 10,
+		},
+
+		detailLabel: {
+			fontSize: 16,
+			color: theme.textSecondary,
+		},
+
+		detailValue: {
+			flexShrink: 1,
+			fontSize: 16,
+			color: theme.text,
+			textAlign: "right",
+		},
+
 		themeSelector: {
 			flexDirection: "row",
 			justifyContent: "space-around",

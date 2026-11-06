@@ -50,6 +50,10 @@ function RootStack() {
 
 			<Stack>
 				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+				<Stack.Screen
+					name="details/[id]"
+					options={{ headerBackButtonDisplayMode: "minimal" }}
+				/>
 			</Stack>
 		</NavigationThemeProvider>
 	);
