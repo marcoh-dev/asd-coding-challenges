@@ -15,8 +15,10 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return the greeting', () => {
+      expect(appController.getHello()).toBe(
+        'Hello World! I am a backend server for websockets',
+      );
     });
   });
 });
