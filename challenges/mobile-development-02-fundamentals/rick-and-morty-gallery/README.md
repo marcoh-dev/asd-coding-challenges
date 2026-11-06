@@ -2,6 +2,8 @@
 
 A gallery app for Rick and Morty characters, built with Expo and React Native.
 
+Builds on [`mobile-development-01-intro`](../../mobile-development-01-intro/my-first-app) and replaces its input list with a character gallery.
+
 ## Features
 
 - 2-column character grid with FlatList

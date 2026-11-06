@@ -2,6 +2,8 @@
 
 A gallery app for Rick and Morty characters, built with Expo Router.
 
+Builds on [`mobile-development-02-fundamentals`](../../mobile-development-02-fundamentals/rick-and-morty-gallery) and replaces its menu with tab and stack navigation.
+
 ## Features
 
 - Tab navigation (Home, Gallery, Settings) with a stack on top for the character details
