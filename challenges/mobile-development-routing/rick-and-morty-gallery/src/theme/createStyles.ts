@@ -246,6 +246,7 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 
 		resetButton: {
 			alignSelf: "flex-end",
+			marginBottom: 16,
 			minHeight: 44,
 			justifyContent: "center",
 			paddingHorizontal: 20,
