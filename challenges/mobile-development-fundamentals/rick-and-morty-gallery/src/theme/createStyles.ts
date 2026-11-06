@@ -56,6 +56,48 @@ export const createStyles = (theme: AppTheme) =>
 			color: theme.text,
 		},
 
+		characterCard: {
+			flex: 1,
+			backgroundColor: theme.surface,
+			borderColor: theme.border,
+			borderWidth: 1,
+			borderRadius: 12,
+			overflow: "hidden",
+		},
+
+		characterImage: {
+			width: "100%",
+			aspectRatio: 1,
+		},
+
+		characterInfo: {
+			padding: 10,
+			gap: 4,
+		},
+
+		characterName: {
+			fontSize: 16,
+			fontWeight: "600",
+			color: theme.text,
+		},
+
+		characterStatus: {
+			flexDirection: "row",
+			alignItems: "center",
+			gap: 6,
+		},
+
+		statusDot: {
+			width: 8,
+			height: 8,
+			borderRadius: 4,
+		},
+
+		characterDetail: {
+			fontSize: 14,
+			color: theme.textSecondary,
+		},
+
 		drawerOverlay: {
 			flex: 1,
 			flexDirection: "row",
