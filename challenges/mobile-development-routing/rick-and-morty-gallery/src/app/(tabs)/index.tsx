@@ -1,14 +1,20 @@
 import { Image } from "expo-image";
 import { Link } from "expo-router";
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 
+import ExternalLink from "@/components/ExternalLink";
 import { useTheme } from "@/theme/ThemeProvider";
+
+const paragraphProps = {
+	lineBreakStrategyIOS: "standard",
+	textBreakStrategy: "balanced",
+} as const;
 
 export default function Home() {
 	const { styles } = useTheme();
 
 	return (
-		<View style={styles.container}>
+		<ScrollView style={styles.container}>
 			<Image
 				style={styles.logo}
 				source={require("@/assets/images/rick-and-morty-logo.png")}
@@ -21,14 +27,36 @@ export default function Home() {
 					Welcome
 				</Text>
 
-				<Text style={styles.text}>
-					Browse all characters from Rick and Morty in the{" "}
-					<Link href="/gallery" style={styles.link}>
-						gallery
-					</Link>
-					.
-				</Text>
+				<View style={styles.paragraphs}>
+					<Text style={styles.text} {...paragraphProps}>
+						This app lets you explore every character from the Rick and Morty universe,
+						with data from the public{" "}
+						<ExternalLink href="https://rickandmortyapi.com">
+							Rick and Morty API
+						</ExternalLink>
+						.
+					</Text>
+
+					<Text style={styles.text} {...paragraphProps}>
+						Open the{" "}
+						<Link href="/gallery" style={styles.link}>
+							gallery
+						</Link>{" "}
+						to scroll through all characters. More load automatically as you reach the
+						end, and pulling down refreshes the list. Tap a character to see their
+						profile with species, origin, current location and the number of episodes
+						they appear in.
+					</Text>
+
+					<Text style={styles.text} {...paragraphProps}>
+						You can switch between light and dark mode in the{" "}
+						<Link href="/settings" style={styles.link}>
+							settings
+						</Link>
+						.
+					</Text>
+				</View>
 			</View>
-		</View>
+		</ScrollView>
 	);
 }

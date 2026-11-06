@@ -14,6 +14,7 @@ export const createStyles = (theme: AppTheme) =>
 			width: "100%",
 			aspectRatio: 1280 / 391,
 			marginTop: 24,
+			marginBottom: 16,
 		},
 
 		link: {
@@ -35,6 +36,10 @@ export const createStyles = (theme: AppTheme) =>
 			fontWeight: "600",
 			color: theme.text,
 			marginBottom: 12,
+		},
+
+		paragraphs: {
+			gap: 12,
 		},
 
 		text: {
