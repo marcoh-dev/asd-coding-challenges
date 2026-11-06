@@ -1,6 +1,7 @@
 import { Moon, Smartphone, Sun } from "lucide-react-native";
 import { Pressable, View } from "react-native";
 
+import { useSettingsStore } from "@/stores/settingsStore";
 import { useTheme } from "@/theme/ThemeProvider";
 
 const themeOptions = [
@@ -10,7 +11,9 @@ const themeOptions = [
 ] as const;
 
 export default function ThemeSelector() {
-	const { theme, styles, themeMode, setThemeMode } = useTheme();
+	const { theme, styles } = useTheme();
+	const themeMode = useSettingsStore((state) => state.themeMode);
+	const setThemeMode = useSettingsStore((state) => state.setThemeMode);
 
 	return (
 		<View
