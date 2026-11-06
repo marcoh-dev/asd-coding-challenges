@@ -204,7 +204,7 @@ export const createStyles = (theme: AppTheme) =>
 			textAlign: "right",
 		},
 
-		themeSelector: {
+		optionSelector: {
 			flexDirection: "row",
 			justifyContent: "space-around",
 			marginTop: 12,
@@ -215,7 +215,7 @@ export const createStyles = (theme: AppTheme) =>
 			borderColor: theme.border,
 		},
 
-		themeButton: {
+		optionButton: {
 			padding: 12,
 			borderRadius: 4,
 			alignItems: "center",
