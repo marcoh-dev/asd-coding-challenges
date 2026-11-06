@@ -1,15 +1,35 @@
 import { type InfiniteData, useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
-import { ActivityIndicator, FlatList, Pressable, RefreshControl, Text, View } from "react-native";
+import { useScrollToTop } from "expo-router";
+import { useRef, useState } from "react";
+import {
+	ActivityIndicator,
+	FlatList,
+	type NativeScrollEvent,
+	type NativeSyntheticEvent,
+	Pressable,
+	RefreshControl,
+	Text,
+	useWindowDimensions,
+	View,
+} from "react-native";
 
 import { type CharacterPage, CHARACTERS_QUERY_KEY, fetchCharacters } from "@/api/characters";
 import CharacterItem from "@/components/CharacterItem";
+import ScrollTopButton from "@/components/ScrollTopButton";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useTheme } from "@/theme/ThemeProvider";
+import type { Character } from "@/types/character";
 
 export default function Gallery() {
 	const { theme, styles } = useTheme();
 	const queryClient = useQueryClient();
 	const [isRefreshing, setIsRefreshing] = useState(false);
+	const [showScrollTop, setShowScrollTop] = useState(false);
+	const listRef = useRef<FlatList<Character>>(null);
+	const { height } = useWindowDimensions();
+	const reducedMotion = useReducedMotion();
+
+	useScrollToTop(listRef);
 
 	const {
 		data,
@@ -41,6 +61,14 @@ export default function Gallery() {
 		);
 		await refetch();
 		setIsRefreshing(false);
+	}
+
+	function handleScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
+		setShowScrollTop(event.nativeEvent.contentOffset.y > height);
+	}
+
+	function scrollToTop() {
+		listRef.current?.scrollToOffset({ offset: 0, animated: !reducedMotion });
 	}
 
 	function handleEndReached() {
@@ -80,50 +108,57 @@ export default function Gallery() {
 	}
 
 	return (
-		<FlatList
-			style={styles.gallery}
-			data={characters}
-			keyExtractor={(character) => String(character.id)}
-			renderItem={({ item }) => <CharacterItem character={item} />}
-			numColumns={2}
-			columnWrapperStyle={styles.galleryRow}
-			contentContainerStyle={styles.galleryContent}
-			onEndReached={handleEndReached}
-			onEndReachedThreshold={1}
-			ListFooterComponent={
-				<View style={styles.galleryFooter}>
-					{isFetchingNextPage && (
-						<ActivityIndicator
-							color={theme.primary}
-							accessibilityLabel="Loading more characters"
-						/>
-					)}
+		<View style={styles.gallery}>
+			<FlatList
+				ref={listRef}
+				style={styles.gallery}
+				data={characters}
+				keyExtractor={(character) => String(character.id)}
+				renderItem={({ item }) => <CharacterItem character={item} />}
+				numColumns={2}
+				columnWrapperStyle={styles.galleryRow}
+				contentContainerStyle={styles.galleryContent}
+				onScroll={handleScroll}
+				scrollEventThrottle={100}
+				onEndReached={handleEndReached}
+				onEndReachedThreshold={1}
+				ListFooterComponent={
+					<View style={styles.galleryFooter}>
+						{isFetchingNextPage && (
+							<ActivityIndicator
+								color={theme.primary}
+								accessibilityLabel="Loading more characters"
+							/>
+						)}
 
-					{isFetchNextPageError && !isFetchingNextPage && (
-						<>
-							<Text style={styles.text} accessibilityRole="alert">
-								Could not load more characters.
-							</Text>
+						{isFetchNextPageError && !isFetchingNextPage && (
+							<>
+								<Text style={styles.text} accessibilityRole="alert">
+									Could not load more characters.
+								</Text>
 
-							<Pressable
-								style={styles.button}
-								onPress={() => fetchNextPage()}
-								accessibilityRole="button"
-							>
-								<Text style={styles.buttonText}>Try again</Text>
-							</Pressable>
-						</>
-					)}
-				</View>
-			}
-			refreshControl={
-				<RefreshControl
-					refreshing={isRefreshing}
-					onRefresh={handleRefresh}
-					tintColor={theme.primary}
-					colors={[theme.primary]}
-				/>
-			}
-		/>
+								<Pressable
+									style={styles.button}
+									onPress={() => fetchNextPage()}
+									accessibilityRole="button"
+								>
+									<Text style={styles.buttonText}>Try again</Text>
+								</Pressable>
+							</>
+						)}
+					</View>
+				}
+				refreshControl={
+					<RefreshControl
+						refreshing={isRefreshing}
+						onRefresh={handleRefresh}
+						tintColor={theme.primary}
+						colors={[theme.primary]}
+					/>
+				}
+			/>
+
+			<ScrollTopButton visible={showScrollTop} onPress={scrollToTop} />
+		</View>
 	);
 }

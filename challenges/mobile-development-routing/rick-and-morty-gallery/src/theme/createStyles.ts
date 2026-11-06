@@ -67,6 +67,27 @@ export const createStyles = (theme: AppTheme) =>
 			gap: 12,
 		},
 
+		scrollTopButton: {
+			position: "absolute",
+			right: 0,
+			bottom: 16,
+			width: 48,
+			height: 48,
+			borderRadius: 24,
+			backgroundColor: theme.primary,
+			shadowColor: "#000000",
+			shadowOffset: { width: 0, height: 2 },
+			shadowOpacity: 0.25,
+			shadowRadius: 4,
+			elevation: 4,
+		},
+
+		scrollTopPressable: {
+			flex: 1,
+			alignItems: "center",
+			justifyContent: "center",
+		},
+
 		galleryFooter: {
 			alignItems: "center",
 			gap: 12,
