@@ -2,11 +2,9 @@ import { type InfiniteData, useInfiniteQuery, useQueryClient } from "@tanstack/r
 import { useState } from "react";
 import { ActivityIndicator, FlatList, Pressable, RefreshControl, Text, View } from "react-native";
 
-import { type CharacterPage, fetchCharacters } from "@/api/characters";
+import { type CharacterPage, CHARACTERS_QUERY_KEY, fetchCharacters } from "@/api/characters";
 import CharacterItem from "@/components/CharacterItem";
 import { useTheme } from "@/theme/ThemeProvider";
-
-const QUERY_KEY = ["characters"];
 
 export default function Gallery() {
 	const { theme, styles } = useTheme();
@@ -22,7 +20,7 @@ export default function Gallery() {
 		isFetchingNextPage,
 		isFetchNextPageError,
 	} = useInfiniteQuery({
-		queryKey: QUERY_KEY,
+		queryKey: CHARACTERS_QUERY_KEY,
 		queryFn: fetchCharacters,
 		initialPageParam: 1,
 		getNextPageParam: (lastPage, _allPages, lastPageParam) =>
@@ -34,7 +32,7 @@ export default function Gallery() {
 	async function handleRefresh() {
 		setIsRefreshing(true);
 		queryClient.setQueryData<InfiniteData<CharacterPage, number>>(
-			QUERY_KEY,
+			CHARACTERS_QUERY_KEY,
 			(current) =>
 				current && {
 					pages: current.pages.slice(0, 1),
