@@ -81,6 +81,10 @@ export const createStyles = (theme: AppTheme) =>
 			overflow: "hidden",
 		},
 
+		pressed: {
+			opacity: 0.7,
+		},
+
 		characterImage: {
 			width: "100%",
 			aspectRatio: 1,

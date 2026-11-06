@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
-import { Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Pressable, Text, View } from "react-native";
 
 import CharacterStatus from "@/components/CharacterStatus";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -13,12 +14,15 @@ type Props = {
 export default function CharacterItem({ character }: Props) {
 	const { styles } = useTheme();
 	const reducedMotion = useReducedMotion();
+	const router = useRouter();
 
 	return (
-		<View
-			style={styles.characterCard}
-			accessible
+		<Pressable
+			style={({ pressed }) => [styles.characterCard, pressed && styles.pressed]}
+			onPress={() => router.push({ pathname: "/details/[id]", params: { id: character.id } })}
+			accessibilityRole="button"
 			accessibilityLabel={`${character.name}, status ${character.status}, ${character.species}, gender ${character.gender}`}
+			accessibilityHint="Opens the profile"
 		>
 			<Image
 				style={styles.characterImage}
@@ -38,6 +42,6 @@ export default function CharacterItem({ character }: Props) {
 					{character.species} · {character.gender}
 				</Text>
 			</View>
-		</View>
+		</Pressable>
 	);
 }
