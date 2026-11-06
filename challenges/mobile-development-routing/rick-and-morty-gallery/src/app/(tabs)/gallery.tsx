@@ -7,12 +7,12 @@ import Header from "@/components/Header";
 import Menu from "@/components/Menu";
 import { useTheme } from "@/theme/ThemeProvider";
 
-export default function Home() {
+export default function GalleryScreen() {
 	const { styles } = useTheme();
 	const [menuVisible, setMenuVisible] = useState(false);
 
 	return (
-		<SafeAreaView style={styles.screen}>
+		<SafeAreaView style={styles.screen} edges={["top"]}>
 			<View style={styles.container}>
 				<Header title="Rick and Morty Gallery" onMenuPress={() => setMenuVisible(true)} />
 
