@@ -2,6 +2,8 @@ import { StyleSheet } from "react-native";
 
 import type { AppTheme } from "./themes";
 
+export const DRAWER_WIDTH = 280;
+
 export const createStyles = (theme: AppTheme) =>
 	StyleSheet.create({
 		screen: {
@@ -57,15 +59,16 @@ export const createStyles = (theme: AppTheme) =>
 		drawerOverlay: {
 			flex: 1,
 			flexDirection: "row",
-			backgroundColor: "rgba(0,0,0,0.5)",
+			justifyContent: "flex-end",
 		},
 
 		drawerBackdrop: {
-			flex: 1,
+			...StyleSheet.absoluteFill,
+			backgroundColor: "rgba(0,0,0,0.5)",
 		},
 
 		drawer: {
-			width: 280,
+			width: DRAWER_WIDTH,
 			padding: 20,
 			backgroundColor: theme.drawer,
 			borderLeftWidth: 1,
