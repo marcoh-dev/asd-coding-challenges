@@ -44,6 +44,8 @@ export default function Settings() {
 					Appearance
 				</Text>
 
+				<Text style={styles.text}>Theme</Text>
+
 				<OptionSelector
 					options={themeOptions}
 					value={themeMode}
