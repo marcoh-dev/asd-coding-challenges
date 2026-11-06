@@ -1,10 +1,11 @@
 import js from "@eslint/js";
-import jest from "eslint-plugin-jest";
+import vitest from "@vitest/eslint-plugin";
 import globals from "globals";
 
 export default [
   js.configs.recommended,
-  jest.configs["flat/recommended"],
+  vitest.configs.recommended,
+  vitest.configs.env,
   {
     languageOptions: {
       ecmaVersion: 2022,
