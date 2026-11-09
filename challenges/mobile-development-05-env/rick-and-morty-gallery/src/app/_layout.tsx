@@ -12,6 +12,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { syncAppFocus } from "@/api/appFocus";
 import { isNotFoundError } from "@/api/characters";
 import { syncOnlineStatus } from "@/api/onlineStatus";
+import CancelButton from "@/components/CancelButton";
 import EnvError from "@/components/EnvError";
 import { envError } from "@/env";
 import { ThemeProvider, useTheme } from "@/theme/ThemeProvider";
@@ -78,11 +79,11 @@ function RootStack() {
 				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 				<Stack.Screen
 					name="create"
-					options={{ title: "New character", headerBackButtonDisplayMode: "minimal" }}
+					options={{ title: "New character", headerLeft: () => <CancelButton /> }}
 				/>
 				<Stack.Screen
 					name="edit/[id]"
-					options={{ title: "Edit character", headerBackButtonDisplayMode: "minimal" }}
+					options={{ title: "Edit character", headerLeft: () => <CancelButton /> }}
 					dangerouslySingular
 				/>
 				<Stack.Screen
