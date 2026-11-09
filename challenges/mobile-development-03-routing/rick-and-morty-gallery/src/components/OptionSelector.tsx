@@ -2,25 +2,25 @@ import { Pressable, Text, View } from "react-native";
 
 import { useTheme } from "@/theme/ThemeProvider";
 
-type Option<T extends string> = {
-	value: T;
+type Option<TValue extends string> = {
+	value: TValue;
 	label: string;
 	disabled?: boolean;
 };
 
-type Props<T extends string> = {
-	options: readonly Option<T>[];
-	value: T;
-	onChange: (value: T) => void;
+type Props<TValue extends string> = {
+	options: readonly Option<TValue>[];
+	value: TValue;
+	onChange: (value: TValue) => void;
 	accessibilityLabel: string;
 };
 
-export default function OptionSelector<T extends string>({
+export default function OptionSelector<TValue extends string>({
 	options,
 	value,
 	onChange,
 	accessibilityLabel,
-}: Props<T>) {
+}: Props<TValue>) {
 	const { theme, styles } = useTheme();
 
 	return (
