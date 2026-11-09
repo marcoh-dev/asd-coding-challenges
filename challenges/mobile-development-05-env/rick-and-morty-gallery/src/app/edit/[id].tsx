@@ -45,20 +45,24 @@ export default function EditCharacter() {
 			);
 			void queryClient.invalidateQueries({ queryKey: CHARACTERS_QUERY_KEY });
 			AccessibilityInfo.announceForAccessibility(`${updated.name} saved`);
-			router.back();
 		},
 		onError: () => {
 			Alert.alert("Could not save", "Your changes could not be saved. Please try again.");
 		},
 	});
 
-	function submit(input: CharacterInput) {
+	function submit(input: CharacterInput, allowLeave: () => void) {
 		if (!onlineManager.isOnline()) {
 			Alert.alert("You’re offline", "Changes can be saved as soon as you’re back online.");
 			return;
 		}
 
-		mutate(input);
+		mutate(input, {
+			onSuccess: () => {
+				allowLeave();
+				router.back();
+			},
+		});
 	}
 
 	if (!character) {

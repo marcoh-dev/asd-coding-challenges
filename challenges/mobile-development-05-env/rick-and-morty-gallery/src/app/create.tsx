@@ -17,14 +17,13 @@ export default function CreateCharacter() {
 			queryClient.setQueryData(characterQueryKey(character.id), character);
 			void queryClient.invalidateQueries({ queryKey: CHARACTERS_QUERY_KEY });
 			AccessibilityInfo.announceForAccessibility(`${character.name} created`);
-			router.replace({ pathname: "/details/[id]", params: { id: character.id } });
 		},
 		onError: () => {
 			Alert.alert("Could not save", "The character could not be created. Please try again.");
 		},
 	});
 
-	function submit(input: CharacterInput) {
+	function submit(input: CharacterInput, allowLeave: () => void) {
 		if (!onlineManager.isOnline()) {
 			Alert.alert(
 				"You’re offline",
@@ -33,7 +32,12 @@ export default function CreateCharacter() {
 			return;
 		}
 
-		mutate(input);
+		mutate(input, {
+			onSuccess: (character) => {
+				allowLeave();
+				router.replace({ pathname: "/details/[id]", params: { id: character.id } });
+			},
+		});
 	}
 
 	return (

@@ -1,9 +1,16 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Image } from "expo-image";
 import { Stack } from "expo-router";
-import { useHeaderHeight } from "expo-router/react-navigation";
-import { Controller, useForm, useWatch } from "react-hook-form";
-import { AccessibilityInfo, KeyboardAvoidingView, ScrollView, Text, View } from "react-native";
+import { useHeaderHeight, usePreventRemove } from "expo-router/react-navigation";
+import { Controller, useForm, useFormState, useWatch } from "react-hook-form";
+import {
+	AccessibilityInfo,
+	Alert,
+	KeyboardAvoidingView,
+	ScrollView,
+	Text,
+	View,
+} from "react-native";
 
 import FormField from "@/components/FormField";
 import HeaderTextButton from "@/components/HeaderTextButton";
@@ -34,7 +41,7 @@ type Props = {
 	submitLabel: string;
 	submitAccessibilityLabel: string;
 	isSubmitting: boolean;
-	onSubmit: (input: CharacterInput) => void;
+	onSubmit: (input: CharacterInput, allowLeave: () => void) => void;
 };
 
 export default function CharacterForm({
@@ -58,12 +65,23 @@ export default function CharacterForm({
 	});
 
 	const image = useWatch({ control, name: "image" });
+	const { isDirty } = useFormState({ control });
+
+	const allowLeave = usePreventRemove(isDirty, ({ repeat }) => {
+		Alert.alert("Discard changes?", "Your changes haven’t been saved.", [
+			{ text: "Keep editing", style: "cancel" },
+			{ text: "Discard", style: "destructive", onPress: repeat },
+		]);
+	});
 	const hasImagePreview =
 		image !== "" && characterFormSchema.shape.image.safeParse(image).success;
 
 	const submit = handleSubmit(
 		({ origin, location, ...values }) =>
-			onSubmit({ ...values, origin: { name: origin }, location: { name: location } }),
+			onSubmit(
+				{ ...values, origin: { name: origin }, location: { name: location } },
+				allowLeave,
+			),
 		() => AccessibilityInfo.announceForAccessibility("Please check the highlighted fields"),
 	);
 
