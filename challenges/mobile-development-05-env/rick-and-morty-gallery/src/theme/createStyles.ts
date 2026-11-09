@@ -2,6 +2,8 @@ import { Platform, StyleSheet } from "react-native";
 
 import type { AppTheme } from "./themes";
 
+const PILL_RADIUS = 999;
+
 const fontWeights = {
 	regular: { regular: "400", semibold: "600", bold: "700" },
 	bold: { regular: "600", semibold: "700", bold: "800" },
@@ -81,7 +83,7 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			minHeight: 44,
 			justifyContent: "center",
 			paddingHorizontal: 20,
-			borderRadius: 8,
+			borderRadius: PILL_RADIUS,
 		},
 
 		buttonText: {
@@ -441,6 +443,14 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			justifyContent: "center",
 		},
 
+		headerCancelButton: {
+			width: 48,
+			height: 48,
+			marginLeft: -12,
+			alignItems: "center",
+			justifyContent: "center",
+		},
+
 		headerTextButton: {
 			minWidth: 72,
 			minHeight: 36,
@@ -450,7 +460,7 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			justifyContent: "center",
 			borderColor: theme.primary,
 			borderWidth: 1,
-			borderRadius: 18,
+			borderRadius: PILL_RADIUS,
 		},
 
 		headerTextButtonText: {
@@ -494,7 +504,7 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			minHeight: 44,
 			justifyContent: "center",
 			paddingHorizontal: 20,
-			borderRadius: 8,
+			borderRadius: PILL_RADIUS,
 			borderWidth: 1,
 			borderColor: theme.primary,
 		},
