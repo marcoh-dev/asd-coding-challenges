@@ -1,132 +1,124 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Character Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A small REST API for Rick and Morty characters, built with NestJS. It's the local backend for the [Rick and Morty Gallery (Env)](../rick-and-morty-gallery) app, which creates, edits and deletes characters through it.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- CRUD endpoints for characters under `/api/characters`
+- Paginated list with a case-insensitive name search, in the same response shape as the Rick and Morty API
+- Request validation with zod (body, query and path params), with one error message per field
+- SQLite database with TypeORM migrations, applied automatically on start
+- Seeds all characters from the [Rick and Morty API](https://rickandmortyapi.com) into an empty database on first start
+- Environment variables validated with zod at startup
+- Unit and e2e tests with Vitest, and a Bruno collection with assertions
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tech stack
 
-## Project setup
+- NestJS 12 (ESM), TypeScript
+- TypeORM with `better-sqlite3`
+- zod for validation and config, `@nestjs/config`
+- Vitest and Supertest
+- ESLint, Prettier and GitHub Actions CI
+- Bruno for manual API requests
+
+## Getting started
 
 ```bash
-$ npm install
+cp .env.example .env
+npm install
+npm run start:dev
 ```
 
-## Compile and run the project
+The API runs on [http://localhost:3000/api/characters](http://localhost:3000/api/characters). On the first start it creates `data/characters.sqlite`, runs the migrations and seeds the 826 characters.
+
+To reach it from a phone on the same Wi-Fi, use your computer's local IP address instead of `localhost`, for example `http://192.168.178.42:3000/api`. The [app's README](../rick-and-morty-gallery#getting-started) explains how to find it.
+
+### Environment variables
+
+All variables are optional, the defaults work out of the box.
+
+| Variable        | Default                  | Description                                       |
+| --------------- | ------------------------ | ------------------------------------------------- |
+| `PORT`          | `3000`                   | Port of the API                                   |
+| `DB_FILE`       | `data/characters.sqlite` | Path of the SQLite database file                  |
+| `SEED_ON_START` | `true`                   | Seed an empty database on start (`false` to skip) |
+
+## API
+
+| Method   | Route                                       | Response                                          |
+| -------- | ------------------------------------------- | ------------------------------------------------- |
+| `GET`    | `/api/characters?page=1&limit=20&name=rick` | `{ info: { count, pages, next, prev }, results }` |
+| `GET`    | `/api/characters/:id`                       | The character, or `404`                           |
+| `POST`   | `/api/characters`                           | `201` with the created character                  |
+| `PUT`    | `/api/characters/:id`                       | `200` with the updated character, or `404`        |
+| `DELETE` | `/api/characters/:id`                       | `204`, or `404`                                   |
+
+`page` and `limit` are optional (`limit` is 1–100, default 20). Invalid input returns `400` with a list of messages.
+
+`POST` and `PUT` take the full character:
+
+```json
+{
+	"name": "Space Beth",
+	"status": "Alive",
+	"species": "Human",
+	"type": "Clone",
+	"gender": "Female",
+	"origin": { "name": "Earth (C-137)" },
+	"location": { "name": "Space" },
+	"image": "https://rickandmortyapi.com/api/character/avatar/38.jpeg"
+}
+```
+
+`status` is `Alive`, `Dead` or `unknown`, `gender` is `Female`, `Male`, `Genderless` or `unknown`, `type` is optional and `image` must be an http(s) URL. Unknown fields are rejected.
+
+## Scripts
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run start:dev     # start with watch mode
+npm run check         # lint + format check + typecheck
+npm test              # unit tests
+npm run test:e2e      # e2e tests against an in-memory database
+npm run build         # build to dist/
 ```
 
-## Run tests
+## Database
+
+### Migrations
+
+The schema is managed with TypeORM migrations in `src/migrations/`. After changing an entity:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run migration:generate -- src/migrations/DescribeTheChange
 ```
 
-## Deployment
+Then add the new migration class to the array in `src/migrations/index.ts`. Pending migrations run automatically when the server starts, or manually with `npm run migration:run`. `npm run migration:show` lists them and `npm run migration:revert` undoes the last one.
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### Reset
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+To start over with a freshly seeded database, stop the server, delete `data/characters.sqlite` and start it again.
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+The seed only runs while the database is empty. If it fails (for example without internet), the server keeps running and tries again on the next start, unless characters were created in the meantime.
+
+## Bruno
+
+`bruno/Character-Backend` contains requests for every endpoint, including one with invalid data. Open the folder in [Bruno](https://www.usebruno.com), select the `local` environment and run the collection with the Runner. Create stores the new id, so Update and Delete work on that character and leave the seeded ones untouched.
+
+## Project structure
+
+```text
+src/
+├── characters/     Entity, zod schemas, controller, service and seeder
+├── config/         Environment variable schema
+├── migrations/     TypeORM migrations
+├── app.module.ts   Config, database and feature modules
+├── app.setup.ts    Global /api prefix and validation pipe
+├── data-source.ts  Data source for the TypeORM CLI
+└── main.ts         Entry point
+test/               e2e tests
+bruno/              Bruno collection
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Credits
 
-## Observability
-
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
-
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
-
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
-
-To add it to this project, run this and approve the code it prints at [observe.nestjs.com/link](https://observe.nestjs.com/link) - signing up for free if you have no account:
-
-```bash
-$ npx @nestjs/observe link
-```
-
-It installs `@nestjs/observe`, wires it into `AppModule` and `main.ts`, and writes the app key and secret into `.env`, which every `nest start` script (`start`, `start:dev`, `start:debug`) then loads. In production, set `OBSERVE_APP_KEY` and `OBSERVE_APP_SECRET` in the environment instead.
-
-Or do it by hand:
-
-```bash
-$ npm install @nestjs/observe
-```
-
-Then follow the [setup guide](https://docs.nestjs.com/observability/sdk) - it takes a single import and an app key.
-
-The free plan needs no payment details and covers 300,000 events a month. You can also browse the [live demo](https://www.observe-demo.nestjs.com/dashboard) first - the whole dashboard over a busy service's data, with nothing to install.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observe](https://observe.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+The seed data comes from the [Rick and Morty API](https://rickandmortyapi.com). Rick and Morty and its characters belong to their respective owners (Adult Swim). This is a non-commercial learning project.
