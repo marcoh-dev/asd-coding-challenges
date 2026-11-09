@@ -7,6 +7,10 @@ export function charactersQueryKey(name: string) {
 	return [...CHARACTERS_QUERY_KEY, name];
 }
 
+export function characterQueryKey(id: number | string) {
+	return ["character", String(id)];
+}
+
 export type CharacterPage = {
 	info: {
 		count: number;
@@ -30,12 +34,18 @@ export function isNotFoundError(error: unknown) {
 	return error instanceof RequestError && error.status === 404;
 }
 
-async function request<TData>(path: string, signal: AbortSignal): Promise<TData> {
-	const response = await fetch(`${getEnv().EXPO_PUBLIC_API_URL}${path}`, { signal });
+async function send(path: string, init?: RequestInit) {
+	const response = await fetch(`${getEnv().EXPO_PUBLIC_API_URL}${path}`, init);
 
 	if (!response.ok) {
 		throw new RequestError(response.status);
 	}
+
+	return response;
+}
+
+async function request<TData>(path: string, signal: AbortSignal): Promise<TData> {
+	const response = await send(path, { signal });
 
 	return response.json();
 }
@@ -51,4 +61,8 @@ export function fetchCharacters(
 
 export function fetchCharacter(id: string, signal: AbortSignal) {
 	return request<Character>(`/characters/${id}`, signal);
+}
+
+export async function deleteCharacter(id: number) {
+	await send(`/characters/${id}`, { method: "DELETE" });
 }

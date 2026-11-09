@@ -1,10 +1,12 @@
 import { type InfiniteData, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Image } from "expo-image";
-import { Stack, useLocalSearchParams } from "expo-router";
-import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import { Trash2 } from "lucide-react-native";
+import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
 
 import {
 	type CharacterPage,
+	characterQueryKey,
 	CHARACTERS_QUERY_KEY,
 	fetchCharacter,
 	isNotFoundError,
@@ -12,6 +14,7 @@ import {
 import CharacterStatus from "@/components/CharacterStatus";
 import ErrorMessage from "@/components/ErrorMessage";
 import OfflineNotice from "@/components/OfflineNotice";
+import { useDeleteCharacter } from "@/hooks/useDeleteCharacter";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useTheme } from "@/theme/ThemeProvider";
 import type { Character } from "@/types/character";
@@ -21,6 +24,8 @@ export default function CharacterDetails() {
 	const { theme, styles } = useTheme();
 	const queryClient = useQueryClient();
 	const reducedMotion = useReducedMotion();
+	const router = useRouter();
+	const confirmDelete = useDeleteCharacter({ onDeleted: () => router.back() });
 
 	const {
 		data: character,
@@ -29,7 +34,7 @@ export default function CharacterDetails() {
 		isPaused,
 		refetch,
 	} = useQuery<Character>({
-		queryKey: ["character", id],
+		queryKey: characterQueryKey(id),
 		queryFn: ({ signal }) => fetchCharacter(id, signal),
 		placeholderData: () =>
 			queryClient
@@ -100,6 +105,22 @@ export default function CharacterDetails() {
 				<DetailRow label="Origin" value={character.origin.name} />
 				<DetailRow label="Location" value={character.location.name} />
 				<DetailRow label="Episodes" value={String(character.episode.length)} />
+			</View>
+
+			<View style={styles.detailsActions}>
+				<Pressable
+					style={({ pressed }) => [
+						styles.actionButton,
+						styles.dangerButton,
+						pressed && styles.pressed,
+					]}
+					onPress={() => confirmDelete(character)}
+					accessibilityRole="button"
+					accessibilityLabel={`Delete ${character.name}`}
+				>
+					<Trash2 size={20} color={theme.statusDead} />
+					<Text style={[styles.actionButtonText, styles.dangerButtonText]}>Delete</Text>
+				</Pressable>
 			</View>
 		</ScrollView>
 	);
