@@ -5,6 +5,7 @@ import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-nati
 
 import { type CharacterPage, CHARACTERS_QUERY_KEY, fetchCharacter } from "@/api/characters";
 import CharacterStatus from "@/components/CharacterStatus";
+import OfflineNotice from "@/components/OfflineNotice";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useTheme } from "@/theme/ThemeProvider";
 import type { Character } from "@/types/character";
@@ -18,6 +19,7 @@ export default function CharacterDetails() {
 	const {
 		data: character,
 		isFetching,
+		isPaused,
 		refetch,
 	} = useQuery<Character>({
 		queryKey: ["character", id],
@@ -43,6 +45,11 @@ export default function CharacterDetails() {
 						size="large"
 						color={theme.primary}
 						accessibilityLabel="Loading character"
+					/>
+				) : isPaused ? (
+					<OfflineNotice
+						message="This character loads as soon as you’re back online."
+						style={styles.offlineNoticeCentered}
 					/>
 				) : (
 					<>

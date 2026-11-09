@@ -176,6 +176,33 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			paddingTop: 16,
 		},
 
+		offlineNotice: {
+			alignSelf: "stretch",
+			flexDirection: "row",
+			alignItems: "center",
+			gap: 12,
+			padding: 16,
+			backgroundColor: theme.surface,
+			borderColor: theme.primary,
+			borderWidth: 1,
+			borderRadius: 12,
+		},
+
+		offlineNoticeCentered: {
+			marginHorizontal: 16,
+		},
+
+		offlineNoticeText: {
+			flex: 1,
+			gap: 2,
+		},
+
+		offlineNoticeTitle: {
+			fontSize: 16,
+			fontWeight: fontWeight.semibold,
+			color: theme.text,
+		},
+
 		galleryEmpty: {
 			paddingHorizontal: 6,
 		},
