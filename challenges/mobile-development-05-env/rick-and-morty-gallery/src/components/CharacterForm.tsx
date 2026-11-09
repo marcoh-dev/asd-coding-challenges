@@ -30,10 +30,10 @@ const statusOptions = [
 ] as const;
 
 const genderOptions = [
+	{ value: "unknown", label: "Unknown" },
 	{ value: "Female", label: "Female" },
 	{ value: "Male", label: "Male" },
 	{ value: "Genderless", label: "Genderless" },
-	{ value: "unknown", label: "Unknown" },
 ] as const;
 
 type Props = {
