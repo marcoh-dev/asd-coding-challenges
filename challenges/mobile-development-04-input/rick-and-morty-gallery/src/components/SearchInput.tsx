@@ -4,14 +4,17 @@ import { Pressable, TextInput, type TextInputInstance, View } from "react-native
 
 import { useTheme } from "@/theme/ThemeProvider";
 
+const MAX_LENGTH = 50;
+
 type Props = {
 	ref: Ref<TextInputInstance>;
 	value: string;
 	onChangeText: (value: string) => void;
+	onSubmit: () => void;
 	onClear: () => void;
 };
 
-export default function SearchInput({ ref, value, onChangeText, onClear }: Props) {
+export default function SearchInput({ ref, value, onChangeText, onSubmit, onClear }: Props) {
 	const { theme, styles } = useTheme();
 
 	return (
@@ -23,6 +26,8 @@ export default function SearchInput({ ref, value, onChangeText, onClear }: Props
 				style={styles.searchInputText}
 				value={value}
 				onChangeText={onChangeText}
+				onSubmitEditing={onSubmit}
+				maxLength={MAX_LENGTH}
 				placeholder="Search characters"
 				placeholderTextColor={theme.textSecondary}
 				selectionColor={theme.primary}
