@@ -451,7 +451,7 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			justifyContent: "center",
 		},
 
-		headerCancelButton: {
+		headerLeftButton: {
 			width: 48,
 			height: 48,
 			marginLeft: -12,
