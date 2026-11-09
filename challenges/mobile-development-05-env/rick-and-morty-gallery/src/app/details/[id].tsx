@@ -58,7 +58,7 @@ export default function CharacterDetails() {
 								},
 							]}
 							accessibilityLabel={`More actions for ${character.name}`}
-							buttonStyle={styles.headerButton}
+							buttonStyle={styles.stackHeaderButton}
 							iconColor={theme.primary}
 						/>
 					),

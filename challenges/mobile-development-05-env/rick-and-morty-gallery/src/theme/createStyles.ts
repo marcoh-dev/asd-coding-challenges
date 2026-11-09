@@ -443,6 +443,14 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			justifyContent: "center",
 		},
 
+		stackHeaderButton: {
+			width: 48,
+			height: 48,
+			marginRight: -12,
+			alignItems: "center",
+			justifyContent: "center",
+		},
+
 		headerCancelButton: {
 			width: 48,
 			height: 48,
