@@ -11,6 +11,7 @@ import {
 	characterQueryKey,
 	CHARACTERS_QUERY_KEY,
 	deleteCharacter,
+	isNotFoundError,
 } from "@/api/characters";
 import type { Character } from "@/types/character";
 
@@ -22,7 +23,15 @@ export function useDeleteCharacter({ onDeleted }: Options = {}) {
 	const queryClient = useQueryClient();
 
 	const { mutate } = useMutation({
-		mutationFn: (character: Character) => deleteCharacter(character.id),
+		mutationFn: async (character: Character) => {
+			try {
+				await deleteCharacter(character.id);
+			} catch (error) {
+				if (!isNotFoundError(error)) {
+					throw error;
+				}
+			}
+		},
 		onSuccess: (_data, character) => {
 			queryClient.setQueriesData<InfiniteData<CharacterPage, number>>(
 				{ queryKey: CHARACTERS_QUERY_KEY },

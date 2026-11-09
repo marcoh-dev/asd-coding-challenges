@@ -11,6 +11,7 @@ import {
 	type CharacterPage,
 	characterQueryKey,
 	CHARACTERS_QUERY_KEY,
+	isNotFoundError,
 	updateCharacter,
 } from "@/api/characters";
 import CharacterFallback from "@/components/CharacterFallback";
@@ -46,9 +47,6 @@ export default function EditCharacter() {
 			void queryClient.invalidateQueries({ queryKey: CHARACTERS_QUERY_KEY });
 			AccessibilityInfo.announceForAccessibility(`${updated.name} saved`);
 		},
-		onError: () => {
-			Alert.alert("Could not save", "Your changes could not be saved. Please try again.");
-		},
 	});
 
 	function submit(input: CharacterInput, allowLeave: () => void) {
@@ -61,6 +59,31 @@ export default function EditCharacter() {
 			onSuccess: () => {
 				allowLeave();
 				router.back();
+			},
+			onError: (error) => {
+				if (!isNotFoundError(error)) {
+					Alert.alert(
+						"Could not save",
+						"Your changes could not be saved. Please try again.",
+					);
+					return;
+				}
+
+				void queryClient.invalidateQueries({ queryKey: CHARACTERS_QUERY_KEY });
+				Alert.alert(
+					"Character not found",
+					"This character was deleted in the meantime, so your changes can’t be saved.",
+					[
+						{
+							text: "OK",
+							onPress: () => {
+								allowLeave();
+								router.dismissAll();
+							},
+						},
+					],
+					{ cancelable: false },
+				);
 			},
 		});
 	}
