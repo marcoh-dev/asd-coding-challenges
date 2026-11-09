@@ -12,6 +12,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { syncAppFocus } from "@/api/appFocus";
 import { isNotFoundError } from "@/api/characters";
 import { syncOnlineStatus } from "@/api/onlineStatus";
+import EnvError from "@/components/EnvError";
+import { envError } from "@/env";
 import { ThemeProvider, useTheme } from "@/theme/ThemeProvider";
 
 const MAX_RETRIES = 3;
@@ -34,7 +36,7 @@ export default function RootLayout() {
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider>
 				<SafeAreaProvider>
-					<RootStack />
+					{envError ? <EnvError message={envError} /> : <RootStack />}
 				</SafeAreaProvider>
 			</ThemeProvider>
 		</QueryClientProvider>
