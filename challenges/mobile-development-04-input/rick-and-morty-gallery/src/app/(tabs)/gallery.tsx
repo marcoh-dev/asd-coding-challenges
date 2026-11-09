@@ -11,8 +11,17 @@ const SEARCH_DELAY = 300;
 export default function GalleryScreen() {
 	const { styles } = useTheme();
 	const [search, setSearch] = useState("");
-	const debouncedSearch = useDebouncedValue(search.trim(), search ? SEARCH_DELAY : 0);
+	const [isSubmitted, setIsSubmitted] = useState(false);
+	const debouncedSearch = useDebouncedValue(
+		search.trim(),
+		search && !isSubmitted ? SEARCH_DELAY : 0,
+	);
 	const inputRef = useRef<TextInputInstance>(null);
+
+	function changeSearch(value: string) {
+		setSearch(value);
+		setIsSubmitted(false);
+	}
 
 	function clearSearch() {
 		setSearch("");
@@ -28,7 +37,8 @@ export default function GalleryScreen() {
 			<SearchInput
 				ref={inputRef}
 				value={search}
-				onChangeText={setSearch}
+				onChangeText={changeSearch}
+				onSubmit={() => setIsSubmitted(true)}
 				onClear={clearSearch}
 			/>
 			<Gallery search={debouncedSearch} onClearSearch={clearSearch} />
