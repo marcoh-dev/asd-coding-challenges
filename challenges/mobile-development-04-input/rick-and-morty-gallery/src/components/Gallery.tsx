@@ -206,7 +206,7 @@ export default function Gallery({ search, onClearSearch }: Props) {
 					}
 					ListFooterComponent={
 						<View style={styles.galleryFooter}>
-							{isPaused && (
+							{isPaused && hasNextPage && (
 								<OfflineNotice message="More characters load as soon as you’re back online." />
 							)}
 
