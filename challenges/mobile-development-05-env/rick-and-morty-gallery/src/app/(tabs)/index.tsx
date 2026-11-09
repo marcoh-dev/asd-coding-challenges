@@ -49,6 +49,11 @@ export default function Home() {
 					</Text>
 
 					<Text style={styles.text} {...paragraphProps}>
+						Create your own characters with the + in the gallery, and edit or delete
+						them through the menu on each card or profile.
+					</Text>
+
+					<Text style={styles.text} {...paragraphProps}>
 						You can switch between light and dark mode and adjust accessibility options
 						in the{" "}
 						<Link href="/settings" style={styles.link}>
