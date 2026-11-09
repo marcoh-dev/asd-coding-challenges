@@ -3,7 +3,12 @@ import { Image } from "expo-image";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 
-import { type CharacterPage, CHARACTERS_QUERY_KEY, fetchCharacter } from "@/api/characters";
+import {
+	type CharacterPage,
+	CHARACTERS_QUERY_KEY,
+	fetchCharacter,
+	isNotFoundError,
+} from "@/api/characters";
 import CharacterStatus from "@/components/CharacterStatus";
 import ErrorMessage from "@/components/ErrorMessage";
 import OfflineNotice from "@/components/OfflineNotice";
@@ -19,6 +24,7 @@ export default function CharacterDetails() {
 
 	const {
 		data: character,
+		error,
 		isFetching,
 		isPaused,
 		refetch,
@@ -52,6 +58,8 @@ export default function CharacterDetails() {
 						message="This character loads as soon as you’re back online."
 						style={styles.offlineNoticeCentered}
 					/>
+				) : isNotFoundError(error) ? (
+					<ErrorMessage message="This character doesn’t exist." />
 				) : (
 					<ErrorMessage
 						message="Could not load this character."

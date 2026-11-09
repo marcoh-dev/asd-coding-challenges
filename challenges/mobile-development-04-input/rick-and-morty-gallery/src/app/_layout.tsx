@@ -9,10 +9,19 @@ import { StatusBar } from "expo-status-bar";
 import { useMemo } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import { isNotFoundError } from "@/api/characters";
 import { syncOnlineStatus } from "@/api/onlineStatus";
 import { ThemeProvider, useTheme } from "@/theme/ThemeProvider";
 
-const queryClient = new QueryClient();
+const MAX_RETRIES = 3;
+
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			retry: (failureCount, error) => !isNotFoundError(error) && failureCount < MAX_RETRIES,
+		},
+	},
+});
 
 syncOnlineStatus();
 

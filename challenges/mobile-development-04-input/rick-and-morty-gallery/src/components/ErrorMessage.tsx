@@ -5,7 +5,7 @@ import { useTheme } from "@/theme/ThemeProvider";
 
 type Props = {
 	message: string;
-	onRetry: () => void;
+	onRetry?: () => void;
 };
 
 export default function ErrorMessage({ message, onRetry }: Props) {
@@ -19,9 +19,11 @@ export default function ErrorMessage({ message, onRetry }: Props) {
 				{message}
 			</Text>
 
-			<Pressable style={styles.button} onPress={onRetry} accessibilityRole="button">
-				<Text style={styles.buttonText}>Try again</Text>
-			</Pressable>
+			{onRetry && (
+				<Pressable style={styles.button} onPress={onRetry} accessibilityRole="button">
+					<Text style={styles.buttonText}>Try again</Text>
+				</Pressable>
+			)}
 		</>
 	);
 }

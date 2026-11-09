@@ -32,6 +32,10 @@ class RequestError extends Error {
 	}
 }
 
+export function isNotFoundError(error: unknown) {
+	return error instanceof RequestError && error.status === 404;
+}
+
 async function request<TData>(path: string, signal: AbortSignal): Promise<TData> {
 	if (!API_URL) {
 		throw new Error("EXPO_PUBLIC_API_URL is not set");
@@ -55,7 +59,7 @@ export async function fetchCharacters(
 	try {
 		return await request<CharacterPage>(`/character?page=${pageParam}${nameFilter}`, signal);
 	} catch (error) {
-		if (name && error instanceof RequestError && error.status === 404) {
+		if (name && isNotFoundError(error)) {
 			return EMPTY_PAGE;
 		}
 
