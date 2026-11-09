@@ -28,16 +28,44 @@ Builds on [`mobile-development-04-input`](../../mobile-development-04-input/rick
 - Expo Router with typed routes
 - TanStack Query, with `expo-network` for its online status
 - zustand with `expo-sqlite/kv-store` for persistence
+- [Character backend](../character-backend) (NestJS, SQLite) as the API
 - expo-image, lucide-react-native
 - ESLint, Prettier and GitHub Actions CI
 
 ## Getting started
 
-```bash
-cp .env.example .env
-npm install
-npx expo start
-```
+The app gets its data from the [character backend](../character-backend), which runs on your computer. Your phone and your computer need to be on the same Wi-Fi.
+
+1. Start the backend (details in [its README](../character-backend#getting-started)):
+
+    ```bash
+    cd ../character-backend
+    npm install
+    npm run start:dev
+    ```
+
+2. Find your computer's local IP address. It usually looks like `192.168.x.x` or `10.x.x.x`.
+    - macOS: `ipconfig getifaddr en0`, or look for `inet` under `en0` in `ifconfig`
+    - Windows: `ipconfig`, the IPv4 address of your Wi-Fi or Ethernet adapter
+
+3. Create `.env` and set the API URL to that address:
+
+    ```bash
+    cp .env.example .env
+    ```
+
+    ```bash
+    EXPO_PUBLIC_API_URL=http://<YOUR_LOCAL_IP_ADDRESS>:3000/api
+    ```
+
+4. Install and start the app:
+
+    ```bash
+    npm install
+    npx expo start
+    ```
+
+`localhost` doesn't work here: on the phone it means the phone itself, not your computer. If your IP address changes (for example on another Wi-Fi), update `.env` and reload the app. If the app can't reach the backend, check that your firewall allows incoming connections for Node.
 
 Run lint, format check and typecheck with:
 
@@ -63,4 +91,4 @@ src/
 
 ## Credits
 
-Character data comes from the [Rick and Morty API](https://rickandmortyapi.com). Rick and Morty, its characters and logo belong to their respective owners (Adult Swim). This is a non-commercial learning project.
+Character data is seeded from the [Rick and Morty API](https://rickandmortyapi.com). Rick and Morty, its characters and logo belong to their respective owners (Adult Swim). This is a non-commercial learning project.

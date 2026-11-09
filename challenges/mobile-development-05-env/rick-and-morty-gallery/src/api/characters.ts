@@ -12,15 +12,10 @@ export type CharacterPage = {
 	info: {
 		count: number;
 		pages: number;
-		next: string | null;
-		prev: string | null;
+		next: number | null;
+		prev: number | null;
 	};
 	results: Character[];
-};
-
-const EMPTY_PAGE: CharacterPage = {
-	info: { count: 0, pages: 0, next: null, prev: null },
-	results: [],
 };
 
 class RequestError extends Error {
@@ -50,23 +45,15 @@ async function request<TData>(path: string, signal: AbortSignal): Promise<TData>
 	return response.json();
 }
 
-export async function fetchCharacters(
+export function fetchCharacters(
 	name: string,
 	{ pageParam, signal }: { pageParam: number; signal: AbortSignal },
 ) {
 	const nameFilter = name ? `&name=${encodeURIComponent(name)}` : "";
 
-	try {
-		return await request<CharacterPage>(`/character?page=${pageParam}${nameFilter}`, signal);
-	} catch (error) {
-		if (name && isNotFoundError(error)) {
-			return EMPTY_PAGE;
-		}
-
-		throw error;
-	}
+	return request<CharacterPage>(`/characters?page=${pageParam}${nameFilter}`, signal);
 }
 
 export function fetchCharacter(id: string, signal: AbortSignal) {
-	return request<Character>(`/character/${id}`, signal);
+	return request<Character>(`/characters/${id}`, signal);
 }
