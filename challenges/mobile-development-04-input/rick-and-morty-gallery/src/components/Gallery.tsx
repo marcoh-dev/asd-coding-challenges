@@ -1,6 +1,11 @@
-import { type InfiniteData, useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import {
+	type InfiniteData,
+	keepPreviousData,
+	useInfiniteQuery,
+	useQueryClient,
+} from "@tanstack/react-query";
 import { useScrollToTop } from "expo-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
 	ActivityIndicator,
 	FlatList,
@@ -22,18 +27,27 @@ import type { Character } from "@/types/character";
 
 const LARGE_FONT_SCALE = 1.5;
 
-export default function Gallery() {
+type Props = {
+	search: string;
+};
+
+export default function Gallery({ search }: Props) {
 	const { theme, styles } = useTheme();
 	const queryClient = useQueryClient();
 	const [isRefreshing, setIsRefreshing] = useState(false);
 	const [showScrollTop, setShowScrollTop] = useState(false);
+	const [isScrolled, setIsScrolled] = useState(false);
 	const listRef = useRef<FlatList<Character>>(null);
 	const { height, fontScale } = useWindowDimensions();
 	const numColumns = fontScale >= LARGE_FONT_SCALE ? 1 : 2;
 	const reducedMotion = useReducedMotion();
-	const queryKey = charactersQueryKey("");
+	const queryKey = charactersQueryKey(search);
 
 	useScrollToTop(listRef);
+
+	useEffect(() => {
+		listRef.current?.scrollToOffset({ offset: 0, animated: false });
+	}, [search]);
 
 	const {
 		data,
@@ -43,9 +57,11 @@ export default function Gallery() {
 		hasNextPage,
 		isFetchingNextPage,
 		isFetchNextPageError,
+		isPlaceholderData,
 	} = useInfiniteQuery({
 		queryKey,
-		queryFn: (context) => fetchCharacters("", context),
+		queryFn: (context) => fetchCharacters(search, context),
+		placeholderData: keepPreviousData,
 		initialPageParam: 1,
 		getNextPageParam: (lastPage, _allPages, lastPageParam) =>
 			lastPage.info.next ? lastPageParam + 1 : undefined,
@@ -68,7 +84,10 @@ export default function Gallery() {
 	}
 
 	function handleScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
-		setShowScrollTop(event.nativeEvent.contentOffset.y > height);
+		const offset = event.nativeEvent.contentOffset.y;
+
+		setIsScrolled(offset > 0);
+		setShowScrollTop(offset > height);
 	}
 
 	function scrollToTop() {
@@ -116,17 +135,34 @@ export default function Gallery() {
 			<FlatList
 				key={numColumns}
 				ref={listRef}
-				style={styles.gallery}
+				style={[styles.gallery, isPlaceholderData && styles.galleryStale]}
 				data={characters}
 				keyExtractor={(character) => String(character.id)}
-				renderItem={({ item }) => <CharacterItem character={item} />}
+				renderItem={({ item }) => (
+					<View style={[styles.galleryItem, { maxWidth: `${100 / numColumns}%` }]}>
+						<CharacterItem character={item} />
+					</View>
+				)}
 				numColumns={numColumns}
-				columnWrapperStyle={numColumns > 1 ? styles.galleryRow : undefined}
 				contentContainerStyle={styles.galleryContent}
+				keyboardDismissMode="on-drag"
+				keyboardShouldPersistTaps="handled"
 				onScroll={handleScroll}
 				scrollEventThrottle={100}
 				onEndReached={handleEndReached}
 				onEndReachedThreshold={1}
+				ListEmptyComponent={
+					isPlaceholderData ? (
+						<ActivityIndicator
+							color={theme.primary}
+							accessibilityLabel="Searching characters"
+						/>
+					) : (
+						<Text style={styles.text} accessibilityLiveRegion="polite">
+							No characters found for “{search}”.
+						</Text>
+					)
+				}
 				ListFooterComponent={
 					<View style={styles.galleryFooter}>
 						{isFetchingNextPage && (
@@ -162,6 +198,8 @@ export default function Gallery() {
 					/>
 				}
 			/>
+
+			{isScrolled && <View style={styles.galleryDivider} />}
 
 			<ScrollTopButton visible={showScrollTop} onPress={scrollToTop} />
 		</View>
