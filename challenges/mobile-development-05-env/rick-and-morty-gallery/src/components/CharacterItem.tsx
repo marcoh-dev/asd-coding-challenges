@@ -2,6 +2,7 @@ import { useRouter } from "expo-router";
 import { Trash2 } from "lucide-react-native";
 import { Keyboard, Pressable, Text, View } from "react-native";
 
+import ActionMenu from "@/components/ActionMenu";
 import CharacterImage from "@/components/CharacterImage";
 import CharacterStatus from "@/components/CharacterStatus";
 import { useDeleteCharacter } from "@/hooks/useDeleteCharacter";
@@ -38,29 +39,34 @@ export default function CharacterItem({ character }: Props) {
 			<CharacterImage uri={character.image} style={styles.characterImage} iconSize={48} />
 
 			<View style={styles.characterInfo}>
-				<Text style={styles.characterName} numberOfLines={2}>
-					{character.name}
-				</Text>
+				<View style={styles.characterHeader}>
+					<Text
+						style={[styles.characterName, styles.characterHeaderName]}
+						numberOfLines={2}
+					>
+						{character.name}
+					</Text>
+
+					<ActionMenu
+						items={[
+							{
+								label: "Delete",
+								icon: Trash2,
+								destructive: true,
+								onPress: () => confirmDelete(character),
+							},
+						]}
+						accessibilityLabel={`More actions for ${character.name}`}
+						buttonStyle={styles.characterActionButton}
+						iconColor={theme.textSecondary}
+					/>
+				</View>
 
 				<CharacterStatus status={character.status} />
 
 				<Text style={styles.characterDetail} numberOfLines={1}>
 					{character.species} · {character.gender}
 				</Text>
-
-				<View style={styles.characterActions}>
-					<Pressable
-						style={({ pressed }) => [
-							styles.characterActionButton,
-							pressed && styles.pressed,
-						]}
-						onPress={() => confirmDelete(character)}
-						accessibilityRole="button"
-						accessibilityLabel={`Delete ${character.name}`}
-					>
-						<Trash2 size={20} color={theme.statusDead} />
-					</Pressable>
-				</View>
 			</View>
 		</Pressable>
 	);
