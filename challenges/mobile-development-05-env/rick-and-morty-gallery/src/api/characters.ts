@@ -1,5 +1,5 @@
 import { getEnv } from "@/env";
-import type { Character } from "@/types/character";
+import type { Character, CharacterInput } from "@/types/character";
 
 export const CHARACTERS_QUERY_KEY = ["characters"];
 
@@ -65,4 +65,14 @@ export function fetchCharacter(id: string, signal: AbortSignal) {
 
 export async function deleteCharacter(id: number) {
 	await send(`/characters/${id}`, { method: "DELETE" });
+}
+
+export async function createCharacter(input: CharacterInput): Promise<Character> {
+	const response = await send("/characters", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(input),
+	});
+
+	return response.json();
 }

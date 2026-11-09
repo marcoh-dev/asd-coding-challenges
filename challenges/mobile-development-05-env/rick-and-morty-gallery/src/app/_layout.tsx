@@ -77,6 +77,10 @@ function RootStack() {
 			<Stack>
 				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 				<Stack.Screen
+					name="create"
+					options={{ title: "New character", headerBackButtonDisplayMode: "minimal" }}
+				/>
+				<Stack.Screen
 					name="details/[id]"
 					options={{ headerBackButtonDisplayMode: "minimal" }}
 					dangerouslySingular

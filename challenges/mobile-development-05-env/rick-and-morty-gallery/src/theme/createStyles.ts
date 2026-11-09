@@ -251,6 +251,12 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			color: theme.text,
 		},
 
+		imagePlaceholder: {
+			alignItems: "center",
+			justifyContent: "center",
+			backgroundColor: theme.border,
+		},
+
 		characterActions: {
 			flexDirection: "row",
 			justifyContent: "flex-end",
@@ -364,6 +370,71 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			fontWeight: fontWeight.regular,
 			color: theme.text,
 			textAlign: "right",
+		},
+
+		form: {
+			flex: 1,
+			backgroundColor: theme.background,
+		},
+
+		formContent: {
+			padding: 16,
+			gap: 16,
+		},
+
+		formField: {
+			gap: 6,
+		},
+
+		formLabel: {
+			fontSize: 14,
+			fontWeight: fontWeight.semibold,
+			color: theme.text,
+		},
+
+		formInput: {
+			minHeight: 48,
+			paddingHorizontal: 12,
+			fontSize: 16,
+			fontWeight: fontWeight.regular,
+			color: theme.text,
+			backgroundColor: theme.surface,
+			borderColor: theme.textSecondary,
+			borderWidth: 1,
+			borderRadius: 8,
+		},
+
+		formInputError: {
+			borderColor: theme.statusDead,
+			borderWidth: 2,
+		},
+
+		formError: {
+			fontSize: 14,
+			fontWeight: fontWeight.regular,
+			color: theme.statusDead,
+		},
+
+		formImagePreview: {
+			width: 120,
+			aspectRatio: 1,
+			borderRadius: 12,
+		},
+
+		formSubmit: {
+			flexDirection: "row",
+			alignItems: "center",
+			justifyContent: "center",
+			gap: 8,
+			marginTop: 8,
+		},
+
+		headerButton: {
+			width: 48,
+			height: 48,
+			marginRight: 4,
+			alignItems: "center",
+			justifyContent: "center",
 		},
 
 		settingGroups: {

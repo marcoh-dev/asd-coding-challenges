@@ -1,6 +1,8 @@
 import { Tabs } from "expo-router";
 import { House, Images, Settings } from "lucide-react-native";
 
+import CreateCharacterButton from "@/components/CreateCharacterButton";
+
 export default function TabLayout() {
 	return (
 		<Tabs>
@@ -16,6 +18,7 @@ export default function TabLayout() {
 				options={{
 					title: "Gallery",
 					tabBarIcon: ({ color, size }) => <Images color={color} size={size} />,
+					headerRight: () => <CreateCharacterButton />,
 				}}
 			/>
 			<Tabs.Screen

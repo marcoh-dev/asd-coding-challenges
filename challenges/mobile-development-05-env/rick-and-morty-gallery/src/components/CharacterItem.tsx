@@ -1,11 +1,10 @@
-import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { Trash2 } from "lucide-react-native";
 import { Keyboard, Pressable, Text, View } from "react-native";
 
+import CharacterImage from "@/components/CharacterImage";
 import CharacterStatus from "@/components/CharacterStatus";
 import { useDeleteCharacter } from "@/hooks/useDeleteCharacter";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useTheme } from "@/theme/ThemeProvider";
 import type { Character } from "@/types/character";
 
@@ -15,7 +14,6 @@ type Props = {
 
 export default function CharacterItem({ character }: Props) {
 	const { theme, styles } = useTheme();
-	const reducedMotion = useReducedMotion();
 	const router = useRouter();
 	const confirmDelete = useDeleteCharacter();
 
@@ -37,12 +35,7 @@ export default function CharacterItem({ character }: Props) {
 				}
 			}}
 		>
-			<Image
-				style={styles.characterImage}
-				source={character.image}
-				contentFit="cover"
-				transition={reducedMotion ? null : 200}
-			/>
+			<CharacterImage uri={character.image} style={styles.characterImage} iconSize={48} />
 
 			<View style={styles.characterInfo}>
 				<Text style={styles.characterName} numberOfLines={2}>
