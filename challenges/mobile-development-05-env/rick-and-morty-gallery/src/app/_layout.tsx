@@ -6,14 +6,15 @@ import {
 	ThemeProvider as NavigationThemeProvider,
 } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { ArrowLeft, X } from "lucide-react-native";
 import { useMemo } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { syncAppFocus } from "@/api/appFocus";
 import { isNotFoundError } from "@/api/characters";
 import { syncOnlineStatus } from "@/api/onlineStatus";
-import CancelButton from "@/components/CancelButton";
 import EnvError from "@/components/EnvError";
+import HeaderLeftButton from "@/components/HeaderLeftButton";
 import { envError } from "@/env";
 import { ThemeProvider, useTheme } from "@/theme/ThemeProvider";
 
@@ -31,6 +32,14 @@ const queryClient = new QueryClient({
 
 syncOnlineStatus();
 syncAppFocus();
+
+function cancelButton() {
+	return <HeaderLeftButton icon={X} accessibilityLabel="Cancel" />;
+}
+
+function backButton() {
+	return <HeaderLeftButton icon={ArrowLeft} accessibilityLabel="Back" />;
+}
 
 export default function RootLayout() {
 	return (
@@ -79,16 +88,16 @@ function RootStack() {
 				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 				<Stack.Screen
 					name="create"
-					options={{ title: "New character", headerLeft: () => <CancelButton /> }}
+					options={{ title: "New character", headerLeft: cancelButton }}
 				/>
 				<Stack.Screen
 					name="edit/[id]"
-					options={{ title: "Edit character", headerLeft: () => <CancelButton /> }}
+					options={{ title: "Edit character", headerLeft: cancelButton }}
 					dangerouslySingular
 				/>
 				<Stack.Screen
 					name="details/[id]"
-					options={{ headerBackButtonDisplayMode: "minimal" }}
+					options={{ headerLeft: backButton }}
 					dangerouslySingular
 				/>
 			</Stack>
