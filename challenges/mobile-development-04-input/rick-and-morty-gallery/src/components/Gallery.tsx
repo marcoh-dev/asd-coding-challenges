@@ -68,6 +68,8 @@ export default function Gallery({ search }: Props) {
 	});
 
 	const characters = data?.pages.flatMap((page) => page.results);
+	const count = data?.pages[0]?.info.count ?? 0;
+	const countText = `${count} ${count === 1 ? "character" : "characters"}${search ? " found" : ""}`;
 
 	async function handleRefresh() {
 		setIsRefreshing(true);
@@ -132,76 +134,83 @@ export default function Gallery({ search }: Props) {
 
 	return (
 		<View style={styles.gallery}>
-			<FlatList
-				key={numColumns}
-				ref={listRef}
-				style={[styles.gallery, isPlaceholderData && styles.galleryStale]}
-				data={characters}
-				keyExtractor={(character) => String(character.id)}
-				renderItem={({ item }) => (
-					<View style={[styles.galleryItem, { maxWidth: `${100 / numColumns}%` }]}>
-						<CharacterItem character={item} />
-					</View>
-				)}
-				numColumns={numColumns}
-				contentContainerStyle={styles.galleryContent}
-				keyboardDismissMode="on-drag"
-				keyboardShouldPersistTaps="handled"
-				onScroll={handleScroll}
-				scrollEventThrottle={100}
-				onEndReached={handleEndReached}
-				onEndReachedThreshold={1}
-				ListEmptyComponent={
-					isPlaceholderData ? (
-						<ActivityIndicator
-							color={theme.primary}
-							accessibilityLabel="Searching characters"
-						/>
-					) : (
-						<Text style={styles.text} accessibilityLiveRegion="polite">
-							No characters found for “{search}”.
-						</Text>
-					)
-				}
-				ListFooterComponent={
-					<View style={styles.galleryFooter}>
-						{isFetchingNextPage && (
+			<Text
+				style={[styles.galleryCount, isPlaceholderData && styles.galleryStale]}
+				accessibilityLiveRegion="polite"
+			>
+				{countText}
+			</Text>
+
+			<View style={styles.gallery}>
+				<FlatList
+					key={numColumns}
+					ref={listRef}
+					style={[styles.gallery, isPlaceholderData && styles.galleryStale]}
+					data={characters}
+					keyExtractor={(character) => String(character.id)}
+					renderItem={({ item }) => (
+						<View style={[styles.galleryItem, { maxWidth: `${100 / numColumns}%` }]}>
+							<CharacterItem character={item} />
+						</View>
+					)}
+					numColumns={numColumns}
+					contentContainerStyle={styles.galleryContent}
+					keyboardDismissMode="on-drag"
+					keyboardShouldPersistTaps="handled"
+					onScroll={handleScroll}
+					scrollEventThrottle={100}
+					onEndReached={handleEndReached}
+					onEndReachedThreshold={1}
+					ListEmptyComponent={
+						isPlaceholderData ? (
 							<ActivityIndicator
 								color={theme.primary}
-								accessibilityLabel="Loading more characters"
+								accessibilityLabel="Searching characters"
 							/>
-						)}
+						) : (
+							<Text style={styles.text}>No characters found for “{search}”.</Text>
+						)
+					}
+					ListFooterComponent={
+						<View style={styles.galleryFooter}>
+							{isFetchingNextPage && (
+								<ActivityIndicator
+									color={theme.primary}
+									accessibilityLabel="Loading more characters"
+								/>
+							)}
 
-						{isFetchNextPageError && !isFetchingNextPage && (
-							<>
-								<Text style={styles.text} accessibilityRole="alert">
-									Could not load more characters.
-								</Text>
+							{isFetchNextPageError && !isFetchingNextPage && (
+								<>
+									<Text style={styles.text} accessibilityRole="alert">
+										Could not load more characters.
+									</Text>
 
-								<Pressable
-									style={styles.button}
-									onPress={() => fetchNextPage()}
-									accessibilityRole="button"
-								>
-									<Text style={styles.buttonText}>Try again</Text>
-								</Pressable>
-							</>
-						)}
-					</View>
-				}
-				refreshControl={
-					<RefreshControl
-						refreshing={isRefreshing}
-						onRefresh={handleRefresh}
-						tintColor={theme.primary}
-						colors={[theme.primary]}
-					/>
-				}
-			/>
+									<Pressable
+										style={styles.button}
+										onPress={() => fetchNextPage()}
+										accessibilityRole="button"
+									>
+										<Text style={styles.buttonText}>Try again</Text>
+									</Pressable>
+								</>
+							)}
+						</View>
+					}
+					refreshControl={
+						<RefreshControl
+							refreshing={isRefreshing}
+							onRefresh={handleRefresh}
+							tintColor={theme.primary}
+							colors={[theme.primary]}
+						/>
+					}
+				/>
 
-			{isScrolled && <View style={styles.galleryDivider} />}
+				{isScrolled && <View style={styles.galleryDivider} />}
 
-			<ScrollTopButton visible={showScrollTop} onPress={scrollToTop} />
+				<ScrollTopButton visible={showScrollTop} onPress={scrollToTop} />
+			</View>
 		</View>
 	);
 }
