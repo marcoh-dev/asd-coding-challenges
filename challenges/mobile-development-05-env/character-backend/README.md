@@ -70,7 +70,7 @@ All variables are optional, the defaults work out of the box.
 }
 ```
 
-`status` is `Alive`, `Dead` or `unknown`, `gender` is `Female`, `Male`, `Genderless` or `unknown`, `type` is optional and `image` must be an http(s) URL. Unknown fields are rejected.
+`status` is `Alive`, `Dead` or `unknown`, `gender` is `Female`, `Male`, `Genderless` or `unknown`, `type` and `image` are optional, and `image` must be an http(s) URL if it's set. Unknown fields are rejected.
 
 ## Scripts
 

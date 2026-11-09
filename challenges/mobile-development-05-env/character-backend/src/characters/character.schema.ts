@@ -14,7 +14,7 @@ export const characterInputSchema = z.strictObject({
 	gender: z.enum(characterGenders),
 	origin: placeSchema,
 	location: placeSchema,
-	image: z.url({ protocol: /^https?$/ }),
+	image: z.union([z.url({ protocol: /^https?$/ }), z.literal("")]).default(""),
 });
 
 export const characterListQuerySchema = z.object({

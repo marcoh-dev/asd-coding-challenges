@@ -61,6 +61,18 @@ describe("Characters (e2e)", () => {
 		await request(server).get(`/api/characters/${id}`).expect(404);
 	});
 
+	it("creates a character without an image", async () => {
+		const { image: _image, ...withoutImage } = rick;
+
+		await request(app.getHttpServer())
+			.post("/api/characters")
+			.send(withoutImage)
+			.expect(201)
+			.expect((response) => {
+				expect(response.body).toMatchObject({ name: "Rick Sanchez", image: "" });
+			});
+	});
+
 	it("searches by name and paginates", async () => {
 		const server = app.getHttpServer();
 
