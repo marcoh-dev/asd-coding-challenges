@@ -13,6 +13,7 @@ Builds on [`mobile-development-03-routing`](../../mobile-development-03-routing/
 - Total number of characters from the API above the list, updated for each search
 - Infinite scroll and pull-to-refresh with TanStack Query; refreshing resets the list to page 1
 - Details show instantly from the list cache, then update from the API
+- Offline support: requests pause without a connection, an offline notice shows, and loading continues automatically once you're back online
 - 2-column grid that switches to 1 column at large font sizes
 - Scroll-to-top button with a fade, and tapping the active Gallery tab scrolls to the top
 - Theme setting (System / Light / Dark), saved locally with zustand and `expo-sqlite/kv-store`
@@ -25,7 +26,7 @@ Builds on [`mobile-development-03-routing`](../../mobile-development-03-routing/
 - Expo SDK 58, React Native 0.88, React 19 with the React Compiler
 - TypeScript
 - Expo Router with typed routes
-- TanStack Query
+- TanStack Query, with `expo-network` for its online status
 - zustand with `expo-sqlite/kv-store` for persistence
 - expo-image, lucide-react-native
 - ESLint, Prettier and GitHub Actions CI
@@ -48,7 +49,7 @@ npm run check
 
 ```text
 src/
-├── api/          API requests and query keys
+├── api/          API requests, query keys and online status
 ├── app/          Routes (Expo Router)
 │   ├── (tabs)/   Home, Gallery and Settings tabs
 │   └── details/  Character details route
