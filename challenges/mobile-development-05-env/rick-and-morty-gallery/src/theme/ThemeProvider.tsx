@@ -1,5 +1,5 @@
-import { createContext, type ReactNode, use, useMemo } from "react";
-import { useColorScheme } from "react-native";
+import { createContext, type ReactNode, use, useEffect, useMemo } from "react";
+import { Appearance, useColorScheme } from "react-native";
 
 import { useBoldText } from "@/hooks/useBoldText";
 import { useHighContrast } from "@/hooks/useHighContrast";
@@ -30,6 +30,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 	const highContrast = useHighContrast();
 
 	const isDark = themeMode === "system" ? systemColorScheme === "dark" : themeMode === "dark";
+
+	useEffect(() => {
+		Appearance.setColorScheme(themeMode === "system" ? "auto" : themeMode);
+	}, [themeMode]);
 
 	const value = useMemo(() => {
 		const theme = highContrast
