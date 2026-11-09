@@ -64,6 +64,7 @@ function RootStack() {
 				<Stack.Screen
 					name="details/[id]"
 					options={{ headerBackButtonDisplayMode: "minimal" }}
+					dangerouslySingular
 				/>
 			</Stack>
 		</NavigationThemeProvider>
