@@ -163,6 +163,21 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 		galleryFooter: {
 			alignItems: "center",
 			gap: 12,
+			paddingHorizontal: 6,
+		},
+
+		galleryLoading: {
+			paddingTop: 32,
+		},
+
+		galleryError: {
+			alignItems: "flex-start",
+			gap: 16,
+			paddingTop: 16,
+		},
+
+		galleryEmpty: {
+			paddingHorizontal: 6,
 		},
 
 		characterCard: {
