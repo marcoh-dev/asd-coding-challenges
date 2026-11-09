@@ -19,6 +19,7 @@ export default function CharacterItem({ character }: Props) {
 	return (
 		<Pressable
 			style={({ pressed }) => [styles.characterCard, pressed && styles.pressed]}
+			unstable_pressDelay={150}
 			onPress={() => {
 				Keyboard.dismiss();
 				router.push({ pathname: "/details/[id]", params: { id: character.id } });
