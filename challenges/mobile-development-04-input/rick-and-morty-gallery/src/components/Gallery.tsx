@@ -7,6 +7,7 @@ import {
 import { useScrollToTop } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import {
+	AccessibilityInfo,
 	ActivityIndicator,
 	FlatList,
 	type NativeScrollEvent,
@@ -38,6 +39,7 @@ export default function Gallery({ search }: Props) {
 	const [showScrollTop, setShowScrollTop] = useState(false);
 	const [isScrolled, setIsScrolled] = useState(false);
 	const listRef = useRef<FlatList<Character>>(null);
+	const announcedSearch = useRef(search);
 	const { height, fontScale } = useWindowDimensions();
 	const numColumns = fontScale >= LARGE_FONT_SCALE ? 1 : 2;
 	const reducedMotion = useReducedMotion();
@@ -58,6 +60,7 @@ export default function Gallery({ search }: Props) {
 		isFetchingNextPage,
 		isFetchNextPageError,
 		isPlaceholderData,
+		errorUpdateCount,
 	} = useInfiniteQuery({
 		queryKey,
 		queryFn: (context) => fetchCharacters(search, context),
@@ -67,9 +70,19 @@ export default function Gallery({ search }: Props) {
 			lastPage.info.next ? lastPageParam + 1 : undefined,
 	});
 
-	const characters = data?.pages.flatMap((page) => page.results);
+	const isRetryingSearch = isPlaceholderData && errorUpdateCount > 0;
+	const characters = isRetryingSearch ? undefined : data?.pages.flatMap((page) => page.results);
 	const count = data?.pages[0]?.info.count ?? 0;
 	const countText = `${count} ${count === 1 ? "character" : "characters"}${search ? " found" : ""}`;
+
+	useEffect(() => {
+		if (!data || isPlaceholderData || announcedSearch.current === search) {
+			return;
+		}
+
+		announcedSearch.current = search;
+		AccessibilityInfo.announceForAccessibility(countText);
+	}, [data, isPlaceholderData, search, countText]);
 
 	async function handleRefresh() {
 		setIsRefreshing(true);
@@ -104,7 +117,7 @@ export default function Gallery({ search }: Props) {
 
 	if (!characters && isFetching) {
 		return (
-			<View style={styles.centered}>
+			<View style={styles.galleryLoading}>
 				<ActivityIndicator
 					size="large"
 					color={theme.primary}
@@ -116,7 +129,7 @@ export default function Gallery({ search }: Props) {
 
 	if (!characters) {
 		return (
-			<View style={styles.centered}>
+			<View style={styles.galleryError}>
 				<Text style={styles.text} accessibilityRole="alert">
 					Could not load the characters.
 				</Text>
@@ -134,10 +147,7 @@ export default function Gallery({ search }: Props) {
 
 	return (
 		<View style={styles.gallery}>
-			<Text
-				style={[styles.galleryCount, isPlaceholderData && styles.galleryStale]}
-				accessibilityLiveRegion="polite"
-			>
+			<Text style={[styles.galleryCount, isPlaceholderData && styles.galleryStale]}>
 				{countText}
 			</Text>
 
@@ -146,6 +156,7 @@ export default function Gallery({ search }: Props) {
 					key={numColumns}
 					ref={listRef}
 					style={[styles.gallery, isPlaceholderData && styles.galleryStale]}
+					accessibilityState={{ busy: isPlaceholderData }}
 					data={characters}
 					keyExtractor={(character) => String(character.id)}
 					renderItem={({ item }) => (
@@ -168,7 +179,9 @@ export default function Gallery({ search }: Props) {
 								accessibilityLabel="Searching characters"
 							/>
 						) : (
-							<Text style={styles.text}>No characters found for “{search}”.</Text>
+							<Text style={[styles.text, styles.galleryEmpty]}>
+								No characters found for “{search}”.
+							</Text>
 						)
 					}
 					ListFooterComponent={

@@ -1,5 +1,12 @@
 import { Search, X } from "lucide-react-native";
-import { Pressable, TextInput, View } from "react-native";
+import { useRef } from "react";
+import {
+	AccessibilityInfo,
+	Pressable,
+	TextInput,
+	type TextInputInstance,
+	View,
+} from "react-native";
 
 import { useTheme } from "@/theme/ThemeProvider";
 
@@ -10,12 +17,23 @@ type Props = {
 
 export default function SearchInput({ value, onChangeText }: Props) {
 	const { theme, styles } = useTheme();
+	const inputRef = useRef<TextInputInstance>(null);
+
+	function clear() {
+		onChangeText("");
+
+		if (inputRef.current) {
+			inputRef.current.focus();
+			AccessibilityInfo.sendAccessibilityEvent(inputRef.current, "focus");
+		}
+	}
 
 	return (
 		<View style={styles.searchInput}>
 			<Search size={20} color={theme.textSecondary} />
 
 			<TextInput
+				ref={inputRef}
 				style={styles.searchInputText}
 				value={value}
 				onChangeText={onChangeText}
@@ -28,13 +46,15 @@ export default function SearchInput({ value, onChangeText }: Props) {
 				autoComplete="off"
 				autoCorrect={false}
 				spellCheck={false}
+				accessibilityRole="search"
 				accessibilityLabel="Search characters"
+				accessibilityHint="Results update as you type"
 			/>
 
 			{value.length > 0 && (
 				<Pressable
 					style={({ pressed }) => [styles.searchClearButton, pressed && styles.pressed]}
-					onPress={() => onChangeText("")}
+					onPress={clear}
 					accessibilityRole="button"
 					accessibilityLabel="Clear search"
 				>
