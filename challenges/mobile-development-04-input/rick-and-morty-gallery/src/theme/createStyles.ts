@@ -203,7 +203,7 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			color: theme.text,
 		},
 
-		galleryEmpty: {
+		galleryMessage: {
 			alignItems: "flex-start",
 			gap: 12,
 			paddingHorizontal: 6,
