@@ -1,6 +1,7 @@
 import {
 	type InfiniteData,
 	keepPreviousData,
+	onlineManager,
 	useInfiniteQuery,
 	useQueryClient,
 } from "@tanstack/react-query";
@@ -21,6 +22,7 @@ import {
 
 import { type CharacterPage, charactersQueryKey, fetchCharacters } from "@/api/characters";
 import CharacterItem from "@/components/CharacterItem";
+import OfflineNotice from "@/components/OfflineNotice";
 import ScrollTopButton from "@/components/ScrollTopButton";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useTheme } from "@/theme/ThemeProvider";
@@ -60,6 +62,7 @@ export default function Gallery({ search }: Props) {
 		isFetchingNextPage,
 		isFetchNextPageError,
 		isPlaceholderData,
+		isPaused,
 		errorUpdateCount,
 	} = useInfiniteQuery({
 		queryKey,
@@ -70,8 +73,10 @@ export default function Gallery({ search }: Props) {
 			lastPage.info.next ? lastPageParam + 1 : undefined,
 	});
 
-	const isRetryingSearch = isPlaceholderData && errorUpdateCount > 0;
-	const characters = isRetryingSearch ? undefined : data?.pages.flatMap((page) => page.results);
+	const hidePreviousResults = isPlaceholderData && (isPaused || errorUpdateCount > 0);
+	const characters = hidePreviousResults
+		? undefined
+		: data?.pages.flatMap((page) => page.results);
 	const count = data?.pages[0]?.info.count ?? 0;
 	const countText = `${count} ${count === 1 ? "character" : "characters"}${search ? " found" : ""}`;
 
@@ -85,6 +90,10 @@ export default function Gallery({ search }: Props) {
 	}, [data, isPlaceholderData, search, countText]);
 
 	async function handleRefresh() {
+		if (!onlineManager.isOnline()) {
+			return;
+		}
+
 		setIsRefreshing(true);
 		queryClient.setQueryData<InfiniteData<CharacterPage, number>>(
 			queryKey,
@@ -110,9 +119,17 @@ export default function Gallery({ search }: Props) {
 	}
 
 	function handleEndReached() {
-		if (hasNextPage && !isFetching && !isFetchNextPageError) {
+		if (hasNextPage && !isFetching && !isPaused && !isFetchNextPageError) {
 			fetchNextPage();
 		}
+	}
+
+	if (!characters && isPaused) {
+		return (
+			<View style={styles.galleryError}>
+				<OfflineNotice message="The characters load as soon as you’re back online." />
+			</View>
+		);
 	}
 
 	if (!characters && isFetching) {
@@ -186,6 +203,10 @@ export default function Gallery({ search }: Props) {
 					}
 					ListFooterComponent={
 						<View style={styles.galleryFooter}>
+							{isPaused && (
+								<OfflineNotice message="More characters load as soon as you’re back online." />
+							)}
+
 							{isFetchingNextPage && (
 								<ActivityIndicator
 									color={theme.primary}

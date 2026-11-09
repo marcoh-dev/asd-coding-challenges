@@ -9,9 +9,12 @@ import { StatusBar } from "expo-status-bar";
 import { useMemo } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import { syncOnlineStatus } from "@/api/onlineStatus";
 import { ThemeProvider, useTheme } from "@/theme/ThemeProvider";
 
 const queryClient = new QueryClient();
+
+syncOnlineStatus();
 
 export default function RootLayout() {
 	return (
