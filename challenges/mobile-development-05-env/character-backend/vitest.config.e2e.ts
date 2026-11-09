@@ -6,6 +6,6 @@ export default defineConfig({
 		globals: true,
 		root: "./",
 		include: ["**/*.e2e-spec.ts"],
-		env: { DB_FILE: ":memory:" },
+		env: { DB_FILE: ":memory:", SEED_ON_START: "false" },
 	},
 });
