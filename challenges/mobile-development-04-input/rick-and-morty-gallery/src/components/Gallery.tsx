@@ -22,6 +22,7 @@ import {
 
 import { type CharacterPage, charactersQueryKey, fetchCharacters } from "@/api/characters";
 import CharacterItem from "@/components/CharacterItem";
+import ErrorMessage from "@/components/ErrorMessage";
 import OfflineNotice from "@/components/OfflineNotice";
 import ScrollTopButton from "@/components/ScrollTopButton";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -148,17 +149,7 @@ export default function Gallery({ search, onClearSearch }: Props) {
 	if (!characters) {
 		return (
 			<View style={styles.galleryError}>
-				<Text style={styles.text} accessibilityRole="alert">
-					Could not load the characters.
-				</Text>
-
-				<Pressable
-					style={styles.button}
-					onPress={() => refetch()}
-					accessibilityRole="button"
-				>
-					<Text style={styles.buttonText}>Try again</Text>
-				</Pressable>
+				<ErrorMessage message="Could not load the characters." onRetry={() => refetch()} />
 			</View>
 		);
 	}
@@ -227,19 +218,10 @@ export default function Gallery({ search, onClearSearch }: Props) {
 							)}
 
 							{isFetchNextPageError && !isFetchingNextPage && (
-								<>
-									<Text style={styles.text} accessibilityRole="alert">
-										Could not load more characters.
-									</Text>
-
-									<Pressable
-										style={styles.button}
-										onPress={() => fetchNextPage()}
-										accessibilityRole="button"
-									>
-										<Text style={styles.buttonText}>Try again</Text>
-									</Pressable>
-								</>
+								<ErrorMessage
+									message="Could not load more characters."
+									onRetry={() => fetchNextPage()}
+								/>
 							)}
 						</View>
 					}

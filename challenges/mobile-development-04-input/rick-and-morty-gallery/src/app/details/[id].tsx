@@ -1,10 +1,11 @@
 import { type InfiniteData, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Image } from "expo-image";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 
 import { type CharacterPage, CHARACTERS_QUERY_KEY, fetchCharacter } from "@/api/characters";
 import CharacterStatus from "@/components/CharacterStatus";
+import ErrorMessage from "@/components/ErrorMessage";
 import OfflineNotice from "@/components/OfflineNotice";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useTheme } from "@/theme/ThemeProvider";
@@ -52,19 +53,10 @@ export default function CharacterDetails() {
 						style={styles.offlineNoticeCentered}
 					/>
 				) : (
-					<>
-						<Text style={styles.text} accessibilityRole="alert">
-							Could not load this character.
-						</Text>
-
-						<Pressable
-							style={styles.button}
-							onPress={() => refetch()}
-							accessibilityRole="button"
-						>
-							<Text style={styles.buttonText}>Try again</Text>
-						</Pressable>
-					</>
+					<ErrorMessage
+						message="Could not load this character."
+						onRetry={() => refetch()}
+					/>
 				)}
 			</View>
 		);
