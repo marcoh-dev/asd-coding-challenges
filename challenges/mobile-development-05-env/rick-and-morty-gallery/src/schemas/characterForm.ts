@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import type { Character } from "@/types/character";
+
 export const characterStatuses = ["Alive", "Dead", "unknown"] as const;
 export const characterGenders = ["Female", "Male", "Genderless", "unknown"] as const;
 
@@ -51,3 +53,20 @@ export const emptyCharacterForm: CharacterFormValues = {
 	location: "",
 	image: "",
 };
+
+function toPlaceField(name: string) {
+	return name === "unknown" ? "" : name;
+}
+
+export function toCharacterForm(character: Character): CharacterFormValues {
+	return {
+		name: character.name,
+		status: character.status,
+		species: character.species,
+		type: character.type,
+		gender: character.gender,
+		origin: toPlaceField(character.origin.name),
+		location: toPlaceField(character.location.name),
+		image: character.image,
+	};
+}

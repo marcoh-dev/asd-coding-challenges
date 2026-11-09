@@ -76,3 +76,13 @@ export async function createCharacter(input: CharacterInput): Promise<Character>
 
 	return response.json();
 }
+
+export async function updateCharacter(id: number, input: CharacterInput): Promise<Character> {
+	const response = await send(`/characters/${id}`, {
+		method: "PUT",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(input),
+	});
+
+	return response.json();
+}

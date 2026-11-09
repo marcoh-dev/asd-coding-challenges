@@ -1,18 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Image } from "expo-image";
+import { Stack } from "expo-router";
 import { useHeaderHeight } from "expo-router/react-navigation";
 import { Controller, useForm, useWatch } from "react-hook-form";
-import {
-	AccessibilityInfo,
-	ActivityIndicator,
-	KeyboardAvoidingView,
-	Pressable,
-	ScrollView,
-	Text,
-	View,
-} from "react-native";
+import { AccessibilityInfo, KeyboardAvoidingView, ScrollView, Text, View } from "react-native";
 
 import FormField from "@/components/FormField";
+import HeaderTextButton from "@/components/HeaderTextButton";
 import OptionSelector from "@/components/OptionSelector";
 import {
 	type CharacterFormOutput,
@@ -38,6 +32,7 @@ const genderOptions = [
 type Props = {
 	defaultValues: CharacterFormValues;
 	submitLabel: string;
+	submitAccessibilityLabel: string;
 	isSubmitting: boolean;
 	onSubmit: (input: CharacterInput) => void;
 };
@@ -45,10 +40,11 @@ type Props = {
 export default function CharacterForm({
 	defaultValues,
 	submitLabel,
+	submitAccessibilityLabel,
 	isSubmitting,
 	onSubmit,
 }: Props) {
-	const { theme, styles } = useTheme();
+	const { styles } = useTheme();
 	const headerHeight = useHeaderHeight();
 
 	const { control, handleSubmit, setFocus } = useForm<
@@ -77,6 +73,19 @@ export default function CharacterForm({
 			behavior="padding"
 			keyboardVerticalOffset={headerHeight}
 		>
+			<Stack.Screen
+				options={{
+					headerRight: () => (
+						<HeaderTextButton
+							label={submitLabel}
+							accessibilityLabel={submitAccessibilityLabel}
+							isBusy={isSubmitting}
+							onPress={() => void submit()}
+						/>
+					),
+				}}
+			/>
+
 			<ScrollView
 				contentContainerStyle={styles.formContent}
 				keyboardShouldPersistTaps="handled"
@@ -242,21 +251,6 @@ export default function CharacterForm({
 						accessibilityLabel="Image preview"
 					/>
 				)}
-
-				<Pressable
-					style={({ pressed }) => [
-						styles.button,
-						styles.formSubmit,
-						pressed && styles.pressed,
-					]}
-					onPress={() => void submit()}
-					disabled={isSubmitting}
-					accessibilityRole="button"
-					accessibilityState={{ busy: isSubmitting, disabled: isSubmitting }}
-				>
-					{isSubmitting && <ActivityIndicator color={theme.background} />}
-					<Text style={styles.buttonText}>{submitLabel}</Text>
-				</Pressable>
 			</ScrollView>
 		</KeyboardAvoidingView>
 	);
