@@ -63,6 +63,7 @@ export default function Gallery({ search, onClearSearch }: Props) {
 		hasNextPage,
 		isFetchingNextPage,
 		isFetchNextPageError,
+		isRefetchError,
 		isPlaceholderData,
 		isPaused,
 		errorUpdateCount,
@@ -87,7 +88,17 @@ export default function Gallery({ search, onClearSearch }: Props) {
 		? undefined
 		: data?.pages.flatMap((page) => page.results);
 	const count = data?.pages[0]?.info.count ?? 0;
-	const countText = `${count} ${count === 1 ? "character" : "characters"}${search ? " found" : ""}`;
+	const countText = isPlaceholderData
+		? "Searching…"
+		: `${count} ${count === 1 ? "character" : "characters"}${search ? " found" : ""}`;
+	const listKey = characters ? numColumns : null;
+	const [previousListKey, setPreviousListKey] = useState(listKey);
+
+	if (listKey !== previousListKey) {
+		setPreviousListKey(listKey);
+		setIsScrolled(false);
+		setShowScrollTop(false);
+	}
 
 	useEffect(() => {
 		if (!data || isPlaceholderData || announcedSearch.current === search) {
@@ -128,7 +139,13 @@ export default function Gallery({ search, onClearSearch }: Props) {
 	}
 
 	function handleEndReached() {
-		if (hasNextPage && !isFetching && !isPaused && !isFetchNextPageError) {
+		if (
+			hasNextPage &&
+			!isPlaceholderData &&
+			!isFetchingNextPage &&
+			!isPaused &&
+			!isFetchNextPageError
+		) {
 			fetchNextPage();
 		}
 	}
@@ -188,6 +205,16 @@ export default function Gallery({ search, onClearSearch }: Props) {
 					scrollEventThrottle={100}
 					onEndReached={handleEndReached}
 					onEndReachedThreshold={1}
+					ListHeaderComponent={
+						isRefetchError ? (
+							<View style={styles.galleryMessage}>
+								<ErrorMessage
+									message="Could not refresh the characters."
+									onRetry={handleRefresh}
+								/>
+							</View>
+						) : undefined
+					}
 					ListEmptyComponent={
 						isPlaceholderData ? (
 							<ActivityIndicator
@@ -195,7 +222,7 @@ export default function Gallery({ search, onClearSearch }: Props) {
 								accessibilityLabel="Searching characters"
 							/>
 						) : (
-							<View style={styles.galleryEmpty}>
+							<View style={styles.galleryMessage}>
 								<Text style={styles.text}>No characters found for “{search}”.</Text>
 								<Text style={styles.characterDetail}>
 									Check the spelling or try a shorter name.
@@ -234,7 +261,7 @@ export default function Gallery({ search, onClearSearch }: Props) {
 					}
 					refreshControl={
 						<RefreshControl
-							refreshing={isRefreshing}
+							refreshing={isRefreshing && !isPaused}
 							onRefresh={handleRefresh}
 							tintColor={theme.primary}
 							colors={[theme.primary]}
