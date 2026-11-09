@@ -14,7 +14,7 @@ export type CharacterPage = {
 	results: Character[];
 };
 
-async function request<T>(path: string, signal: AbortSignal): Promise<T> {
+async function request<TData>(path: string, signal: AbortSignal): Promise<TData> {
 	if (!API_URL) {
 		throw new Error("EXPO_PUBLIC_API_URL is not set");
 	}
