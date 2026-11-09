@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 import type { AppTheme } from "./themes";
 
@@ -15,6 +15,19 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			flex: 1,
 			paddingHorizontal: 16,
 			backgroundColor: theme.background,
+		},
+
+		envError: {
+			flexGrow: 1,
+			justifyContent: "center",
+		},
+
+		envErrorMessage: {
+			fontFamily: Platform.select({ ios: "Menlo", default: "monospace" }),
+			fontSize: 14,
+			fontWeight: fontWeight.regular,
+			lineHeight: 20,
+			color: theme.textSecondary,
 		},
 
 		logo: {

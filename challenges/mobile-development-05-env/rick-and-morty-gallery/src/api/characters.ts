@@ -1,6 +1,5 @@
+import { getEnv } from "@/env";
 import type { Character } from "@/types/character";
-
-const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
 export const CHARACTERS_QUERY_KEY = ["characters"];
 
@@ -32,11 +31,7 @@ export function isNotFoundError(error: unknown) {
 }
 
 async function request<TData>(path: string, signal: AbortSignal): Promise<TData> {
-	if (!API_URL) {
-		throw new Error("EXPO_PUBLIC_API_URL is not set");
-	}
-
-	const response = await fetch(`${API_URL}${path}`, { signal });
+	const response = await fetch(`${getEnv().EXPO_PUBLIC_API_URL}${path}`, { signal });
 
 	if (!response.ok) {
 		throw new RequestError(response.status);
