@@ -19,3 +19,11 @@ export type Character = {
 	url: string;
 	created: string;
 };
+
+export type CharacterInput = Pick<
+	Character,
+	"name" | "status" | "species" | "type" | "gender" | "image"
+> & {
+	origin: { name: string };
+	location: { name: string };
+};

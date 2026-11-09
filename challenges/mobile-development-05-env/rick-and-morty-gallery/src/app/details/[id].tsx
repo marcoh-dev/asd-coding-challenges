@@ -1,5 +1,4 @@
 import { type InfiniteData, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Image } from "expo-image";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { Trash2 } from "lucide-react-native";
 import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
@@ -11,11 +10,11 @@ import {
 	fetchCharacter,
 	isNotFoundError,
 } from "@/api/characters";
+import CharacterImage from "@/components/CharacterImage";
 import CharacterStatus from "@/components/CharacterStatus";
 import ErrorMessage from "@/components/ErrorMessage";
 import OfflineNotice from "@/components/OfflineNotice";
 import { useDeleteCharacter } from "@/hooks/useDeleteCharacter";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useTheme } from "@/theme/ThemeProvider";
 import type { Character } from "@/types/character";
 
@@ -23,7 +22,6 @@ export default function CharacterDetails() {
 	const { id } = useLocalSearchParams<"/details/[id]">();
 	const { theme, styles } = useTheme();
 	const queryClient = useQueryClient();
-	const reducedMotion = useReducedMotion();
 	const router = useRouter();
 	const confirmDelete = useDeleteCharacter({ onDeleted: () => router.back() });
 
@@ -82,12 +80,15 @@ export default function CharacterDetails() {
 		>
 			<Stack.Screen options={{ title }} />
 
-			<Image
+			<CharacterImage
+				uri={character.image}
 				style={styles.detailsImage}
-				source={character.image}
-				contentFit="cover"
-				transition={reducedMotion ? null : 200}
-				accessibilityLabel={`Picture of ${character.name}`}
+				iconSize={96}
+				accessibilityLabel={
+					character.image
+						? `Picture of ${character.name}`
+						: `No picture of ${character.name}`
+				}
 			/>
 
 			<View style={styles.detailsHeading}>
