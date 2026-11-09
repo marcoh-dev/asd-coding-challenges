@@ -1,0 +1,108 @@
+import { type InfiniteData, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Image } from "expo-image";
+import { Stack, useLocalSearchParams } from "expo-router";
+import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
+
+import { type CharacterPage, CHARACTERS_QUERY_KEY, fetchCharacter } from "@/api/characters";
+import CharacterStatus from "@/components/CharacterStatus";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useTheme } from "@/theme/ThemeProvider";
+import type { Character } from "@/types/character";
+
+export default function CharacterDetails() {
+	const { id } = useLocalSearchParams<"/details/[id]">();
+	const { theme, styles } = useTheme();
+	const queryClient = useQueryClient();
+	const reducedMotion = useReducedMotion();
+
+	const {
+		data: character,
+		isFetching,
+		refetch,
+	} = useQuery<Character>({
+		queryKey: ["character", id],
+		queryFn: ({ signal }) => fetchCharacter(id, signal),
+		placeholderData: () =>
+			queryClient
+				.getQueryData<InfiniteData<CharacterPage, number>>(CHARACTERS_QUERY_KEY)
+				?.pages.flatMap((page) => page.results)
+				.find((cached) => String(cached.id) === id),
+	});
+
+	const title = character ? `Profile: ${character.name}` : "Profile";
+
+	if (!character) {
+		return (
+			<View style={styles.centered}>
+				<Stack.Screen options={{ title }} />
+
+				{isFetching ? (
+					<ActivityIndicator
+						size="large"
+						color={theme.primary}
+						accessibilityLabel="Loading character"
+					/>
+				) : (
+					<>
+						<Text style={styles.text} accessibilityRole="alert">
+							Could not load this character.
+						</Text>
+
+						<Pressable
+							style={styles.button}
+							onPress={() => refetch()}
+							accessibilityRole="button"
+						>
+							<Text style={styles.buttonText}>Try again</Text>
+						</Pressable>
+					</>
+				)}
+			</View>
+		);
+	}
+
+	return (
+		<ScrollView
+			contentInsetAdjustmentBehavior="automatic"
+			contentContainerStyle={styles.detailsContent}
+		>
+			<Stack.Screen options={{ title }} />
+
+			<Image
+				style={styles.detailsImage}
+				source={character.image}
+				contentFit="cover"
+				transition={reducedMotion ? null : 200}
+				accessibilityLabel={`Picture of ${character.name}`}
+			/>
+
+			<View style={styles.detailsHeading}>
+				<Text style={styles.detailsName} accessibilityRole="header">
+					{character.name}
+				</Text>
+
+				<CharacterStatus status={character.status} />
+			</View>
+
+			<View style={styles.detailsList}>
+				<DetailRow label="Species" value={character.species} />
+				{character.type && <DetailRow label="Type" value={character.type} />}
+				<DetailRow label="Gender" value={character.gender} />
+				<DetailRow label="Origin" value={character.origin.name} />
+				<DetailRow label="Location" value={character.location.name} />
+				<DetailRow label="Episodes" value={String(character.episode.length)} />
+			</View>
+		</ScrollView>
+	);
+}
+
+function DetailRow({ label, value }: { label: string; value: string }) {
+	const { styles } = useTheme();
+
+	return (
+		<View style={styles.detailRow}>
+			<Text style={styles.detailLabel}>{label}</Text>
+			<Text style={styles.detailValue}>{value}</Text>
+		</View>
+	);
+}
