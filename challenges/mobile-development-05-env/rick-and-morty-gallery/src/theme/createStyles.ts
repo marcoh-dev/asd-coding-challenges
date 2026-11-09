@@ -251,6 +251,20 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			color: theme.text,
 		},
 
+		characterActions: {
+			flexDirection: "row",
+			justifyContent: "flex-end",
+			margin: -8,
+			marginTop: -4,
+		},
+
+		characterActionButton: {
+			width: 44,
+			height: 44,
+			alignItems: "center",
+			justifyContent: "center",
+		},
+
 		characterStatus: {
 			flexDirection: "row",
 			alignItems: "center",
@@ -297,6 +311,38 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			borderRadius: 12,
 			paddingHorizontal: 16,
 			paddingVertical: 4,
+		},
+
+		detailsActions: {
+			flexDirection: "row",
+			gap: 12,
+		},
+
+		actionButton: {
+			flex: 1,
+			flexDirection: "row",
+			alignItems: "center",
+			justifyContent: "center",
+			gap: 8,
+			minHeight: 44,
+			paddingHorizontal: 16,
+			borderRadius: 8,
+			borderWidth: 1,
+			borderColor: theme.primary,
+		},
+
+		actionButtonText: {
+			color: theme.primary,
+			fontSize: 14,
+			fontWeight: fontWeight.semibold,
+		},
+
+		dangerButton: {
+			borderColor: theme.statusDead,
+		},
+
+		dangerButtonText: {
+			color: theme.statusDead,
 		},
 
 		detailRow: {
