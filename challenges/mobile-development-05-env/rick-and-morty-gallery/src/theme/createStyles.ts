@@ -304,6 +304,10 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			elevation: 8,
 		},
 
+		menuMeasuring: {
+			opacity: 0,
+		},
+
 		menuItem: {
 			flexDirection: "row",
 			alignItems: "center",

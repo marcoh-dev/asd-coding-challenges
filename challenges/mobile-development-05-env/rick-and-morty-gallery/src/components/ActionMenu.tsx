@@ -1,6 +1,7 @@
 import { EllipsisVertical, type LucideIcon } from "lucide-react-native";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
+	AccessibilityInfo,
 	Modal,
 	Pressable,
 	type StyleProp,
@@ -12,8 +13,6 @@ import {
 
 import { useTheme } from "@/theme/ThemeProvider";
 
-const ITEM_HEIGHT = 48;
-const MENU_PADDING = 8;
 const SCREEN_MARGIN = 16;
 const MENU_GAP = 4;
 
@@ -44,6 +43,15 @@ export default function ActionMenu({ items, accessibilityLabel, buttonStyle, ico
 	const overlayRef = useRef<ViewInstance>(null);
 	const [anchor, setAnchor] = useState<Frame | null>(null);
 	const [overlay, setOverlay] = useState<Frame | null>(null);
+	const [menuHeight, setMenuHeight] = useState<number | null>(null);
+	const restoreFocus = useRef(false);
+
+	useEffect(() => {
+		if (anchor === null && restoreFocus.current && buttonRef.current) {
+			restoreFocus.current = false;
+			AccessibilityInfo.sendAccessibilityEvent(buttonRef.current, "focus");
+		}
+	}, [anchor]);
 
 	function open() {
 		buttonRef.current?.measure((_x, _y, width, height, pageX, pageY) => {
@@ -60,6 +68,12 @@ export default function ActionMenu({ items, accessibilityLabel, buttonStyle, ico
 	function close() {
 		setAnchor(null);
 		setOverlay(null);
+		setMenuHeight(null);
+	}
+
+	function dismiss() {
+		restoreFocus.current = true;
+		close();
 	}
 
 	function select(item: ActionMenuItem) {
@@ -67,11 +81,10 @@ export default function ActionMenu({ items, accessibilityLabel, buttonStyle, ico
 		item.onPress();
 	}
 
-	function getMenuPosition(button: Frame, container: Frame): ViewStyle {
+	function getMenuPosition(button: Frame, container: Frame, height: number): ViewStyle {
 		const top = button.y - container.y;
 		const bottom = top + button.height;
-		const menuHeight = items.length * ITEM_HEIGHT + MENU_PADDING * 2;
-		const opensUpward = bottom + MENU_GAP + menuHeight > container.height - SCREEN_MARGIN;
+		const opensUpward = bottom + MENU_GAP + height > container.height - SCREEN_MARGIN;
 
 		return {
 			right: Math.max(
@@ -103,19 +116,27 @@ export default function ActionMenu({ items, accessibilityLabel, buttonStyle, ico
 				animationType="none"
 				statusBarTranslucent
 				navigationBarTranslucent
-				onRequestClose={close}
+				onRequestClose={dismiss}
 			>
 				<View ref={overlayRef} style={styles.menuOverlay} onLayout={measureOverlay}>
 					<Pressable
 						style={styles.menuBackdrop}
-						onPress={close}
-						accessibilityRole="button"
-						accessibilityLabel="Close menu"
+						onPress={dismiss}
+						accessible={false}
+						importantForAccessibility="no"
+						accessibilityElementsHidden
 					/>
 
 					{anchor && overlay && (
 						<View
-							style={[styles.menu, getMenuPosition(anchor, overlay)]}
+							style={[
+								styles.menu,
+								menuHeight === null
+									? styles.menuMeasuring
+									: getMenuPosition(anchor, overlay, menuHeight),
+							]}
+							onLayout={(event) => setMenuHeight(event.nativeEvent.layout.height)}
+							onAccessibilityEscape={dismiss}
 							accessibilityRole="menu"
 						>
 							{items.map((item) => {
