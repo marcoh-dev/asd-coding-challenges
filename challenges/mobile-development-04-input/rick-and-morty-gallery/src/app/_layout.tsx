@@ -9,21 +9,25 @@ import { StatusBar } from "expo-status-bar";
 import { useMemo } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import { syncAppFocus } from "@/api/appFocus";
 import { isNotFoundError } from "@/api/characters";
 import { syncOnlineStatus } from "@/api/onlineStatus";
 import { ThemeProvider, useTheme } from "@/theme/ThemeProvider";
 
 const MAX_RETRIES = 3;
+const STALE_TIME = 5 * 60 * 1000;
 
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
+			staleTime: STALE_TIME,
 			retry: (failureCount, error) => !isNotFoundError(error) && failureCount < MAX_RETRIES,
 		},
 	},
 });
 
 syncOnlineStatus();
+syncAppFocus();
 
 export default function RootLayout() {
 	return (
