@@ -101,7 +101,7 @@ function DetailRow({ label, value }: { label: string; value: string }) {
 	const { styles } = useTheme();
 
 	return (
-		<View style={styles.detailRow}>
+		<View style={styles.detailRow} accessible accessibilityLabel={`${label}: ${value}`}>
 			<Text style={styles.detailLabel}>{label}</Text>
 			<Text style={styles.detailValue}>{value}</Text>
 		</View>
