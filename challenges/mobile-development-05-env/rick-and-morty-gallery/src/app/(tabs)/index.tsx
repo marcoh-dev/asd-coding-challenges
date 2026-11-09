@@ -30,7 +30,7 @@ export default function Home() {
 				<View style={styles.paragraphs}>
 					<Text style={styles.text} {...paragraphProps}>
 						This app lets you explore every character from the Rick and Morty universe,
-						with data from the public{" "}
+						with data from your own local character backend, seeded from the public{" "}
 						<ExternalLink href="https://rickandmortyapi.com">
 							Rick and Morty API
 						</ExternalLink>
