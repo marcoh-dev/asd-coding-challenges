@@ -81,6 +81,13 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			flex: 1,
 		},
 
+		galleryCount: {
+			marginVertical: 12,
+			fontSize: 14,
+			fontWeight: fontWeight.regular,
+			color: theme.textSecondary,
+		},
+
 		galleryStale: {
 			opacity: 0.5,
 		},
@@ -98,7 +105,7 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			flexDirection: "row",
 			alignItems: "center",
 			gap: 8,
-			marginVertical: 16,
+			marginTop: 16,
 			paddingLeft: 12,
 			backgroundColor: theme.surface,
 			borderColor: theme.border,
