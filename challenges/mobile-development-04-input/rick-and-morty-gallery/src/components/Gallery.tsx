@@ -75,7 +75,14 @@ export default function Gallery({ search, onClearSearch }: Props) {
 			lastPage.info.next ? lastPageParam + 1 : undefined,
 	});
 
-	const hidePreviousResults = isPlaceholderData && (isPaused || errorUpdateCount > 0);
+	const [pausedSearch, setPausedSearch] = useState<string | null>(null);
+
+	if (isPaused && pausedSearch !== search) {
+		setPausedSearch(search);
+	}
+
+	const hidePreviousResults =
+		isPlaceholderData && (isPaused || pausedSearch === search || errorUpdateCount > 0);
 	const characters = hidePreviousResults
 		? undefined
 		: data?.pages.flatMap((page) => page.results);
