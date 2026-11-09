@@ -1,0 +1,26 @@
+info:
+  name: Delete a character by id
+  type: http
+  seq: 6
+
+http:
+  method: DELETE
+  url: "{{baseURL}}/api/characters/:id"
+  params:
+    - name: id
+      value: "{{characterId}}"
+      type: path
+  auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "204"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
