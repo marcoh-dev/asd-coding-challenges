@@ -257,18 +257,62 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			backgroundColor: theme.border,
 		},
 
-		characterActions: {
+		characterHeader: {
 			flexDirection: "row",
-			justifyContent: "flex-end",
-			margin: -8,
-			marginTop: -4,
+			alignItems: "flex-start",
+		},
+
+		characterHeaderName: {
+			flex: 1,
 		},
 
 		characterActionButton: {
 			width: 44,
 			height: 44,
+			marginTop: -10,
+			marginRight: -10,
 			alignItems: "center",
 			justifyContent: "center",
+		},
+
+		menuOverlay: {
+			flex: 1,
+		},
+
+		menuBackdrop: {
+			position: "absolute",
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0,
+		},
+
+		menu: {
+			position: "absolute",
+			minWidth: 180,
+			paddingVertical: 8,
+			backgroundColor: theme.surface,
+			borderColor: theme.border,
+			borderWidth: 1,
+			borderRadius: 12,
+			shadowColor: "#000000",
+			shadowOffset: { width: 0, height: 4 },
+			shadowOpacity: 0.2,
+			shadowRadius: 8,
+			elevation: 8,
+		},
+
+		menuItem: {
+			flexDirection: "row",
+			alignItems: "center",
+			gap: 12,
+			minHeight: 48,
+			paddingHorizontal: 16,
+		},
+
+		menuItemText: {
+			fontSize: 16,
+			fontWeight: fontWeight.regular,
 		},
 
 		characterStatus: {
@@ -317,38 +361,6 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			borderRadius: 12,
 			paddingHorizontal: 16,
 			paddingVertical: 4,
-		},
-
-		detailsActions: {
-			flexDirection: "row",
-			gap: 12,
-		},
-
-		actionButton: {
-			flex: 1,
-			flexDirection: "row",
-			alignItems: "center",
-			justifyContent: "center",
-			gap: 8,
-			minHeight: 44,
-			paddingHorizontal: 16,
-			borderRadius: 8,
-			borderWidth: 1,
-			borderColor: theme.primary,
-		},
-
-		actionButtonText: {
-			color: theme.primary,
-			fontSize: 14,
-			fontWeight: fontWeight.semibold,
-		},
-
-		dangerButton: {
-			borderColor: theme.statusDead,
-		},
-
-		dangerButtonText: {
-			color: theme.statusDead,
 		},
 
 		detailRow: {

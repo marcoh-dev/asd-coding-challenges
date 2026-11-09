@@ -1,7 +1,7 @@
 import { type InfiniteData, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { Trash2 } from "lucide-react-native";
-import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 
 import {
 	type CharacterPage,
@@ -10,6 +10,7 @@ import {
 	fetchCharacter,
 	isNotFoundError,
 } from "@/api/characters";
+import ActionMenu from "@/components/ActionMenu";
 import CharacterImage from "@/components/CharacterImage";
 import CharacterStatus from "@/components/CharacterStatus";
 import ErrorMessage from "@/components/ErrorMessage";
@@ -78,7 +79,26 @@ export default function CharacterDetails() {
 			contentInsetAdjustmentBehavior="automatic"
 			contentContainerStyle={styles.detailsContent}
 		>
-			<Stack.Screen options={{ title }} />
+			<Stack.Screen
+				options={{
+					title,
+					headerRight: () => (
+						<ActionMenu
+							items={[
+								{
+									label: "Delete",
+									icon: Trash2,
+									destructive: true,
+									onPress: () => confirmDelete(character),
+								},
+							]}
+							accessibilityLabel={`More actions for ${character.name}`}
+							buttonStyle={styles.headerButton}
+							iconColor={theme.primary}
+						/>
+					),
+				}}
+			/>
 
 			<CharacterImage
 				uri={character.image}
@@ -106,22 +126,6 @@ export default function CharacterDetails() {
 				<DetailRow label="Origin" value={character.origin.name} />
 				<DetailRow label="Location" value={character.location.name} />
 				<DetailRow label="Episodes" value={String(character.episode.length)} />
-			</View>
-
-			<View style={styles.detailsActions}>
-				<Pressable
-					style={({ pressed }) => [
-						styles.actionButton,
-						styles.dangerButton,
-						pressed && styles.pressed,
-					]}
-					onPress={() => confirmDelete(character)}
-					accessibilityRole="button"
-					accessibilityLabel={`Delete ${character.name}`}
-				>
-					<Trash2 size={20} color={theme.statusDead} />
-					<Text style={[styles.actionButtonText, styles.dangerButtonText]}>Delete</Text>
-				</Pressable>
 			</View>
 		</ScrollView>
 	);
