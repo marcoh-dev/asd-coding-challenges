@@ -42,10 +42,10 @@ export default function Home() {
 						<Link href="/gallery" style={styles.link}>
 							gallery
 						</Link>{" "}
-						to scroll through all characters. More load automatically as you reach the
-						end, and pulling down refreshes the list. Tap a character to see their
-						profile with species, origin, current location and the number of episodes
-						they appear in.
+						to scroll through all characters or search them by name. More load
+						automatically as you reach the end, and pulling down refreshes the list. Tap
+						a character to see their profile with species, origin, current location and
+						the number of episodes they appear in.
 					</Text>
 
 					<Text style={styles.text} {...paragraphProps}>

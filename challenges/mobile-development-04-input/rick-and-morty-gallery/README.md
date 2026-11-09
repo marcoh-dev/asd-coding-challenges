@@ -2,12 +2,15 @@
 
 A gallery app for Rick and Morty characters, built with Expo Router.
 
-Builds on [`mobile-development-03-routing`](../../mobile-development-03-routing/rick-and-morty-gallery).
+Builds on [`mobile-development-03-routing`](../../mobile-development-03-routing/rick-and-morty-gallery) and adds a character search.
 
 ## Features
 
 - Tab navigation (Home, Gallery, Settings) with a stack on top for the character details
 - Details screen with a dynamic title ("Profile: <name>") and typed route params
+- Search by name through the API, debounced while typing, with a search-optimized keyboard and a clear button
+- Previous results stay visible while a new search loads, and each search is cached separately
+- Total number of characters from the API above the list, updated for each search
 - Infinite scroll and pull-to-refresh with TanStack Query; refreshing resets the list to page 1
 - Details show instantly from the list cache, then update from the API
 - 2-column grid that switches to 1 column at large font sizes
@@ -51,7 +54,7 @@ src/
 │   └── details/  Character details route
 ├── assets/       Images
 ├── components/   Reusable UI components
-├── hooks/        Accessibility hooks
+├── hooks/        Accessibility and debounce hooks
 ├── stores/       Persisted settings store
 ├── theme/        Themes, styles and ThemeProvider
 └── types/        Shared TypeScript types
