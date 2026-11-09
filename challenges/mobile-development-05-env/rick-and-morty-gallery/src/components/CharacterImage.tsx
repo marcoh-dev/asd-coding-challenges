@@ -1,5 +1,6 @@
 import { Image, type ImageStyle } from "expo-image";
 import { UserRound } from "lucide-react-native";
+import { useState } from "react";
 import { type StyleProp, View } from "react-native";
 
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -15,8 +16,9 @@ type Props = {
 export default function CharacterImage({ uri, style, iconSize, accessibilityLabel }: Props) {
 	const { theme, styles } = useTheme();
 	const reducedMotion = useReducedMotion();
+	const [failedUri, setFailedUri] = useState<string | null>(null);
 
-	if (!uri) {
+	if (!uri || failedUri === uri) {
 		return (
 			<View
 				style={[style, styles.imagePlaceholder]}
@@ -36,6 +38,7 @@ export default function CharacterImage({ uri, style, iconSize, accessibilityLabe
 			contentFit="cover"
 			transition={reducedMotion ? null : 200}
 			accessibilityLabel={accessibilityLabel}
+			onError={() => setFailedUri(uri)}
 		/>
 	);
 }

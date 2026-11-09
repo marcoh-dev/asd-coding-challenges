@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Image } from "expo-image";
 import { Stack } from "expo-router";
 import { useHeaderHeight, usePreventRemove } from "expo-router/react-navigation";
+import { useState } from "react";
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form";
 import {
 	AccessibilityInfo,
@@ -12,6 +12,7 @@ import {
 	View,
 } from "react-native";
 
+import CharacterImage from "@/components/CharacterImage";
 import FormField from "@/components/FormField";
 import HeaderTextButton from "@/components/HeaderTextButton";
 import OptionSelector from "@/components/OptionSelector";
@@ -67,16 +68,30 @@ export default function CharacterForm({
 	const image = useWatch({ control, name: "image" });
 	const { isDirty } = useFormState({ control });
 
-	const allowLeave = usePreventRemove(isDirty, ({ repeat }) => {
+	const [isLeaving, setIsLeaving] = useState(false);
+
+	const disablePrevention = usePreventRemove(isDirty && !isLeaving, ({ repeat }) => {
 		Alert.alert("Discard changes?", "Your changes haven’t been saved.", [
 			{ text: "Keep editing", style: "cancel" },
-			{ text: "Discard", style: "destructive", onPress: repeat },
+			{
+				text: "Discard",
+				style: "destructive",
+				onPress: () => {
+					setIsLeaving(true);
+					repeat();
+				},
+			},
 		]);
 	});
+
+	function allowLeave() {
+		setIsLeaving(true);
+		disablePrevention();
+	}
 	const hasImagePreview =
 		image !== "" && characterFormSchema.shape.image.safeParse(image).success;
 
-	const submit = handleSubmit(
+	const validateAndSubmit = handleSubmit(
 		({ origin, location, ...values }) =>
 			onSubmit(
 				{ ...values, origin: { name: origin }, location: { name: location } },
@@ -84,6 +99,12 @@ export default function CharacterForm({
 			),
 		() => AccessibilityInfo.announceForAccessibility("Please check the highlighted fields"),
 	);
+
+	function submit() {
+		if (!isSubmitting) {
+			void validateAndSubmit();
+		}
+	}
 
 	return (
 		<KeyboardAvoidingView
@@ -98,7 +119,7 @@ export default function CharacterForm({
 							label={submitLabel}
 							accessibilityLabel={submitAccessibilityLabel}
 							isBusy={isSubmitting}
-							onPress={() => void submit()}
+							onPress={submit}
 						/>
 					),
 				}}
@@ -256,16 +277,16 @@ export default function CharacterForm({
 							autoCapitalize="none"
 							autoCorrect={false}
 							returnKeyType="done"
-							onSubmitEditing={() => void submit()}
+							onSubmitEditing={submit}
 						/>
 					)}
 				/>
 
 				{hasImagePreview && (
-					<Image
+					<CharacterImage
+						uri={image}
 						style={styles.formImagePreview}
-						source={image}
-						contentFit="cover"
+						iconSize={48}
 						accessibilityLabel="Image preview"
 					/>
 				)}
