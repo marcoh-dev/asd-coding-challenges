@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Like, Repository } from "typeorm";
+import { Repository } from "typeorm";
 
-import { Character } from "@/characters/character.entity.js";
+import { Character, type ResourceLink } from "@/characters/character.entity.js";
 import type { CharacterInput, CharacterListQuery } from "@/characters/character.schema.js";
 
 export type CharacterPage = {
@@ -23,23 +23,20 @@ export class CharactersService {
 	) {}
 
 	async findAll({ page, limit, name }: CharacterListQuery): Promise<CharacterPage> {
-		const [results, count] = await this.characters.findAndCount({
-			where: name ? { name: Like(`%${name}%`) } : {},
-			order: { id: "ASC" },
-			skip: (page - 1) * limit,
-			take: limit,
-		});
-		const pages = Math.ceil(count / limit);
+		const query = this.characters.createQueryBuilder("character");
 
-		return {
-			info: {
-				count,
-				pages,
-				next: page < pages ? page + 1 : null,
-				prev: page > 1 ? page - 1 : null,
-			},
-			results,
-		};
+		if (name) {
+			query.where("character.name LIKE :name ESCAPE '\\'", { name: `%${escapeLike(name)}%` });
+		}
+
+		const [results, count] = await query
+			.orderBy("CASE WHEN character.url = '' THEN 0 ELSE 1 END")
+			.addOrderBy("CASE WHEN character.url = '' THEN -character.id ELSE character.id END")
+			.offset((page - 1) * limit)
+			.limit(limit)
+			.getManyAndCount();
+
+		return { info: getPageInfo(count, page, limit), results };
 	}
 
 	async findOne(id: number) {
@@ -65,7 +62,7 @@ export class CharactersService {
 	async update(id: number, input: CharacterInput) {
 		const character = await this.findOne(id);
 
-		return this.characters.save(this.characters.merge(character, toColumns(input)));
+		return this.characters.save(this.characters.merge(character, toColumns(input, character)));
 	}
 
 	async remove(id: number) {
@@ -77,10 +74,29 @@ export class CharactersService {
 	}
 }
 
-function toColumns({ origin, location, ...input }: CharacterInput) {
+export function getPageInfo(count: number, page: number, limit: number) {
+	const pages = Math.ceil(count / limit);
+
+	return {
+		count,
+		pages,
+		next: page < pages ? page + 1 : null,
+		prev: page > 1 ? page - 1 : null,
+	};
+}
+
+function escapeLike(value: string) {
+	return value.replace(/[\\%_]/g, "\\$&");
+}
+
+function toColumns({ origin, location, ...input }: CharacterInput, existing?: Character) {
 	return {
 		...input,
-		origin: { name: origin.name, url: "" },
-		location: { name: location.name, url: "" },
+		origin: toLink(origin.name, existing?.origin),
+		location: toLink(location.name, existing?.location),
 	};
+}
+
+function toLink(name: string, existing?: ResourceLink): ResourceLink {
+	return { name, url: existing?.name === name ? existing.url : "" };
 }

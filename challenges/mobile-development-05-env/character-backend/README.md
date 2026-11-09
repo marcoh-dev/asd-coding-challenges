@@ -53,7 +53,7 @@ All variables are optional, the defaults work out of the box.
 | `PUT`    | `/api/characters/:id`                       | `200` with the updated character, or `404`        |
 | `DELETE` | `/api/characters/:id`                       | `204`, or `404`                                   |
 
-`page` and `limit` are optional (`limit` is 1–100, default 20). Invalid input returns `400` with a list of messages.
+`page` and `limit` are optional (`limit` is 1–100, default 20). The list starts with your own characters, newest first, followed by the seeded ones in their original order. Invalid input returns `400` with a list of messages.
 
 `POST` and `PUT` take the full character:
 
