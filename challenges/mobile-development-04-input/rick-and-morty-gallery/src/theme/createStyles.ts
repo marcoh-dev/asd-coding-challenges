@@ -204,6 +204,8 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 		},
 
 		galleryEmpty: {
+			alignItems: "flex-start",
+			gap: 12,
 			paddingHorizontal: 6,
 		},
 

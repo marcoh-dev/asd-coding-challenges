@@ -32,9 +32,10 @@ const LARGE_FONT_SCALE = 1.5;
 
 type Props = {
 	search: string;
+	onClearSearch: () => void;
 };
 
-export default function Gallery({ search }: Props) {
+export default function Gallery({ search, onClearSearch }: Props) {
 	const { theme, styles } = useTheme();
 	const queryClient = useQueryClient();
 	const [isRefreshing, setIsRefreshing] = useState(false);
@@ -196,9 +197,20 @@ export default function Gallery({ search }: Props) {
 								accessibilityLabel="Searching characters"
 							/>
 						) : (
-							<Text style={[styles.text, styles.galleryEmpty]}>
-								No characters found for “{search}”.
-							</Text>
+							<View style={styles.galleryEmpty}>
+								<Text style={styles.text}>No characters found for “{search}”.</Text>
+								<Text style={styles.characterDetail}>
+									Check the spelling or try a shorter name.
+								</Text>
+
+								<Pressable
+									style={styles.button}
+									onPress={onClearSearch}
+									accessibilityRole="button"
+								>
+									<Text style={styles.buttonText}>Clear search</Text>
+								</Pressable>
+							</View>
 						)
 					}
 					ListFooterComponent={

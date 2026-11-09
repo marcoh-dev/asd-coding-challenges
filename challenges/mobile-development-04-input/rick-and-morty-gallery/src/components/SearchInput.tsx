@@ -1,39 +1,25 @@
 import { Search, X } from "lucide-react-native";
-import { useRef } from "react";
-import {
-	AccessibilityInfo,
-	Pressable,
-	TextInput,
-	type TextInputInstance,
-	View,
-} from "react-native";
+import type { Ref } from "react";
+import { Pressable, TextInput, type TextInputInstance, View } from "react-native";
 
 import { useTheme } from "@/theme/ThemeProvider";
 
 type Props = {
+	ref: Ref<TextInputInstance>;
 	value: string;
 	onChangeText: (value: string) => void;
+	onClear: () => void;
 };
 
-export default function SearchInput({ value, onChangeText }: Props) {
+export default function SearchInput({ ref, value, onChangeText, onClear }: Props) {
 	const { theme, styles } = useTheme();
-	const inputRef = useRef<TextInputInstance>(null);
-
-	function clear() {
-		onChangeText("");
-
-		if (inputRef.current) {
-			inputRef.current.focus();
-			AccessibilityInfo.sendAccessibilityEvent(inputRef.current, "focus");
-		}
-	}
 
 	return (
 		<View style={styles.searchInput}>
 			<Search size={20} color={theme.textSecondary} />
 
 			<TextInput
-				ref={inputRef}
+				ref={ref}
 				style={styles.searchInputText}
 				value={value}
 				onChangeText={onChangeText}
@@ -54,7 +40,7 @@ export default function SearchInput({ value, onChangeText }: Props) {
 			{value.length > 0 && (
 				<Pressable
 					style={({ pressed }) => [styles.searchClearButton, pressed && styles.pressed]}
-					onPress={clear}
+					onPress={onClear}
 					accessibilityRole="button"
 					accessibilityLabel="Clear search"
 				>
