@@ -1,0 +1,38 @@
+info:
+  name: Create a character with invalid data
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{baseURL}}/api/characters"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "",
+        "status": "Sleeping",
+        "species": "Human",
+        "gender": "Female",
+        "origin": { "name": "Earth (C-137)" },
+        "location": { "name": "Space" },
+        "image": "not a url",
+        "extra": true
+      }
+  auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "400"
+    - expression: res.body.message
+      operator: isArray
+      value: ""
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true

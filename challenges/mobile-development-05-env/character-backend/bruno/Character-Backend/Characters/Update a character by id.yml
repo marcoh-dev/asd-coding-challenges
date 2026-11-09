@@ -1,0 +1,42 @@
+info:
+  name: Update a character by id
+  type: http
+  seq: 5
+
+http:
+  method: PUT
+  url: "{{baseURL}}/api/characters/:id"
+  params:
+    - name: id
+      value: "{{characterId}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Space Beth",
+        "status": "unknown",
+        "species": "Human",
+        "type": "Clone",
+        "gender": "Female",
+        "origin": { "name": "Earth (C-137)" },
+        "location": { "name": "Space" },
+        "image": "https://rickandmortyapi.com/api/character/avatar/38.jpeg"
+      }
+  auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+    - expression: res.body.status
+      operator: eq
+      value: unknown
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true

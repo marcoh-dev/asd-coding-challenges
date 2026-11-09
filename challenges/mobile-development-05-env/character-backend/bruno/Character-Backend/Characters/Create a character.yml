@@ -1,0 +1,47 @@
+info:
+  name: Create a character
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseURL}}/api/characters"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Space Beth",
+        "status": "Alive",
+        "species": "Human",
+        "type": "Clone",
+        "gender": "Female",
+        "origin": { "name": "Earth (C-137)" },
+        "location": { "name": "Space" },
+        "image": "https://rickandmortyapi.com/api/character/avatar/38.jpeg"
+      }
+  auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "201"
+    - expression: res.body.id
+      operator: isNumber
+      value: ""
+  actions:
+    - type: set-variable
+      phase: after-response
+      selector:
+        expression: res.body.id
+        method: jsonq
+      variable:
+        name: characterId
+        scope: runtime
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
