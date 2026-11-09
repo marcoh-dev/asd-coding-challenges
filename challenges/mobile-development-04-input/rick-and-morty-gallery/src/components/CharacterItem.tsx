@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import { Pressable, Text, View } from "react-native";
+import { Keyboard, Pressable, Text, View } from "react-native";
 
 import CharacterStatus from "@/components/CharacterStatus";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -19,7 +19,10 @@ export default function CharacterItem({ character }: Props) {
 	return (
 		<Pressable
 			style={({ pressed }) => [styles.characterCard, pressed && styles.pressed]}
-			onPress={() => router.push({ pathname: "/details/[id]", params: { id: character.id } })}
+			onPress={() => {
+				Keyboard.dismiss();
+				router.push({ pathname: "/details/[id]", params: { id: character.id } });
+			}}
 			accessibilityRole="button"
 			accessibilityLabel={`${character.name}, status ${character.status}, ${character.species}, gender ${character.gender}`}
 			accessibilityHint="Opens the profile"

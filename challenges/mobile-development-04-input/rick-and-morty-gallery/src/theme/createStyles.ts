@@ -81,14 +81,55 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			flex: 1,
 		},
 
+		galleryStale: {
+			opacity: 0.5,
+		},
+
+		galleryDivider: {
+			position: "absolute",
+			top: 0,
+			left: -16,
+			right: -16,
+			height: 1,
+			backgroundColor: theme.border,
+		},
+
+		searchInput: {
+			flexDirection: "row",
+			alignItems: "center",
+			gap: 8,
+			marginVertical: 16,
+			paddingLeft: 12,
+			backgroundColor: theme.surface,
+			borderColor: theme.border,
+			borderWidth: 1,
+			borderRadius: 12,
+		},
+
+		searchInputText: {
+			flex: 1,
+			minHeight: 48,
+			fontSize: 16,
+			fontWeight: fontWeight.regular,
+			color: theme.text,
+		},
+
+		searchClearButton: {
+			width: 48,
+			height: 48,
+			alignItems: "center",
+			justifyContent: "center",
+		},
+
 		galleryContent: {
 			gap: 12,
-			paddingTop: 16,
+			marginHorizontal: -6,
 			paddingBottom: 20,
 		},
 
-		galleryRow: {
-			gap: 12,
+		galleryItem: {
+			flex: 1,
+			paddingHorizontal: 6,
 		},
 
 		scrollTopButton: {
