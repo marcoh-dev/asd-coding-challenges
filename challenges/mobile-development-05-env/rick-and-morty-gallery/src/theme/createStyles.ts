@@ -433,20 +433,30 @@ export const createStyles = (theme: AppTheme, boldText: boolean) => {
 			borderRadius: 12,
 		},
 
-		formSubmit: {
-			flexDirection: "row",
-			alignItems: "center",
-			justifyContent: "center",
-			gap: 8,
-			marginTop: 8,
-		},
-
 		headerButton: {
 			width: 48,
 			height: 48,
 			marginRight: 4,
 			alignItems: "center",
 			justifyContent: "center",
+		},
+
+		headerTextButton: {
+			minWidth: 72,
+			minHeight: 36,
+			marginRight: 8,
+			paddingHorizontal: 14,
+			alignItems: "center",
+			justifyContent: "center",
+			borderColor: theme.primary,
+			borderWidth: 1,
+			borderRadius: 18,
+		},
+
+		headerTextButtonText: {
+			fontSize: 16,
+			fontWeight: fontWeight.semibold,
+			color: theme.primary,
 		},
 
 		settingGroups: {

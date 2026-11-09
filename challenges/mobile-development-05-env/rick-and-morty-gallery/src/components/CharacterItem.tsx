@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { Trash2 } from "lucide-react-native";
+import { Pencil, Trash2 } from "lucide-react-native";
 import { Keyboard, Pressable, Text, View } from "react-native";
 
 import ActionMenu from "@/components/ActionMenu";
@@ -18,6 +18,10 @@ export default function CharacterItem({ character }: Props) {
 	const router = useRouter();
 	const confirmDelete = useDeleteCharacter();
 
+	function openEdit() {
+		router.push({ pathname: "/edit/[id]", params: { id: character.id } });
+	}
+
 	return (
 		<Pressable
 			style={({ pressed }) => [styles.characterCard, pressed && styles.pressed]}
@@ -29,8 +33,15 @@ export default function CharacterItem({ character }: Props) {
 			accessibilityRole="button"
 			accessibilityLabel={`${character.name}, status ${character.status}, ${character.species}, gender ${character.gender}`}
 			accessibilityHint="Opens the profile"
-			accessibilityActions={[{ name: "delete", label: "Delete" }]}
+			accessibilityActions={[
+				{ name: "edit", label: "Edit" },
+				{ name: "delete", label: "Delete" },
+			]}
 			onAccessibilityAction={({ nativeEvent }) => {
+				if (nativeEvent.actionName === "edit") {
+					openEdit();
+				}
+
 				if (nativeEvent.actionName === "delete") {
 					confirmDelete(character);
 				}
@@ -49,6 +60,7 @@ export default function CharacterItem({ character }: Props) {
 
 					<ActionMenu
 						items={[
+							{ label: "Edit", icon: Pencil, onPress: openEdit },
 							{
 								label: "Delete",
 								icon: Trash2,

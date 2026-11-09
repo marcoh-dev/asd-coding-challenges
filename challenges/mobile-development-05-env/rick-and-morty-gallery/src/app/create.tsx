@@ -39,7 +39,8 @@ export default function CreateCharacter() {
 	return (
 		<CharacterForm
 			defaultValues={emptyCharacterForm}
-			submitLabel="Create character"
+			submitLabel="Create"
+			submitAccessibilityLabel="Create character"
 			isSubmitting={isPending}
 			onSubmit={submit}
 		/>
