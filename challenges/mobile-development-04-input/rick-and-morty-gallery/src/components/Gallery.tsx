@@ -13,7 +13,7 @@ import {
 	View,
 } from "react-native";
 
-import { type CharacterPage, CHARACTERS_QUERY_KEY, fetchCharacters } from "@/api/characters";
+import { type CharacterPage, charactersQueryKey, fetchCharacters } from "@/api/characters";
 import CharacterItem from "@/components/CharacterItem";
 import ScrollTopButton from "@/components/ScrollTopButton";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -31,6 +31,7 @@ export default function Gallery() {
 	const { height, fontScale } = useWindowDimensions();
 	const numColumns = fontScale >= LARGE_FONT_SCALE ? 1 : 2;
 	const reducedMotion = useReducedMotion();
+	const queryKey = charactersQueryKey("");
 
 	useScrollToTop(listRef);
 
@@ -43,8 +44,8 @@ export default function Gallery() {
 		isFetchingNextPage,
 		isFetchNextPageError,
 	} = useInfiniteQuery({
-		queryKey: CHARACTERS_QUERY_KEY,
-		queryFn: fetchCharacters,
+		queryKey,
+		queryFn: (context) => fetchCharacters("", context),
 		initialPageParam: 1,
 		getNextPageParam: (lastPage, _allPages, lastPageParam) =>
 			lastPage.info.next ? lastPageParam + 1 : undefined,
@@ -55,7 +56,7 @@ export default function Gallery() {
 	async function handleRefresh() {
 		setIsRefreshing(true);
 		queryClient.setQueryData<InfiniteData<CharacterPage, number>>(
-			CHARACTERS_QUERY_KEY,
+			queryKey,
 			(current) =>
 				current && {
 					pages: current.pages.slice(0, 1),

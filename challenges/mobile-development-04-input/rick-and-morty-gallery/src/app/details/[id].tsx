@@ -24,8 +24,10 @@ export default function CharacterDetails() {
 		queryFn: ({ signal }) => fetchCharacter(id, signal),
 		placeholderData: () =>
 			queryClient
-				.getQueryData<InfiniteData<CharacterPage, number>>(CHARACTERS_QUERY_KEY)
-				?.pages.flatMap((page) => page.results)
+				.getQueriesData<InfiniteData<CharacterPage, number>>({
+					queryKey: CHARACTERS_QUERY_KEY,
+				})
+				.flatMap(([, data]) => data?.pages.flatMap((page) => page.results) ?? [])
 				.find((cached) => String(cached.id) === id),
 	});
 
