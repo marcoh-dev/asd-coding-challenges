@@ -2,18 +2,25 @@
 
 A gallery app for Rick and Morty characters, built with Expo Router.
 
-Builds on [`mobile-development-04-input`](../../mobile-development-04-input/rick-and-morty-gallery).
+Builds on [`mobile-development-04-input`](../../mobile-development-04-input/rick-and-morty-gallery) and connects it to a local [character backend](../character-backend), so you can create, edit and delete characters.
 
 ## Features
 
 - Tab navigation (Home, Gallery, Settings) with a stack on top for the character details
 - Details screen with a dynamic title ("Profile: <name>") and typed route params
+- Create, edit and delete characters through the local backend
+- Shared form with react-hook-form and zod: per-field errors, "Next" keyboard navigation, image preview, and Create/Save in the header
+- Image, origin and location are optional; characters without an image get a placeholder icon
+- A confirmation before leaving a form with unsaved changes, and before deleting
+- Edit and Delete in a three-dot menu on every card and on the details page, also available as screen reader actions on the cards
+- Lists and details update immediately after a change
 - Search by name through the API, debounced while typing, with a search-optimized keyboard and a clear button
 - Previous results stay visible while a new search loads, and each search is cached separately
 - Total number of characters from the API above the list, updated for each search
 - Infinite scroll and pull-to-refresh with TanStack Query; refreshing resets the list to page 1
 - Details show instantly from the list cache, then update from the API
 - Offline support: requests pause without a connection, an offline notice shows, and loading continues automatically once you're back online
+- `EXPO_PUBLIC_API_URL` typed and validated with zod, with an error screen for an invalid `.env`
 - 2-column grid that switches to 1 column at large font sizes
 - Scroll-to-top button with a fade, and tapping the active Gallery tab scrolls to the top
 - Theme setting (System / Light / Dark), saved locally with zustand and `expo-sqlite/kv-store`
@@ -27,6 +34,7 @@ Builds on [`mobile-development-04-input`](../../mobile-development-04-input/rick
 - TypeScript
 - Expo Router with typed routes
 - TanStack Query, with `expo-network` for its online status
+- react-hook-form and zod for forms and environment validation
 - zustand with `expo-sqlite/kv-store` for persistence
 - [Character backend](../character-backend) (NestJS, SQLite) as the API
 - expo-image, lucide-react-native
@@ -77,16 +85,20 @@ npm run check
 
 ```text
 src/
-├── api/          API requests, query keys and online status
-├── app/          Routes (Expo Router)
-│   ├── (tabs)/   Home, Gallery and Settings tabs
-│   └── details/  Character details route
-├── assets/       Images
-├── components/   Reusable UI components
-├── hooks/        Accessibility and debounce hooks
-├── stores/       Persisted settings store
-├── theme/        Themes, styles and ThemeProvider
-└── types/        Shared TypeScript types
+├── api/            API requests, query keys and online status
+├── app/            Routes (Expo Router)
+│   ├── (tabs)/     Home, Gallery and Settings tabs
+│   ├── details/    Character details route
+│   ├── edit/       Edit character route
+│   └── create.tsx  Create character route
+├── assets/         Images
+├── components/     Reusable UI components
+├── hooks/          Data, accessibility and debounce hooks
+├── schemas/        Form schema
+├── stores/         Persisted settings store
+├── theme/          Themes, styles and ThemeProvider
+├── types/          Shared TypeScript types
+└── env.ts          Validated environment variables
 ```
 
 ## Credits
