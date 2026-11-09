@@ -12,7 +12,7 @@ jobs:
     outputs:
       projects: ${{ steps.find.outputs.projects }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - id: find
@@ -48,23 +48,31 @@ jobs:
       run:
         working-directory: ${{ matrix.project }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - id: env
         run: |
           echo "node=$(cat .nvmrc 2>/dev/null || echo 24)" >> "$GITHUB_OUTPUT"
-          if [ -f bun.lock ] || [ -f bun.lockb ]; then
+          if [ -f pnpm-lock.yaml ]; then
+            echo "manager=pnpm" >> "$GITHUB_OUTPUT"
+          elif [ -f bun.lock ] || [ -f bun.lockb ]; then
             echo "manager=bun" >> "$GITHUB_OUTPUT"
           else
             echo "manager=npm" >> "$GITHUB_OUTPUT"
           fi
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ steps.env.outputs.node }}
+      - if: steps.env.outputs.manager == 'pnpm'
+        uses: pnpm/action-setup@v6
+        with:
+          package_json_file: ${{ matrix.project }}/package.json
       - if: steps.env.outputs.manager == 'bun'
         uses: oven-sh/setup-bun@v2
       - name: Install
         run: |
-          if [ "${{ steps.env.outputs.manager }}" = bun ]; then
+          if [ "${{ steps.env.outputs.manager }}" = pnpm ]; then
+            pnpm install --frozen-lockfile
+          elif [ "${{ steps.env.outputs.manager }}" = bun ]; then
             bun install
           elif [ -f package-lock.json ]; then
             npm ci
