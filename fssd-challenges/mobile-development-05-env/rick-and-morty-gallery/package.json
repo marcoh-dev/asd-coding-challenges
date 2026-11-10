@@ -44,10 +44,19 @@
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"typecheck": "expo customize tsconfig.json && tsc --noEmit",
-		"check": "npm run lint && npm run format:check && npm run typecheck"
+		"check": "pnpm lint && pnpm format:check && pnpm typecheck",
+		"doctor": "npm_config_force=true pnpm dlx expo-doctor"
 	},
 	"private": true,
 	"engines": {
 		"node": "24.x"
+	},
+	"packageManager": "pnpm@12.18.0",
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "^12.18.0",
+			"onFail": "download"
+		}
 	}
 }

@@ -25,8 +25,8 @@ A small REST API for Rick and Morty characters, built with NestJS. It's the loca
 
 ```bash
 cp .env.example .env
-npm install
-npm run start:dev
+pnpm install
+pnpm start:dev
 ```
 
 The API runs on [http://localhost:3000/api/characters](http://localhost:3000/api/characters). On the first start it creates `data/characters.sqlite`, runs the migrations and seeds the 826 characters.
@@ -75,11 +75,11 @@ All variables are optional, the defaults work out of the box.
 ## Scripts
 
 ```bash
-npm run start:dev     # start with watch mode
-npm run check         # lint + format check + typecheck
-npm test              # unit tests
-npm run test:e2e      # e2e tests against an in-memory database
-npm run build         # build to dist/
+pnpm start:dev    # start with watch mode
+pnpm check        # lint + format check + typecheck
+pnpm test         # unit tests
+pnpm test:e2e     # e2e tests against an in-memory database
+pnpm build        # build to dist/
 ```
 
 ## Database
@@ -89,10 +89,10 @@ npm run build         # build to dist/
 The schema is managed with TypeORM migrations in `src/migrations/`. After changing an entity:
 
 ```bash
-npm run migration:generate -- src/migrations/DescribeTheChange
+pnpm migration:generate src/migrations/DescribeTheChange
 ```
 
-Then add the new migration class to the array in `src/migrations/index.ts`. Pending migrations run automatically when the server starts, or manually with `npm run migration:run`. `npm run migration:show` lists them and `npm run migration:revert` undoes the last one.
+Then add the new migration class to the array in `src/migrations/index.ts`. Pending migrations run automatically when the server starts, or manually with `pnpm migration:run`. `pnpm migration:show` lists them and `pnpm migration:revert` undoes the last one.
 
 ### Reset
 
