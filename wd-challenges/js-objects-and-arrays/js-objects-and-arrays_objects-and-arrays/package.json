@@ -4,7 +4,7 @@
   "description": "Exercise to arrays and objects",
   "main": "index.js",
   "scripts": {
-    "start": "pnpm dlx live-server@latest --port=3000",
+    "start": "vite --port 3000 --open",
     "lint": "eslint .",
     "test": "vitest run --globals --passWithNoTests"
   },
@@ -13,6 +13,7 @@
     "@vitest/eslint-plugin": "^1.6.28",
     "eslint": "^9.39.5",
     "globals": "^17.14.0",
+    "vite": "^8.3.6",
     "vitest": "^5.1.0"
   },
   "type": "module",
