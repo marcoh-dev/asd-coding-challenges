@@ -1,0 +1,20 @@
+info:
+  name: Get comment by id
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseURL}}/comments/:id"
+  params:
+    - name: id
+      value: 64ef0639-f1d3-400d-9829-56036e3f29e1
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
