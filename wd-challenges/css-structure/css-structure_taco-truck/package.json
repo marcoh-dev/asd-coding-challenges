@@ -7,6 +7,14 @@
     "template": "html-css"
   },
   "scripts": {
-    "start": "npx -y live-server@latest --port=3000"
+    "start": "pnpm dlx live-server@latest --port=3000"
+  },
+  "packageManager": "pnpm@12.18.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^12.18.0",
+      "onFail": "download"
+    }
   }
 }

@@ -48,15 +48,15 @@ In this exercise you train to write if / else and ternary statements in various 
 
 ### Local development
 
-To run project commands locally, you need to install the dependencies using `npm i` first.
+To run project commands locally, you need to install the dependencies using `pnpm install` first.
 
 You can then use the following commands:
 
-- `npm run start` to run the main JavaScript file using `node`
-- `npm run test` to run the tests
-- `npm run lint` to run the linter
+- `pnpm start` to run the main JavaScript file using `node`
+- `pnpm test` to run the tests
+- `pnpm lint` to run the linter
 
-> 💡 Since this project is JavaScript only there is nothing to preview in the browser. Use `npm run test` to check your progress or `npm run start` to run the code.
+> 💡 Since this project is JavaScript only there is nothing to preview in the browser. Use `pnpm test` to check your progress or `pnpm start` to run the code.
 
 ## Development
 
@@ -64,11 +64,11 @@ You can then use the following commands:
 
 ### Local Development
 
-To work locally, please install the dependencies using `npm i` first.
+To work locally, please install the dependencies using `pnpm install` first.
 
-Run `npm run start` to start a development server and open [localhost:3000](http://localhost:3000) in a browser.
+Run `pnpm start` to start a development server and open [localhost:3000](http://localhost:3000) in a browser.
 
 > Alternatively you can use the Live Preview Extension for Visual Studio Code to view this project.  
 > Select the HTML file you want to view, press <kbd>⇧</kbd><kbd>⌘</kbd><kbd>P</kbd>, search for `Live Preview: Show Preview` and confirm with <kbd>Enter</kbd>.
 
-Use `npm run test` to run the tests.
+Use `pnpm test` to run the tests.

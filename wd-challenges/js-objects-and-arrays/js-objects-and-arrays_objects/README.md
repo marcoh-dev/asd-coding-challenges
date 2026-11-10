@@ -9,7 +9,7 @@ In this exercise, you will encounter the following tasks:
 
 Please switch to the `index.js` file to begin the exercises, where you’ll find the specific instructions.
 
-To check if you’ve solved the tasks correctly, run `npm run test` and review the test results in the console.
+To check if you’ve solved the tasks correctly, run `pnpm test` and review the test results in the console.
 
 ## Notes
 
@@ -25,7 +25,7 @@ To work locally, please follow these steps:
 
 Open your terminal and navigate to the project directory. Run the following command to install the necessary dependencies:
 
-`npm install` or `npm i`
+`pnpm install`
 
 This command reads the `package.json` file and installs the required packages listed under `dependencies`.
 
@@ -33,7 +33,7 @@ This command reads the `package.json` file and installs the required packages li
 
 After installing the dependencies, you can start the development server by running:
 
-`npm run start`
+`pnpm start`
 
 This command will start a development server and open [localhost:3000](http://localhost:3000) in a browser.
 
@@ -44,6 +44,6 @@ This command will start a development server and open [localhost:3000](http://lo
 
 To verify your solutions, run the tests with the following command:
 
-`npm run test`
+`pnpm test`
 
 This command will execute the test scripts defined in the project, allowing you to see if your code passes all the tests. The results will be displayed in the terminal, showing which tests passed or failed.

@@ -66,10 +66,10 @@ This exercise focuses on implementing various **CSS and JavaScript-driven animat
 
 ## Development
 
-To work locally, you would typically install dependencies using `npm i` first (though for this specific exercise, it's a single HTML file, so you might just open it directly).
+To work locally, you would typically install dependencies using `pnpm install` first (though for this specific exercise, it's a single HTML file, so you might just open it directly).
 
-Run `npm run start` to start a development server and open [localhost:3000](http://localhost:3000) in a browser.
+Run `pnpm start` to start a development server and open [localhost:3000](http://localhost:3000) in a browser.
 
 > Alternatively, you can use the Live Preview Extension for Visual Studio Code to view this project. Select the HTML file you want to view, press <kbd>⇧</kbd><kbd>⌘</kbd><kbd>P</kbd>, search for `Live Preview: Show Preview` and confirm with <kbd>Enter</kbd>.
 
-You can use `npm run test` to run any provided tests (if applicable for a larger project, but not directly relevant for this standalone HTML file).
+You can use `pnpm test` to run any provided tests (if applicable for a larger project, but not directly relevant for this standalone HTML file).
