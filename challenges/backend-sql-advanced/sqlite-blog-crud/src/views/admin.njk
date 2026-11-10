@@ -1,0 +1,31 @@
+<!--main_content-->
+{% extends "_baseAdminLayout.njk" %}
+{% block main_content %}
+{% if action %}
+  {% if action == "created" %}
+    <p style="color:green">Blog entry {% if id %}(id:{{ id }}){% endif %} created successfully.</p>
+  {% endif %}
+  {% if action == "updated" %}
+    <p style="color:blue">Blog entry {% if id %}(id:{{ id }}){% endif %} updated successfully.</p>
+  {% endif %}
+  {% if action == "deleted" %}
+    <p style="color:red">Blog entry {% if id %}(id:{{ id }}){% endif %} deleted successfully.</p>
+  {% endif %}
+{% endif %}
+
+<ul>
+  {% for entry in entries %}
+    <li>{{ entry.title }} (id: {{ entry.id }}) <a href="/admin/posts/{{ entry.title | slugify }}/edit">✏️</a> <a href="/admin/posts/{{ entry.title | slugify }}/delete">🗑️</a></li> 
+  {% endfor %}
+</ul>
+<a href="/admin/posts/new">➕ NEW</a>
+<script>
+  const url = new URL(window.location);
+
+  if (url.searchParams.has("action")) {
+    url.searchParams.delete("action");
+    url.searchParams.delete("id");
+    window.history.replaceState({}, "", url);
+  }
+</script>
+{% endblock main_content %}
