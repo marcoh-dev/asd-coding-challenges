@@ -28,7 +28,7 @@
 		"@types/passport-local": "^1.0.38",
 		"@vitest/coverage-v8": "^4.1.11",
 		"ts-node": "^10.9.2",
-		"typescript": "^5.9.0",
+		"typescript": "~6.0.3",
 		"unplugin-swc": "^1.5.11",
 		"vitest": "^4.1.11"
 	},
