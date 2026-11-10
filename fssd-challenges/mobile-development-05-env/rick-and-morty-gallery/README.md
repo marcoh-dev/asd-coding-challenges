@@ -48,8 +48,8 @@ The app gets its data from the [character backend](../character-backend), which 
 
     ```bash
     cd ../character-backend
-    npm install
-    npm run start:dev
+    pnpm install
+    pnpm start:dev
     ```
 
 2. Find your computer's local IP address. It usually looks like `192.168.x.x` or `10.x.x.x`.
@@ -69,8 +69,8 @@ The app gets its data from the [character backend](../character-backend), which 
 4. Install and start the app:
 
     ```bash
-    npm install
-    npx expo start
+    pnpm install
+    pnpm expo start
     ```
 
 `localhost` doesn't work here: on the phone it means the phone itself, not your computer. If your IP address changes (for example on another Wi-Fi), update `.env` and reload the app. If the app can't reach the backend, check that your firewall allows incoming connections for Node.
@@ -78,7 +78,7 @@ The app gets its data from the [character backend](../character-backend), which 
 Run lint, format check and typecheck with:
 
 ```bash
-npm run check
+pnpm check
 ```
 
 ## Project structure

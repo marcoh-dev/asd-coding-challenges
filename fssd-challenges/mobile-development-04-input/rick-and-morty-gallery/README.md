@@ -35,14 +35,14 @@ Builds on [`mobile-development-03-routing`](../../mobile-development-03-routing/
 
 ```bash
 cp .env.example .env
-npm install
-npx expo start
+pnpm install
+pnpm expo start
 ```
 
 Run lint, format check and typecheck with:
 
 ```bash
-npm run check
+pnpm check
 ```
 
 ## Project structure

@@ -31,14 +31,14 @@ Builds on [`mobile-development-02-fundamentals`](../../mobile-development-02-fun
 
 ```bash
 cp .env.example .env
-npm install
-npx expo start
+pnpm install
+pnpm expo start
 ```
 
 Run lint, format check and typecheck with:
 
 ```bash
-npm run check
+pnpm check
 ```
 
 ## Project structure

@@ -20,14 +20,14 @@ A first Expo and React Native app with a themed layout and a simple input list.
 ## Getting started
 
 ```bash
-npm install
-npx expo start
+pnpm install
+pnpm expo start
 ```
 
 Run lint, format check and typecheck with:
 
 ```bash
-npm run check
+pnpm check
 ```
 
 ## Project structure

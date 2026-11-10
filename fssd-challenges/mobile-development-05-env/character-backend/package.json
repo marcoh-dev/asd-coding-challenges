@@ -22,14 +22,14 @@
 		"lint:fix": "eslint . --fix",
 		"format:check": "prettier --check .",
 		"typecheck": "tsc --noEmit",
-		"check": "npm run lint && npm run format:check && npm run typecheck",
-		"ci": "npm run check && npm test && npm run test:e2e && npm run build",
+		"check": "pnpm lint && pnpm format:check && pnpm typecheck",
+		"ci": "pnpm check && pnpm test && pnpm test:e2e && pnpm build",
 		"migration:create": "typeorm migration:create",
-		"migration:generate": "npm run build && typeorm migration:generate -d dist/data-source.js",
+		"migration:generate": "pnpm build && typeorm migration:generate -d dist/data-source.js",
 		"postmigration:generate": "eslint --fix src/migrations && prettier --write src/migrations",
-		"migration:run": "npm run build && typeorm migration:run -d dist/data-source.js",
-		"migration:revert": "npm run build && typeorm migration:revert -d dist/data-source.js",
-		"migration:show": "npm run build && typeorm migration:show -d dist/data-source.js"
+		"migration:run": "pnpm build && typeorm migration:run -d dist/data-source.js",
+		"migration:revert": "pnpm build && typeorm migration:revert -d dist/data-source.js",
+		"migration:show": "pnpm build && typeorm migration:show -d dist/data-source.js"
 	},
 	"dependencies": {
 		"@nestjs/common": "^12.0.1",
@@ -67,5 +67,13 @@
 	},
 	"engines": {
 		"node": "24.x"
+	},
+	"packageManager": "pnpm@12.18.0",
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "^12.18.0",
+			"onFail": "download"
+		}
 	}
 }
