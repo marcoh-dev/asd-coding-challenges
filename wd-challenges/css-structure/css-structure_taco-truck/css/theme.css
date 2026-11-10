@@ -1,0 +1,21 @@
+:root {
+  --body-bg: #fddcd2;
+
+  --orange: #ff4a11;
+  --grape: #3f0097;
+  --lightpurple: #8336ff7b;
+  --darkgray: #201e1d;
+
+  --header-bg: var(--orange);
+  --header-text: var(--grape);
+
+  --footer-bg: var(--grape);
+  --footer-text: var(--orange);
+
+  --main-bg: ##fddcd2;
+  --main-text: var(--orange);
+  --main-title-bg: var(--grape);
+
+  --card-bg: var(--lightpurple);
+  --card-text: var(--darkgray);
+}

@@ -1,0 +1,22 @@
+{
+  "name": "js-array-methods_spa-1",
+  "version": "0.0.0-unreleased",
+  "description": "Single Page Application Quiz App: Working Solution",
+  "main": "index.html",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "vitest run --globals --passWithNoTests",
+    "start": "npx -y live-server@latest --port=3000"
+  },
+  "nf": {
+    "template": "html-css-js"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@vitest/eslint-plugin": "^1.6.28",
+    "eslint": "^9.39.5",
+    "globals": "^17.14.0",
+    "vitest": "^5.1.0"
+  }
+}

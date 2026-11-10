@@ -1,0 +1,9 @@
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 20px;
+}
+
+.footer__copyright {
+  margin: 0;
+}
