@@ -3,8 +3,8 @@ import Link from "next/link";
 import { Cherry_Bomb_One, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "next-themes";
-import ThemeChanger from "@/components/ThemeChanger";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { ModeToggle } from "@/components/ModeToggle";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -27,13 +27,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 			suppressHydrationWarning
 		>
 			<body>
-				<ThemeProvider attribute="class">
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange
+				>
 					<header>
 						<div className="flex justify-between">
 							<h1 className="font-cherry-bomb text-3xl text-red-500">
 								<Link href="/">Kiki’s Delivery Service</Link>
 							</h1>
-							<ThemeChanger />
+							<ModeToggle />
 						</div>
 					</header>
 					<main>{children}</main>
