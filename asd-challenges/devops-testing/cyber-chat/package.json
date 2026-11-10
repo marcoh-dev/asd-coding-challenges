@@ -32,9 +32,6 @@
 		"unplugin-swc": "^1.5.11",
 		"vitest": "^4.1.11"
 	},
-	"peerDependencies": {
-		"typescript": "^5"
-	},
 	"dependencies": {
 		"@nestjs/common": "^11.2.1",
 		"@nestjs/config": "^4.0.4",
