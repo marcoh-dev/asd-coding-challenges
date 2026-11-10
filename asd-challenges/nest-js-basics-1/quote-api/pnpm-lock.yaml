@@ -198,7 +198,7 @@ importers:
         specifier: ^2.2.0
         version: 2.2.0(prettier@3.9.10)
       typescript:
-        specifier: ^6.0.3
+        specifier: ~6.0.3
         version: 6.0.3
 
 packages:
