@@ -52,3 +52,10 @@ function add3(a, b, c) {
 function repeat10(string) {
   return string.repeat(10);
 }
+
+console.log(getCurrentHour());
+console.log(getVectorLength(1, 2, 3));
+console.log(cleanInput("  Hello World  "));
+console.log(isOddAndSmall(7));
+console.log(add3(1, 2, 3));
+console.log(repeat10("ab"));

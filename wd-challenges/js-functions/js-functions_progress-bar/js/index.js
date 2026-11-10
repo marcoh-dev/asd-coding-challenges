@@ -12,6 +12,6 @@ function calculateScrollPercentage() {
   return Math.round(scrollPercentage * 100) / 100;
 }
 
-document.addEventListener("scroll", function (e) {
+document.addEventListener("scroll", function () {
   progressBar.style.width = calculateScrollPercentage() + "%";
 });

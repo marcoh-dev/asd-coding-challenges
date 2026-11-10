@@ -31,7 +31,6 @@ const toggleLoaderButton = document.querySelector(
   "[data-js=toggleLoaderButton]",
 );
 const loaderContainer = document.querySelector("[data-js=loaderContainer]");
-let loaderActive = false;
 
 toggleLoaderButton.addEventListener("click", () => {
   // Add your solution below
