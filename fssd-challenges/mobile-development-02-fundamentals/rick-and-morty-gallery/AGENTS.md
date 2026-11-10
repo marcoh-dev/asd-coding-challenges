@@ -17,7 +17,7 @@ pnpm expo install <package>  # ALWAYS use instead of npm/yarn/pnpm/bun add — r
 pnpm expo start              # start the dev server
 pnpm expo lint               # lint
 pnpm tsc --noEmit            # typecheck
-pnpm doctor                  # diagnose dependency and config issues
+pnpm expo-doctor             # diagnose dependency and config issues
 pnpm expo install --fix      # fix incompatible package versions
 ```
 

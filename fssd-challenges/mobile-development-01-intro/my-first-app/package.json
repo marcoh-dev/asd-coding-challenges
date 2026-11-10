@@ -31,7 +31,7 @@
 		"format:check": "prettier --check .",
 		"typecheck": "tsc --noEmit",
 		"check": "pnpm lint && pnpm format:check && pnpm typecheck",
-		"doctor": "npm_config_force=true pnpm dlx expo-doctor"
+		"expo-doctor": "npm_config_force=true pnpm dlx expo-doctor"
 	},
 	"private": true,
 	"engines": {
