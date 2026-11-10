@@ -7,10 +7,10 @@ The threaded discussion API with JWT authentication. Users register and log in w
 ## Run
 
 ```bash
-bun install
+pnpm install
 cp .env.example .env
-bun run db:seed
-bun run dev
+pnpm db:seed
+pnpm dev
 ```
 
 Set `JWT_SECRET` in `.env` to a long random string. `db:seed` recreates the database in `data/cyber-chat.sqlite` and fills it with sample threads and comments. The API runs on http://localhost:3000.

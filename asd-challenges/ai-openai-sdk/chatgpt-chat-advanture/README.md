@@ -7,9 +7,9 @@ Builds on [Custom ChatGPT (OpenAI API)](../../ai-openai-api/chatgpt-chat/README.
 ## Run
 
 ```bash
-bun install
+pnpm install
 cp .env.example .env.local
-bun run dev
+pnpm dev
 ```
 
 Set `OPENAI_API_KEY` and `OPENAI_MODEL` (for example `gpt-4o-mini`) in `.env.local`. Open http://localhost:3000.

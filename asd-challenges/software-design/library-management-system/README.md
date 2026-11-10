@@ -18,9 +18,10 @@ Small exercises on algorithms, OOP and design patterns. The task is in a comment
 ## Run
 
 ```bash
-bun install
-bun src/insertion-sort.js
-bun src/undo-redo.html
+pnpm install
+node src/insertion-sort.js
+pnpm tsx src/summoning-circle.ts
+pnpm undo-redo
 ```
 
-Run any other file the same way. `bun src/undo-redo.html` starts a dev server for the undo/redo page.
+Run the other `.js` files with `node` and the `.ts` files with `pnpm tsx`. `pnpm undo-redo` starts a dev server for the undo/redo page.

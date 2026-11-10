@@ -2,6 +2,13 @@
 
 A basic music collection management app that allows users to search for albums, add them to their collection, and listen to previews. The app uses data from the [Deezer API](https://developer.deezer.com/api) to fetch album and song data.
 
+## Run
+
+```bash
+pnpm install
+pnpm dev
+```
+
 ## Basic Features
 
 - **List of Albums:** A grid or list view fetching and displaying album covers, titles, and artist names from your data source.

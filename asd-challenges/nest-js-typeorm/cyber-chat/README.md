@@ -9,10 +9,10 @@ The threaded discussion API now stores threads and comments in SQLite with TypeO
 ## Run
 
 ```bash
-bun install
+pnpm install
 cp .env.example .env
-bun run db:seed
-bun run dev
+pnpm db:seed
+pnpm dev
 ```
 
 `db:seed` recreates the database in `data/cyber-chat.sqlite` and fills it with sample threads and comments. The API runs on http://localhost:3000.

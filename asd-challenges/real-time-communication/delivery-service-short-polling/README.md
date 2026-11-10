@@ -5,8 +5,8 @@ Task 1 of the real-time communication challenge, part one. The Express server tr
 ## Run
 
 ```bash
-bun install
-bun run dev
+pnpm install
+pnpm dev
 ```
 
 Open http://localhost:3000 and watch the network tab: most requests return the same status as the one before (the console logs "no status change").
