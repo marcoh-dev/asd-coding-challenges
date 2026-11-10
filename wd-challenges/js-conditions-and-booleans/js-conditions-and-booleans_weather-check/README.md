@@ -38,7 +38,7 @@ In this exercise you train to write a `switch` statement. Please also refer to t
 - To run your code:
   - Open your terminal.
   - Navigate to the folder where `index.js` is located.
-  - Run `npm run start` to execute the `index.js` file using Node.js.
+  - Run `pnpm start` to execute the `index.js` file using Node.js.
   - The script will run using Node.js, and the output will be logged in the terminal.
   - Check the terminal output to see if the correct messages are displayed based on the weather conditions and temperature.
 

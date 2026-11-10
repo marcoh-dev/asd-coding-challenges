@@ -5,7 +5,7 @@
   "main": "index.html",
   "type": "module",
   "scripts": {
-    "start": "npx -y live-server@latest --port=3000",
+    "start": "pnpm dlx live-server@latest --port=3000",
     "lint": "eslint .",
     "test": "vitest run --globals --passWithNoTests"
   },
@@ -19,5 +19,13 @@
   "nf": {
     "template": "html-css-js"
   },
-  "private": true
+  "private": true,
+  "packageManager": "pnpm@12.18.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^12.18.0",
+      "onFail": "download"
+    }
+  }
 }

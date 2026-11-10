@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "vitest run --globals --passWithNoTests",
-    "start": "npx -y live-server@latest --port=3000"
+    "start": "pnpm dlx live-server@latest --port=3000"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
@@ -19,5 +19,13 @@
   },
   "nf": {
     "template": "html-css-js"
+  },
+  "packageManager": "pnpm@12.18.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^12.18.0",
+      "onFail": "download"
+    }
   }
 }
