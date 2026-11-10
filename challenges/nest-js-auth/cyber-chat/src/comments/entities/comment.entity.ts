@@ -5,7 +5,6 @@ import {
 	Column,
 	CreateDateColumn,
 	ManyToOne,
-	JoinColumn,
 } from "typeorm";
 
 @Entity("comments")

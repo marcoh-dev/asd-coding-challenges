@@ -18,10 +18,6 @@ export class CommentsService {
 		return this.comments.find();
 	}
 
-	getCommentsByThreadId(threadId: string): Promise<Comment[]> {
-		return this.comments.findBy({ thread: { id: threadId } });
-	}
-
 	async getCommentById(id: string): Promise<Comment> {
 		const comment = await this.comments.findOneBy({ id, body: Not("deleted") });
 		if (!comment) {
