@@ -16,8 +16,8 @@ The delivery app now stores its requests in Postgres and mixes server and client
 ```bash
 cp .env.example .env
 docker compose up -d
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Fill in `.env` first: `docker-compose.yaml` reads the `POSTGRES_*` values, and `DATABASE_URL` has to match them (for example `postgres://<user>:<password>@localhost:5432/<db>`). Open http://localhost:3000.

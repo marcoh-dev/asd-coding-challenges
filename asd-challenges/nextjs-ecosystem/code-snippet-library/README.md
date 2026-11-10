@@ -9,8 +9,8 @@ Builds on [Code Snippet Library (Next.js Tailwind and shadcn)](../../nextjs-tail
 ```bash
 cp .env.example .env
 docker compose up -d
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 `docker-compose.yaml` reads the `POSTGRES_*` values from `.env` and publishes Postgres on port 5433. The `snippets` table is created and seeded on server start (`instrumentation.ts`). Open http://localhost:3000.

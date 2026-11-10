@@ -4,6 +4,6 @@
 
 ### Scripts
 
-- `npm run dev` — run with `nodemon` and auto-restart on watched file changes.
-- `npm run start` — run app directly with `tsx`.
-- `npm run typecheck` — run TypeScript checks (`tsc --noEmit`).
+- `pnpm dev` — run with `nodemon` and auto-restart on watched file changes.
+- `pnpm start` — run app directly with `tsx`.
+- `pnpm typecheck` — run TypeScript checks (`tsc --noEmit`).
