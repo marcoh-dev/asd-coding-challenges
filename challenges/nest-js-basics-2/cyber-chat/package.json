@@ -1,6 +1,5 @@
 {
 	"name": "cyber-chat",
-	"module": "index.ts",
 	"type": "module",
 	"private": true,
 	"scripts": {
