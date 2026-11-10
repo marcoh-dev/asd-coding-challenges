@@ -8,9 +8,6 @@
   "devDependencies": {
     "vite": "^8.3.7"
   },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
   "packageManager": "pnpm@12.18.0",
   "devEngines": {
     "packageManager": {
