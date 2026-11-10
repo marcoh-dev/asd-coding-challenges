@@ -7,7 +7,7 @@
     "template": "html-css"
   },
   "scripts": {
-    "start": "pnpm dlx live-server@latest --port=3000"
+    "start": "vite --port 3000 --open"
   },
   "packageManager": "pnpm@12.18.0",
   "devEngines": {
@@ -16,5 +16,8 @@
       "version": "^12.18.0",
       "onFail": "download"
     }
+  },
+  "devDependencies": {
+    "vite": "^8.3.7"
   }
 }
