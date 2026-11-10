@@ -14,6 +14,6 @@ export class Thread {
 	@CreateDateColumn()
 	createdAt!: Date;
 
-	@Column({ default: "unknon" })
+	@Column({ default: "unknown" })
 	author!: string;
 }
