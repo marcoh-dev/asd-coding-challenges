@@ -2,23 +2,13 @@
 	"compilerOptions": {
 		// Environment setup & latest features
 		"lib": ["ESNext"],
-		"target": "ESNext",
-		"module": "Preserve",
 		"moduleDetection": "force",
 		"jsx": "react-jsx",
 		"allowJs": true,
-		"types": ["bun"],
-
-		// Bundler mode
-		"moduleResolution": "bundler",
-		"allowImportingTsExtensions": true,
-		"verbatimModuleSyntax": true,
-		"noEmit": true,
+		"types": ["node"],
 
 		// Best practices
 		"strict": true,
-		"skipLibCheck": true,
-		"noFallthroughCasesInSwitch": true,
 		"noUncheckedIndexedAccess": true,
 		"noImplicitOverride": true,
 
@@ -27,9 +17,34 @@
 		"noUnusedParameters": false,
 		"noPropertyAccessFromIndexSignature": false,
 
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+		"resolvePackageJsonExports": true,
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"declaration": true,
+		"removeComments": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "esnext",
+		"sourceMap": true,
+		"baseUrl": "./",
+		"rootDir": "./",
+		"outDir": "./dist",
+		"incremental": true,
+		"skipLibCheck": true,
+		"strictNullChecks": true,
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitAny": false,
+		"strictBindCallApply": false,
+		"noFallthroughCasesInSwitch": false,
+		"strictPropertyInitialization": true,
+
 		// NestJS
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
+
+		// TypeORM
+		"ignoreDeprecations": "6.0",
 
 		// JSON import
 		"resolveJsonModule": true

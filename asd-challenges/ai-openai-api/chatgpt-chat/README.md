@@ -12,9 +12,9 @@ A ChatGPT-like chat built with Next.js that calls the OpenAI Chat Completions AP
 ## Run
 
 ```bash
-bun install
+pnpm install
 cp .env.example .env.local
-bun run dev
+pnpm dev
 ```
 
 Set the values in `.env.local`:

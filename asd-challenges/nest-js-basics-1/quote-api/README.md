@@ -1,15 +1,10 @@
 # quote-api
 
-To install dependencies:
+## Run
 
 ```bash
-bun install
+pnpm install
+pnpm dev
 ```
 
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.3.14. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+The app runs on http://localhost:3000: `/quotes` and `/quotes/random` render pages, `/api/quotes` and `/api/quotes/random` return JSON.

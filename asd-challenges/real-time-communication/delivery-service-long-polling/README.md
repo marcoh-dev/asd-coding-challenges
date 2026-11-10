@@ -7,8 +7,8 @@ Builds on [Delivery Service (Short Polling)](../delivery-service-short-polling/R
 ## Run
 
 ```bash
-bun install
-bun run dev
+pnpm install
+pnpm dev
 ```
 
 Open http://localhost:3000.

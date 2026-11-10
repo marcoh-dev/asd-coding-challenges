@@ -16,7 +16,7 @@ nunjucks.configure("src/views", {
 
 app.get("/", (req, res) => {
   res.render("index.njk", {
-    title: "Hello Bun!",
+    title: "Burn on Read",
   });
 });
 

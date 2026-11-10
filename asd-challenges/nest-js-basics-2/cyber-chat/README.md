@@ -5,8 +5,8 @@ The foundation of a threaded discussion API with NestJS modules, controllers, se
 ## Run
 
 ```bash
-bun install
-bun run dev
+pnpm install
+pnpm dev
 ```
 
 The API runs on http://localhost:3000.

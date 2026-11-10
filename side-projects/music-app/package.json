@@ -1,12 +1,22 @@
 {
   "name": "music-app",
-  "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "vite"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "vite": "^8.3.7"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "packageManager": "pnpm@12.18.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^12.18.0",
+      "onFail": "download"
+    }
   }
 }

@@ -9,10 +9,10 @@ The threaded discussion API from the previous challenges, tested with Vitest. Vi
 ## Run
 
 ```bash
-bun install
+pnpm install
 cp .env.example .env
-bun run db:seed
-bun run dev
+pnpm db:seed
+pnpm dev
 ```
 
 Set `JWT_SECRET` in `.env` to a long random string. The API runs on http://localhost:3000, Swagger UI on http://localhost:3000/api.
@@ -20,9 +20,9 @@ Set `JWT_SECRET` in `.env` to a long random string. The API runs on http://local
 ## Tests
 
 ```bash
-bun run test       # unit tests (vitest.config.mjs)
-bun run test:cov   # unit tests with coverage
-bun run test:e2e   # E2E tests (vitest.config.e2e.mjs, *.e2e-spec.ts), none yet
+pnpm test       # unit tests (vitest.config.mjs)
+pnpm test:cov   # unit tests with coverage
+pnpm test:e2e   # E2E tests (vitest.config.e2e.mjs, *.e2e-spec.ts), none yet
 ```
 
 The `bruno/Cyber-Chat` folder contains a [Bruno](https://www.usebruno.com) collection with all requests.
