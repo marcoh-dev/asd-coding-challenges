@@ -3,8 +3,10 @@ import DeliverySectionHeadline from "@/components/DeliverySectionHeadline";
 import { buttonVariants } from "@/components/ui/button";
 import { getAllDeliveries } from "@/lib/services/deliveriesService";
 import Link from "next/link";
+import { connection } from "next/server";
 
 export default async function DeliveriesPage() {
+	await connection();
 	const deliveries = await getAllDeliveries(); // calls separate Backend API or makes a direct database query
 
 	return (
