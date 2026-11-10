@@ -1,14 +1,9 @@
-import { getAllDeliveries, getDeliveryById } from "@/lib/services/deliveriesService";
+import { getDeliveryById } from "@/lib/services/deliveriesService";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import DeliveryDeleteButton from "@/components/DeliveryDeleteButton";
 import DeliverySectionHeadline from "@/components/DeliverySectionHeadline";
 import { buttonVariants } from "@/components/ui/button";
-
-export async function generateStaticParams() {
-	const deliveries = await getAllDeliveries();
-	return deliveries.map((delivery) => ({ id: String(delivery.id) }));
-}
 
 export default async function DeliveryDetailPage({ params }: PageProps<"/deliveries/[id]">) {
 	const { id } = await params;

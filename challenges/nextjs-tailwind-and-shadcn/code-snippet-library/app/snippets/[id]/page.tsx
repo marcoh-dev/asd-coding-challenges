@@ -1,13 +1,8 @@
-import { getAllSnippets, getSnippetById } from "@/lib/services/snippetsService";
+import { getSnippetById } from "@/lib/services/snippetsService";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import SnippetDeleteButton from "@/components/SnippetDeleteButton";
 import { buttonVariants } from "@/components/ui/button";
-
-export async function generateStaticParams() {
-	const snippets = await getAllSnippets();
-	return snippets.map((snippet) => ({ id: String(snippet.id) }));
-}
 
 export default async function SnippetDetailPage({ params }: PageProps<"/snippets/[id]">) {
 	const { id } = await params;

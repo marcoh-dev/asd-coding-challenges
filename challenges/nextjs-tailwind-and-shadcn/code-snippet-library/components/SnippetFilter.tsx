@@ -13,7 +13,6 @@ export default function SnippetFilter({ snippets }: { snippets: SnippetRequest[]
 	const visible =
 		language === "all" ? snippets : snippets.filter((snippet) => snippet.language === language);
 
-	console.log("visible", visible);
 	return (
 		<>
 			<select
