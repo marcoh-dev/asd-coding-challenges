@@ -40,7 +40,6 @@ export class ThreadsService {
 				totalPages: Math.ceil(total / limit),
 			},
 		};
-		//return this.threads.find();
 	}
 	async getThreadById(id: string): Promise<Thread> {
 		const thread = await this.threads.findOneBy({ id });
