@@ -8,8 +8,8 @@ Builds on [Code Snippet Library (Next.js App Router)](../../nextjs-approuter/cod
 
 ```bash
 cp .env.example .env
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Set `DATABASE_URL` in `.env` to a running Postgres database. The `snippets` table is created and seeded on server start. Open http://localhost:3000.

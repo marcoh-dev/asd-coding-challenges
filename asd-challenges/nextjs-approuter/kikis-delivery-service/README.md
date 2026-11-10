@@ -10,8 +10,8 @@ A code-along that builds a delivery request app one route at a time with the Nex
 ## Run
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Open http://localhost:3000.

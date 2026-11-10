@@ -9,8 +9,8 @@ A small library that keeps code snippets in one place. The snippets are stored i
 ## Run
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Open http://localhost:3000.

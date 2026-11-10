@@ -20,5 +20,13 @@
 		"@types/ws": "^8.18.1",
 		"tsx": "^4.23.13",
 		"typescript": "^7.0.2"
+	},
+	"packageManager": "pnpm@12.18.0",
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "^12.18.0",
+			"onFail": "download"
+		}
 	}
 }

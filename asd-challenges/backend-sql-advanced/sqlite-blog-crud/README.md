@@ -6,7 +6,7 @@ Builds on [SQLite Blog](../../backend-sql/sqlite-blog/README.md).
 
 ### Scripts
 
-- `npm run dev` — run with `nodemon` and auto-restart on watched file changes.
-- `npm run start` — run app directly with `tsx`.
-- `npm run typecheck` — run TypeScript checks (`tsc --noEmit`).
-- `npm run db:seed` — fill the `blog_entries` table from `db/blog.db.sql` (start the server once first, it creates the table).
+- `pnpm dev` — run with `nodemon` and auto-restart on watched file changes.
+- `pnpm start` — run app directly with `tsx`.
+- `pnpm typecheck` — run TypeScript checks (`tsc --noEmit`).
+- `pnpm db:seed` — fill the `blog_entries` table from `db/blog.db.sql` (start the server once first, it creates the table).

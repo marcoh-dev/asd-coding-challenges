@@ -11,8 +11,8 @@ The snippet library styled with Tailwind CSS and shadcn/ui (Base UI components),
 ```bash
 cp .env.example .env
 docker compose up -d
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 `docker-compose.yaml` reads the `POSTGRES_*` values from `.env` and publishes Postgres on port 5433. Open http://localhost:3000.

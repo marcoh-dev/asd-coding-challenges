@@ -16,8 +16,8 @@ The delivery app styled with Tailwind CSS and shadcn/ui (Base UI components):
 ```bash
 cp .env.example .env
 docker compose up -d
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Fill in `.env` first: `docker-compose.yaml` reads the `POSTGRES_*` values, and `DATABASE_URL` has to match them. Open http://localhost:3000.

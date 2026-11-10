@@ -19,5 +19,13 @@
 		"@types/express": "^5.0.6",
 		"@types/node": "^26.1.1",
 		"typescript": "^7.0.2"
+	},
+	"packageManager": "pnpm@12.18.0",
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "^12.18.0",
+			"onFail": "download"
+		}
 	}
 }
