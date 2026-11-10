@@ -6,9 +6,6 @@
 		"nodemon": "^3.1.14",
 		"tsx": "^4.23.1"
 	},
-	"peerDependencies": {
-		"typescript": "^5"
-	},
 	"scripts": {
 		"dev": "nodemon"
 	},
