@@ -1,0 +1,31 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--card-bg);
+  color: var(--card-text);
+  padding: 20px;
+  border-radius: 5px;
+  min-width: 300px;
+  flex: 1 1 30%;
+}
+
+.card__title {
+  margin: 0 0 10px 0;
+}
+
+.card__button {
+  all: unset;
+  width: auto;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--darkgray);
+  color: #ffffff;
+  cursor: pointer;
+
+  align-self: flex-end;
+}
+
+.card__button:hover {
+  background-color: var(--orange);
+}
