@@ -1,5 +1,7 @@
 ## SQLite Blog
 
+Builds on [MVC Pattern Challenge](../../mvc-pattern/mvc-pattern-challenge/README.md).
+
 > **Status: unfinished.** The database connection, table and seed are done, but the blog pages still read `data/posts.json`. Next: add a `slug` column and switch `getPosts`/`getPost` (and their controllers) to the database.
 
 ### Scripts

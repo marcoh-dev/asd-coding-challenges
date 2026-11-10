@@ -1,0 +1,23 @@
+<!--main_content-->
+{% extends "_baseAdminLayout.njk" %}
+{% block main_content %}
+<form method="POST" action="/admin/posts/{{ entry.title | slugify }}">
+{% for key, value in entry %}
+  {% if key == "id" %}
+  <input type="hidden" id="{{ key }}" name="{{ key }}" value="{{ value }}" />
+  {% elif key == "createdAt" %}
+  {% elif key == "content" %}
+  <section>
+    <label for="{{ key }}">{{ key }}</label>
+    <textarea id="{{ key }}" name="{{ key }}">{{ value }}</textarea>
+	</section>
+  {% else %}
+  <section>
+    <label for="{{ key }}">{{ key }}</label>
+    <input type="text" id="{{ key }}" name="{{ key }}" value="{{ value }}">
+	</section>
+  {% endif %}
+{% endfor %}
+<button type="submit">Submit</button>
+</form>
+{% endblock main_content %}
