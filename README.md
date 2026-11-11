@@ -73,3 +73,4 @@ Challenges and side projects from the neuefische bootcamps, one folder per cours
 ## Side projects (`side-projects`)
 
 - [`music-app`](side-projects/music-app): an album collection with previews from the Deezer API
+- [`react-native-styling-comparison`](side-projects/react-native-styling-comparison): the same Expo screen styled with StyleSheet, NativeWind, styled-components and Tamagui
