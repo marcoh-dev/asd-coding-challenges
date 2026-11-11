@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DarkTheme, DefaultTheme, Tabs, ThemeProvider } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { Boxes, Layers, Paintbrush, Wind } from "lucide-react-native";
+import { Box, Braces, Layers, Wind } from "lucide-react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { useAppTheme } from "@/hooks/useAppTheme";
@@ -53,7 +53,7 @@ export default function RootLayout() {
 							options={{
 								title: "styled-components",
 								tabBarIcon: ({ color, size }) => (
-									<Paintbrush color={color} size={size} />
+									<Braces color={color} size={size} />
 								),
 							}}
 						/>
@@ -61,9 +61,7 @@ export default function RootLayout() {
 							name="tamagui"
 							options={{
 								title: "Tamagui",
-								tabBarIcon: ({ color, size }) => (
-									<Boxes color={color} size={size} />
-								),
+								tabBarIcon: ({ color, size }) => <Box color={color} size={size} />,
 							}}
 						/>
 					</Tabs>

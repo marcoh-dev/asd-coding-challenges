@@ -36,6 +36,7 @@ The git history has one commit per approach, so each commit's diff shows exactly
 - **NativeWind changes the whole app:** the Babel preset sets `jsxImportSource: "nativewind"` for every file, not only its own tab. Components without `className` pass through unchanged, so the other tabs aren't affected.
 - **NativeWind colors are duplicated:** `tailwind.config.js` can't import the TypeScript theme, so the colors are written there a second time.
 - **NativeWind's rem is 14 px on native by default**, so `p-4` and `text-base` come out smaller than on the web. `inlineRem: 16` in `metro.config.js` makes them match the other tabs.
+- **Tailwind's text sizes include a line height** (`text-base` is 16 px with a 24 px line), while the other approaches only set the font size. `tailwind.config.js` overrides `text-sm` and `text-base` with the size alone, so the lines are spaced the same everywhere.
 - **NativeWind logs "ImageBackground is deprecated"** on start, even though the app doesn't use it: `react-native-css-interop` touches React Native's `ImageBackground` when it loads ([nativewind#1881](https://github.com/nativewind/nativewind/issues/1881)). It's harmless.
 - **NativeWind needs `react-native-css-interop` as a direct dependency** with pnpm, or Metro can't resolve its JSX runtime.
 - **styled-components `FlatList`:** `contentContainerStyle` and `columnWrapperStyle` aren't style props, so they go through `.attrs()` as plain objects instead of CSS.

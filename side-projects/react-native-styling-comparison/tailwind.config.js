@@ -4,6 +4,10 @@ module.exports = {
 	presets: [require("nativewind/preset")],
 	theme: {
 		extend: {
+			fontSize: {
+				sm: "0.875rem",
+				base: "1rem",
+			},
 			colors: {
 				background: { DEFAULT: "#F3F2EE", dark: "#242831" },
 				surface: { DEFAULT: "#EAE8E2", dark: "#303642" },
