@@ -33,12 +33,12 @@ The git history has one commit per approach, so each commit's diff shows exactly
 
 ## Things worth knowing
 
-- **NativeWind changes the whole app:** the Babel preset sets `jsxImportSource: "nativewind"` for every file, not only its own tab. Components without `className` pass through unchanged, so the other tabs aren't affected.
+- **NativeWind is limited to its own folder here:** its official setup transforms the JSX of every file in the app (`jsxImportSource: "nativewind"`) and wraps `View`, `Text`, `Pressable` and so on. That wrapper drops Pressable's `style={({ pressed }) => …}`, which broke the header toggle in all four tabs. `babel.config.js` therefore applies the NativeWind preset only to `src/styles/nativewind/` (with a function as `test`, because NativeWind's Metro step also calls Babel without a filename), so the other tabs run as plain React Native. In a real app you'd use NativeWind everywhere or not at all.
 - **NativeWind colors are duplicated:** `tailwind.config.js` can't import the TypeScript theme, so the colors are written there a second time.
 - **NativeWind's rem is 14 px on native by default**, so `p-4` and `text-base` come out smaller than on the web. `inlineRem: 16` in `metro.config.js` makes them match the other tabs.
 - **Tailwind's text sizes include a line height** (`text-base` is 16 px with a 24 px line), while the other approaches only set the font size. `tailwind.config.js` overrides `text-sm` and `text-base` with the size alone, so the lines are spaced the same everywhere.
 - **NativeWind logs "ImageBackground is deprecated"** on start, even though the app doesn't use it: `react-native-css-interop` touches React Native's `ImageBackground` when it loads ([nativewind#1881](https://github.com/nativewind/nativewind/issues/1881)). It's harmless.
-- **NativeWind breaks Pressable's `style` function app-wide:** its wrappers don't pass on `style={({ pressed }) => …}`, so those styles are lost, even in the StyleSheet tab. Plain style objects and arrays work; the pressed state is done with a child function (`{({ pressed }) => …}`) instead.
+- **Pressed states use a child function** (`{({ pressed }) => …}`) instead of a `style` function, so they also work inside NativeWind's wrappers.
 - **NativeWind needs `react-native-css-interop` as a direct dependency** with pnpm, or Metro can't resolve its JSX runtime.
 - **styled-components `FlatList`:** `contentContainerStyle` and `columnWrapperStyle` aren't style props, so they go through `.attrs()` as plain objects instead of CSS.
 - **Tamagui 3 changed a lot compared with most tutorials:** theme values have no `$` (`backgroundColor: "surface"`), the v6 default config only allows shorthands (`p`, `px`, `items`, `justify`, `rounded`, `minH`), and `pressStyle` became a value per state (`{ default: 1, press: 0.7 }`).
