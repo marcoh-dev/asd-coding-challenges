@@ -1,10 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DarkTheme, DefaultTheme, Tabs, ThemeProvider } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { Layers } from "lucide-react-native";
+import { Layers, Wind } from "lucide-react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { useAppTheme } from "@/hooks/useAppTheme";
+import "@/global.css";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,13 @@ export default function RootLayout() {
 								tabBarIcon: ({ color, size }) => (
 									<Layers color={color} size={size} />
 								),
+							}}
+						/>
+						<Tabs.Screen
+							name="nativewind"
+							options={{
+								title: "NativeWind",
+								tabBarIcon: ({ color, size }) => <Wind color={color} size={size} />,
 							}}
 						/>
 					</Tabs>
