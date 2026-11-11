@@ -1,3 +1,47 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+@import "nativewind/theme";
+
+@theme {
+	--text-*: initial;
+	--text-sm: 0.875rem;
+	--text-base: 1rem;
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-surface: var(--surface);
+	--color-text: var(--text);
+	--color-text-secondary: var(--text-secondary);
+	--color-primary: var(--primary);
+	--color-status-alive: var(--status-alive);
+	--color-status-dead: var(--status-dead);
+	--color-border: var(--border);
+}
+
+:root {
+	font-size: 16px;
+
+	--background: #f3f2ee;
+	--surface: #eae8e2;
+	--text: #2b2923;
+	--text-secondary: #69655e;
+	--primary: #2866bb;
+	--status-alive: #2e7d32;
+	--status-dead: #c62828;
+	--border: #dfdbd5;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #242831;
+		--surface: #303642;
+		--text: #e8eaf0;
+		--text-secondary: #b5bbc6;
+		--primary: #6ea2ea;
+		--status-alive: #66bb6a;
+		--status-dead: #ef5350;
+		--border: #48515f;
+	}
+}
