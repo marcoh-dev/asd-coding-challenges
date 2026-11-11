@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^12.0.12",
-    "@types/node": "^26.2.0",
+    "@types/node": "^24.19.2",
     "@types/nunjucks": "^3.2.6",
     "prettier": "^3.9.6",
     "prettier-plugin-jinja-template": "^2.2.0",
