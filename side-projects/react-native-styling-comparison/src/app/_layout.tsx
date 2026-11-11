@@ -32,7 +32,7 @@ export default function RootLayout() {
 				<ThemeProvider value={navigationTheme}>
 					<StatusBar style={isDark ? "light" : "dark"} />
 
-					<Tabs screenOptions={{ headerRight: () => <ThemeToggle /> }}>
+					<Tabs screenOptions={{ headerRight: () => <ThemeToggle />, animation: "fade" }}>
 						<Tabs.Screen
 							name="index"
 							options={{
