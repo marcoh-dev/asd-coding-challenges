@@ -28,11 +28,15 @@ export default function CharacterScreen() {
 			<View style={styles.centered}>
 				<Text style={styles.message}>Could not load the characters.</Text>
 				<Pressable
-					style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+					style={styles.button}
 					onPress={() => refetch()}
 					accessibilityRole="button"
 				>
-					<Text style={styles.buttonText}>Try again</Text>
+					{({ pressed }) => (
+						<Text style={[styles.buttonText, pressed && styles.pressed]}>
+							Try again
+						</Text>
+					)}
 				</Pressable>
 			</View>
 		);
