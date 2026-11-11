@@ -1,0 +1,22 @@
+{
+	"name": "typescript-tutorial",
+	"version": "1.0.0",
+	"description": "A tutorial on TypeScript",
+	"scripts": {
+		"compile": "tsc",
+		"typecheck": "tsc --noEmit"
+	},
+	"author": "Martin Zachoszcz",
+	"license": "MIT",
+	"devDependencies": {
+		"typescript": "~6.0.3"
+	},
+	"packageManager": "pnpm@12.18.0",
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "^12.18.0",
+			"onFail": "download"
+		}
+	}
+}
