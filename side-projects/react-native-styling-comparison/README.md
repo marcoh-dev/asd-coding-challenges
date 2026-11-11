@@ -44,6 +44,28 @@ The git history has one commit per approach, so each commit's diff shows exactly
 - **Tamagui 3 changed a lot compared with most tutorials:** theme values have no `$` (`backgroundColor: "surface"`), the v6 default config only allows shorthands (`p`, `px`, `items`, `justify`, `rounded`, `minH`), and `pressStyle` became a value per state (`{ default: 1, press: 0.7 }`).
 - **Tamagui's compiler is left out:** everything works at runtime, and the compiler currently has an open bug with `@/` imports.
 
+## NativeWind 5 experiment
+
+The branch [`nativewind-5`](https://github.com/marcoh-dev/nf-coding-challenges/tree/nativewind-5/side-projects/react-native-styling-comparison) runs the NativeWind tab on the NativeWind 5 release candidate with Tailwind CSS 4.3, the same Tailwind version as food-swap's web frontend. It works on Expo SDK 58. Compared with version 4 on `main`:
+
+- No Babel step and no `tailwind.config.js`: the theme lives in `global.css` as CSS variables, with dark values in a `prefers-color-scheme` block.
+- `styled()` replaces `cssInterop`, and `FlatList` needs no workaround.
+- rem and line heights are fixed in `global.css` instead of the Metro and Tailwind configs.
+- The "ImageBackground is deprecated" warning is gone.
+- `nativewind` and `react-native-css` have to be installed as an exact release candidate pair, with `lightningcss` pinned.
+
+It stays on its own branch until NativeWind 5 is stable.
+
+To try it, switch to the branch and reinstall, because the two branches use different packages. Clear Metro's cache on the first start, since the CSS setup is different:
+
+```bash
+git switch nativewind-5
+pnpm install
+pnpm start -c
+```
+
+To go back, run the same with `git switch main`.
+
 ## Getting started
 
 ```bash
