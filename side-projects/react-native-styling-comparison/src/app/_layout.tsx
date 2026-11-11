@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DarkTheme, DefaultTheme, Tabs, ThemeProvider } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { Layers, Wind } from "lucide-react-native";
+import { Layers, Paintbrush, Wind } from "lucide-react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { useAppTheme } from "@/hooks/useAppTheme";
@@ -46,6 +46,15 @@ export default function RootLayout() {
 							options={{
 								title: "NativeWind",
 								tabBarIcon: ({ color, size }) => <Wind color={color} size={size} />,
+							}}
+						/>
+						<Tabs.Screen
+							name="styled-components"
+							options={{
+								title: "styled-components",
+								tabBarIcon: ({ color, size }) => (
+									<Paintbrush color={color} size={size} />
+								),
 							}}
 						/>
 					</Tabs>
