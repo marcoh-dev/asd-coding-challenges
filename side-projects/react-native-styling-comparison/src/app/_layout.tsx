@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { Box, Braces, Layers, Wind } from "lucide-react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import ThemeToggle from "@/components/ThemeToggle";
 import { useAppTheme } from "@/hooks/useAppTheme";
 import "@/global.css";
 
@@ -31,7 +32,7 @@ export default function RootLayout() {
 				<ThemeProvider value={navigationTheme}>
 					<StatusBar style={isDark ? "light" : "dark"} />
 
-					<Tabs>
+					<Tabs screenOptions={{ headerRight: () => <ThemeToggle /> }}>
 						<Tabs.Screen
 							name="index"
 							options={{

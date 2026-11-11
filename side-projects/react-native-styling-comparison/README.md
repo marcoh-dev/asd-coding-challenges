@@ -2,7 +2,7 @@
 
 The same character list styled in four different ways, one tab per approach, so the implementations can be compared side by side.
 
-Based on [`mobile-development-05-env/rick-and-morty-gallery`](../../fssd-challenges/mobile-development-05-env/rick-and-morty-gallery), trimmed down to one screen: the first page of characters from the [Rick and Morty API](https://rickandmortyapi.com), in two columns, with light and dark mode following the system.
+Based on [`mobile-development-05-env/rick-and-morty-gallery`](../../fssd-challenges/mobile-development-05-env/rick-and-morty-gallery), trimmed down to one screen: the first page of characters from the [Rick and Morty API](https://rickandmortyapi.com), in two columns, with light and dark mode following the system. A sun/moon button in the header switches between them with `Appearance.setColorScheme`, which all four approaches pick up.
 
 ## Approaches
 
