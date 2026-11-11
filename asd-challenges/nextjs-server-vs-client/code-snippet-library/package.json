@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "next": "16.4.6",
-    "postgres": "^3.4.9",
+    "postgres": "^4.1.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

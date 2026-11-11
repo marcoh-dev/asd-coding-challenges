@@ -188,9 +188,6 @@ importers:
       '@types/nunjucks':
         specifier: ^3.2.6
         version: 3.2.6
-      '@types/sqlite3':
-        specifier: ^3.1.11
-        version: 3.1.11
       nodemon:
         specifier: ^3.1.10
         version: 3.1.14
@@ -395,9 +392,6 @@ packages:
 
   '@types/serve-static@2.2.0':
     resolution: {integrity: sha512-8mam4H1NHLtu7nmtalF7eyBH14QyOASmcxHhSfEoRyr0nP/YdoesEtU+uSRvMe96TW/HPTtkoKqQLl53N7UXMQ==}
-
-  '@types/sqlite3@3.1.11':
-    resolution: {integrity: sha512-KYF+QgxAnnAh7DWPdNDroxkDI3/MspH1NMx6m/N/6fT1G6+jvsw4/ZePt8R8cr7ta58aboeTfYFBDxTJ5yv15w==}
 
   a-sync-waterfall@1.0.1:
     resolution: {integrity: sha512-RYTOHHdWipFUliRFMCS4X2Yn2X8M87V/OpSqWzKKOGhzqyUxzyVmhHDH9sAvG+ZuQf/TAOFsLCpMw09I1ufUnA==}
@@ -1125,10 +1119,6 @@ snapshots:
   '@types/serve-static@2.2.0':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 24.19.2
-
-  '@types/sqlite3@3.1.11':
-    dependencies:
       '@types/node': 24.19.2
 
   a-sync-waterfall@1.0.1: {}
