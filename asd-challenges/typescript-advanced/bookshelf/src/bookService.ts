@@ -16,9 +16,7 @@ export const sampleBooks: TBook[] = sampleBooksData.map((book) => ({
 	updatedAt: new Date(book.updatedAt),
 }));
 
-export async function fetchBooks(
-	term: string,
-): Promise<IApiResponse<TBookPreview[]>> {
+export async function fetchBooks(term: string): Promise<IApiResponse<TBookPreview[]>> {
 	const response = await fetch(`https://www.dbooks.org/api/search/${term}`);
 	const data: IApiResponse<TBookPreview[]> = await response.json();
 	return data;
@@ -30,9 +28,7 @@ export async function fetchBook(id: TEntityId): Promise<IApiResponse<TBook>> {
 	return data;
 }
 
-export async function createBook(
-	payload: TBookCreatePayload,
-): Promise<IApiResponse<TBook>> {
+export async function createBook(payload: TBookCreatePayload): Promise<IApiResponse<TBook>> {
 	// ... submit "payload" to server
 	const mockDataFromServer = {
 		id: 8697689,
@@ -89,10 +85,7 @@ export function parseIsbn(isbn: string): TIsbnParts {
 	return [Number(isbn), "neuefische", "cool book"];
 }
 
-export function groupBy<T, K extends keyof T>(
-	items: T[],
-	key: K,
-): Record<string, T[]> {
+export function groupBy<T, K extends keyof T>(items: T[], key: K): Record<string, T[]> {
 	const groups: Record<string, T[]> = {};
 
 	for (const item of items) {

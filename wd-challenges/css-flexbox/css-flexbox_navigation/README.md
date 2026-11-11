@@ -7,8 +7,8 @@
 - [ ] Next, open your `styles.css` file.
 - [ ] Make sure to include the `navigation__menu` class selector.
 - [ ] Within the `navigation__menu` class selector, add the necessary properties to meet these requirements:
-  - [ ] The links should be spaced horizontally, as far apart as possible.
-  - [ ] The first link should align to the start, and the last link should align to the end.
+    - [ ] The links should be spaced horizontally, as far apart as possible.
+    - [ ] The first link should align to the start, and the last link should align to the end.
 
 ## Notes
 

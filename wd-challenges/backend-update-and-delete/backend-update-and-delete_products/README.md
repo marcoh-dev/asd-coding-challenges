@@ -80,9 +80,9 @@ We need to update the content of our Product component to display the edit form:
 
 - Create a state called `isEditMode` and initialize it with `false`.
 - In the return statement, add a `<button>` with
-  - `type="button"`,
-  - `onClick={() => { setIsEditMode(!isEditMode); }}`,
-  - and a proper text.
+    - `type="button"`,
+    - `onClick={() => { setIsEditMode(!isEditMode); }}`,
+    - and a proper text.
 - In the return statement, display the `ProductForm` component depending on the `isEditMode` state (Hint: `isEditMode && ...`).
 - pass our `handleEditProduct` function to the `ProductForm` as the `onSubmit` prop.
 
@@ -104,18 +104,18 @@ Deleting a product should be possible from the details page.
 Switch to `pages/[id].js` and implement a delete button:
 
 - In the return statement, add a `<button>` with
-  - `type="button"`,
-  - `onClick={() => handleDeleteProduct(id)}`,
-  - and a proper text.
+    - `type="button"`,
+    - `onClick={() => handleDeleteProduct(id)}`,
+    - and a proper text.
 
 Write the `handleDeleteProduct` function:
 
 - _Wait_ for a `fetch()` with two arguments:
-  - the url `/api/products/${id}` and
-  - an options object `{ method: "DELETE" }`
+    - the url `/api/products/${id}` and
+    - an options object `{ method: "DELETE" }`
 - Save the result in a variable called `response`.
 - If the `response` is `ok`,
-  - _wait_ for `response.json()` and use `push("/")`.
+    - _wait_ for `response.json()` and use `push("/")`.
 - If the `response` is not `ok`, log the `response.status` as an error to the console.
 
 Open [`localhost:3000/`](http://localhost:3000/) in your browser, switch to a details page, delete a fish and be happy about your shop being expanded!
@@ -125,8 +125,8 @@ Open [`localhost:3000/`](http://localhost:3000/) in your browser, switch to a de
 You can find the fish shop data in [this folder](./resources/).
 
 - The files are already in the correct structure for the app.
-  - `products.json` contains the data for the all fish,
-  - `reviews.json` contains the data for all reviews.
+    - `products.json` contains the data for the all fish,
+    - `reviews.json` contains the data for all reviews.
 - Import them into the correct collection of your MongoDB when you are asked to.
 
 ## Development

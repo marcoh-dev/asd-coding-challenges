@@ -14,9 +14,7 @@ todoForm.addEventListener("submit", (event: SubmitEvent) => {
 	markAsDone.addEventListener("input", (event: InputEvent) => {
 		const checkbox = event.target as HTMLInputElement;
 		console.log(checkbox.checked);
-		checkbox.closest("li")!.style.textDecoration = checkbox.checked
-			? "line-through"
-			: "";
+		checkbox.closest("li")!.style.textDecoration = checkbox.checked ? "line-through" : "";
 	});
 
 	const deleteTodo = document.createElement("button");

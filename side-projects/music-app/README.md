@@ -33,7 +33,7 @@ Feel free to add your own features to this app! We're excited to see what you co
 
 ## Implementation Recommendations
 
-You should start the project by rendering a list of albums from your data source. This can be the [albums.json](./albums.json) file in the assets folder or a database filled with this initial data.
+You should start the project by rendering a list of albums from your data source. This can be the [albums.json](./src/assets/albums.json) file in the assets folder or a database filled with this initial data.
 
 For the playback of the music you need to fetch a fresh "preview" link from Deezer. You can use the following API endpoint:
 

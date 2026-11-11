@@ -7,11 +7,11 @@ In this challenge, you will encounter the following tasks:
 
 ## Tasks
 
-- [ ] `.element__1` should start at column three and go until column five  
-- [ ] `.element__2` should start at column five and go until the end  
-- [ ] `.element__5` should span two columns and two rows  
+- [ ] `.element__1` should start at column three and go until column five
+- [ ] `.element__2` should start at column five and go until the end
+- [ ] `.element__5` should span two columns and two rows
 - [ ] `.element__8 should` span two rows
-- [ ] `.element__spiced should` be in row one and span the entire grid width  
+- [ ] `.element__spiced should` be in row one and span the entire grid width
 - [ ] `.element__20 should` start at row six and span two rows
 
 ## Notes

@@ -55,13 +55,13 @@ const shiftedFruits = ["apple", "banana", "mango"];
 shiftedFruits.shift();
 
 export {
-  exampleArray,
-  nestedArray,
-  firstNumber,
-  fruits,
-  nestedNumber,
-  petsWithPush,
-  fruitsWithPop,
-  unshiftedPets,
-  shiftedFruits,
+	exampleArray,
+	nestedArray,
+	firstNumber,
+	fruits,
+	nestedNumber,
+	petsWithPush,
+	fruitsWithPop,
+	unshiftedPets,
+	shiftedFruits,
 };

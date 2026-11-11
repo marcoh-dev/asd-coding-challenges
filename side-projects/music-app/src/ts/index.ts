@@ -10,18 +10,14 @@ albums.forEach((album) => {
 	albumCards.append(getAlbumCard(album));
 });
 
-const albumSearchForm = document.getElementById(
-	"album-search",
-) as HTMLFormElement;
+const albumSearchForm = document.getElementById("album-search") as HTMLFormElement;
 
 albumSearchForm.addEventListener("submit", async (event: SubmitEvent) => {
 	event.preventDefault();
 
 	const data = Object.fromEntries(new FormData(albumSearchForm));
 	const albumResults = fetchLocalAlbums(data.album_query as string);
-	const albumResultCards = document.getElementById(
-		"search-album-cards",
-	) as HTMLElement;
+	const albumResultCards = document.getElementById("search-album-cards") as HTMLElement;
 	albumResultCards.innerHTML = ``;
 	albumResults.forEach((album) => {
 		albumResultCards.append(getAlbumCard(album));

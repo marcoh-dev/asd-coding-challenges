@@ -36,10 +36,10 @@ In this exercise you train to write if / else and ternary statements in various 
 - use a ternary operator inside the round brackets to complete the `greeting` as follows.
 - if the variable `name` is equal to the name of your coach, the `greeting` should read "Hello Coach!"
 - otherwise the string saved in `name` should be used instead, e.g.:
-  ```js
-  const name = "Archibald";
-  // logs "Hello Archibald!"
-  ```
+    ```js
+    const name = "Archibald";
+    // logs "Hello Archibald!"
+    ```
 - change the value of `name` to check if the ternary operator works properly.
 
 ## Notes

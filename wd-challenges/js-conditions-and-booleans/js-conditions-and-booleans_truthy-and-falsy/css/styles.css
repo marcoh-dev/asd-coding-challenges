@@ -1,28 +1,26 @@
-@import './global.css';
+@import "./global.css";
 
 legend {
-    background-color: var(--primary);
-    color: var(--white);
+	background-color: var(--primary);
+	color: var(--white);
 }
 
 li {
-    margin-bottom: 1em;
+	margin-bottom: 1em;
 }
 
 ul {
-    list-style: none;
-    padding-left: 0;
+	list-style: none;
+	padding-left: 0;
 }
-
 
 span {
-    margin-left: 2em;
-    font-style: italic;
-    color: var(--secondary);
-    font-size: 0.8em;
+	margin-left: 2em;
+	font-style: italic;
+	color: var(--secondary);
+	font-size: 0.8em;
 }
 
-
 .hidden {
-    display: none;
+	display: none;
 }

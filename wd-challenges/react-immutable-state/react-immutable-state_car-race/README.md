@@ -21,8 +21,8 @@ Inside of the `moveCar` function, call `setCars` and update the `cars` state.
 - Find the object in `cars` which is equivalent to `clickedCar` (Hint: `.map` + and some unique identifier).
 - When processing the `clickedCar`, make sure to copy all relevant objects before updating them.
 - After the update, the updated car should have
-  - `position.x` with a value of the previous `x` value + the `coveredDistance`;
-  - `lastDistance` with the value of the `coveredDistance`.
+    - `position.x` with a value of the previous `x` value + the `coveredDistance`;
+    - `lastDistance` with the value of the `coveredDistance`.
 
 > ✨ You should no be able to click a car and it moves forward! Can you win the race?
 

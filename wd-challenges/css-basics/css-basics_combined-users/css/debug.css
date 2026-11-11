@@ -4,37 +4,37 @@
 */
 
 .debug :is(body, main, aside, ul, .user)::before {
-  content: var(--debug-content);
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  padding: 4px;
-  background-color: #ff4a11;
-  border-radius: 4px;
-  font-size: 8px;
-  color: white;
+	content: var(--debug-content);
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	padding: 4px;
+	background-color: #ff4a11;
+	border-radius: 4px;
+	font-size: 8px;
+	color: white;
 }
 
 .debug :is(body, main, aside, ul, .user) {
-  position: relative;
+	position: relative;
 }
 
 body {
-  --debug-content: "body";
+	--debug-content: "body";
 }
 
 main {
-  --debug-content: "main";
+	--debug-content: "main";
 }
 
 aside {
-  --debug-content: "aside";
+	--debug-content: "aside";
 }
 
 ul {
-  --debug-content: "ul";
+	--debug-content: "ul";
 }
 
 .user {
-  --debug-content: ".user";
+	--debug-content: ".user";
 }

@@ -12,8 +12,8 @@ const filteredNews = news.filter((element) => element.categories.includes("polit
 const sortedNews = filteredNews.toSorted((a, b) => a.body.length - b.body.length);
 
 sortedNews.forEach((news) => {
-  const cardElement = Card(news);
-  container.append(cardElement);
+	const cardElement = Card(news);
+	container.append(cardElement);
 });
 
 // Check your filter and sorting order here. Have a look at the console to see if you're right or wrong.

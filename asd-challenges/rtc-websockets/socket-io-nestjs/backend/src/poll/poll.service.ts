@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class PollService {
-  /*
+	/*
   private tallies: Record<string, number> = {};
 
   addVote(pollId: string, option: string) {
@@ -11,12 +11,12 @@ export class PollService {
   }
 	*/
 
-  private tallies: Record<string, Record<string, number>> = {};
+	private tallies: Record<string, Record<string, number>> = {};
 
-  addVote(pollId: string, option: string) {
-    this.tallies[pollId] ??= {}; // create if it doesnt exist
+	addVote(pollId: string, option: string) {
+		this.tallies[pollId] ??= {}; // create if it doesnt exist
 
-    this.tallies[pollId][option] = (this.tallies[pollId][option] ?? 0) + 1;
-    return this.tallies[pollId];
-  }
+		this.tallies[pollId][option] = (this.tallies[pollId][option] ?? 0) + 1;
+		return this.tallies[pollId];
+	}
 }

@@ -59,8 +59,8 @@ Switch to `pages/api/products/index.js`:
 - Make the `handler` function `async` and `await` the connection to the database.
 - If the `request.method` is `GET`,
 
-  - use the `Product` model to find all products and
-  - return them as a response.
+    - use the `Product` model to find all products and
+    - return them as a response.
 
 Switch to `components/ProductList` and adapt the frontend:
 
@@ -85,7 +85,7 @@ Open MongoDB Atlas and adapt your `fish-shop` database:
 
 - Add a new collection called `reviews`; insert the data from `bonus-reviews.json`.
 - Drop the `products` collection; recreate it with the same name, but now insert data from the `bonus-products.json` file.
-  - Note: The data in `bonus-products.json` contain a `reviews` array with `ids` as a reference to the corresponding review in the `review` collection.
+    - Note: The data in `bonus-products.json` contain a `reviews` array with `ids` as a reference to the corresponding review in the `review` collection.
 
 Create a schema for the `Review` model in the `db/models` folder.
 
@@ -115,8 +115,8 @@ Finally, update the frontend to display the reviews:
 You can find the fish shop data in [this folder](./resources/).
 
 - The files are already in the correct structure for the app.
-  - `products.json` contains the data for the first task, and
-  - `bonus-products.json` and `bonus-reviews.json` contain the data for the bonus task.
+    - `products.json` contains the data for the first task, and
+    - `bonus-products.json` and `bonus-reviews.json` contain the data for the bonus task.
 - Import them into the correct collection of your remote MongoDB when you are asked to.
 
 ## Development

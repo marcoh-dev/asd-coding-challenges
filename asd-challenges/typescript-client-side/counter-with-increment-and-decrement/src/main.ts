@@ -1,9 +1,5 @@
-const decreaseButton = document.getElementById(
-	"decreaseBtn",
-) as HTMLButtonElement;
-const increaseButton = document.getElementById(
-	"increaseBtn",
-) as HTMLButtonElement;
+const decreaseButton = document.getElementById("decreaseBtn") as HTMLButtonElement;
+const increaseButton = document.getElementById("increaseBtn") as HTMLButtonElement;
 const counter = document.getElementById("counter") as HTMLParagraphElement;
 
 function updateCounter(change: number): void {
@@ -11,9 +7,5 @@ function updateCounter(change: number): void {
 	counter.textContent = String(currentValue + change);
 }
 
-increaseButton.addEventListener("click", (event: MouseEvent) =>
-	updateCounter(1),
-);
-decreaseButton.addEventListener("click", (event: MouseEvent) =>
-	updateCounter(-1),
-);
+increaseButton.addEventListener("click", (event: MouseEvent) => updateCounter(1));
+decreaseButton.addEventListener("click", (event: MouseEvent) => updateCounter(-1));

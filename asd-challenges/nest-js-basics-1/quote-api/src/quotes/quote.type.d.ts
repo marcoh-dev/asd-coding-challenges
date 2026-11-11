@@ -1,14 +1,14 @@
 export type Quote = {
-  id: number;
-  quote: string;
-  author: string;
+	id: number;
+	quote: string;
+	author: string;
 };
 
 export type QuoteFilters = {
-  author?: string;
+	author?: string;
 };
 
 export type QuoteResult = {
-  quotes: Quote[];
-  filters: QuoteFilters;
+	quotes: Quote[];
+	filters: QuoteFilters;
 };

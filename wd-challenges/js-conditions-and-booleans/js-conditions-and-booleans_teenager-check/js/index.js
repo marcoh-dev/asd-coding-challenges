@@ -3,19 +3,19 @@ const button = document.querySelector('[data-js="age-button"]');
 const output = document.querySelector('[data-js="age-output"]');
 
 button.addEventListener("click", () => {
-  // Number(x) converts the string from the input to a number
-  // Beware: input values are *always* strings!
-  const age = Number(input.value);
+	// Number(x) converts the string from the input to a number
+	// Beware: input values are *always* strings!
+	const age = Number(input.value);
 
-  // Exercise:
-  // Use conditions and the logical AND operator to write
-  // "You are a teen." or "You are not a teen." into the output.
-  let teenPhrase;
+	// Exercise:
+	// Use conditions and the logical AND operator to write
+	// "You are a teen." or "You are not a teen." into the output.
+	let teenPhrase;
 
-  if (age >= 13 && age < 20) {
-    teenPhrase = "You are a teen.";
-  } else {
-    teenPhrase = "You are not a teen.";
-  }
-  output.innerHTML = teenPhrase;
+	if (age >= 13 && age < 20) {
+		teenPhrase = "You are a teen.";
+	} else {
+		teenPhrase = "You are not a teen.";
+	}
+	output.innerHTML = teenPhrase;
 });

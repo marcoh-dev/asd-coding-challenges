@@ -2,17 +2,17 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 const reviewSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  text: {
-    type: String,
-  },
-  rating: {
-    type: Number,
-    required: true,
-  },
+	title: {
+		type: String,
+		required: true,
+	},
+	text: {
+		type: String,
+	},
+	rating: {
+		type: Number,
+		required: true,
+	},
 });
 
 const Review = mongoose.models.Review || mongoose.model("Review", reviewSchema);

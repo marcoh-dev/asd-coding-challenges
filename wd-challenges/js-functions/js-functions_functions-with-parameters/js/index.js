@@ -9,7 +9,7 @@ logSeparator(1);
 logText();
 
 function logText() {
-  console.log("This text does not appear. Why?");
+	console.log("This text does not appear. Why?");
 }
 
 logSeparator(2);
@@ -37,7 +37,7 @@ logSeparator(2);
 // --v-- write your code here --v--
 
 function greet(name) {
-  console.log("Welcome " + name + ", good to see you again!");
+	console.log("Welcome " + name + ", good to see you again!");
 }
 greet("Alice");
 greet("Bob");
@@ -55,7 +55,7 @@ Note: Separation text refers to the text that is logged in the console before ea
 
 // --v-- write your code here --v--
 function logSeparator(number) {
-  console.log("-------------");
-  console.log("Exercise " + number + ":");
+	console.log("-------------");
+	console.log("Exercise " + number + ":");
 }
 // --^-- write your code here --^--

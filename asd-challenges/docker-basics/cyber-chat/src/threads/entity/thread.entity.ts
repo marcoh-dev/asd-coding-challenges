@@ -1,26 +1,21 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Thread {
-  @PrimaryGeneratedColumn('increment')
-  id!: number;
+	@PrimaryGeneratedColumn("increment")
+	id!: number;
 
-  @Column()
-  title!: string;
+	@Column()
+	title!: string;
 
-  @Column()
-  author!: string;
+	@Column()
+	author!: string;
 
-  @Column()
-  body!: string;
+	@Column()
+	body!: string;
 
-  @CreateDateColumn()
-  createdAt!: Date;
+	@CreateDateColumn()
+	createdAt!: Date;
 }
 
-export type CreateThreadPayload = Omit<Thread, 'id' | 'createdAt'>;
+export type CreateThreadPayload = Omit<Thread, "id" | "createdAt">;

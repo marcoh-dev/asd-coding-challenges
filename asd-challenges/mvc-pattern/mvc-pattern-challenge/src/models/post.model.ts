@@ -17,9 +17,7 @@ export function getPosts({ author, sort }: TPostParams = {}) {
 	const posts = loadPosts();
 
 	const filteredPosts = author
-		? posts.filter((post) =>
-				post.author.toLowerCase().includes(author.toLowerCase()),
-			)
+		? posts.filter((post) => post.author.toLowerCase().includes(author.toLowerCase()))
 		: posts;
 
 	return [...filteredPosts].sort((a, b) => {

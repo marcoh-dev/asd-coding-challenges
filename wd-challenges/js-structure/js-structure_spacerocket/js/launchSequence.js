@@ -8,13 +8,13 @@ import { liftoff } from "./core/liftoff.js";
 import { deployPayload } from "./core/deploy.js";
 
 export default function launch() {
-  loadPayload(NFSAT);
-  loadPayload(FISHSAT);
-  fuel();
+	loadPayload(NFSAT);
+	loadPayload(FISHSAT);
+	fuel();
 
-  for (let i = 0; i < 5; i++) {
-    countdown();
-  }
-  liftoff();
-  deployPayload();
+	for (let i = 0; i < 5; i++) {
+		countdown();
+	}
+	liftoff();
+	deployPayload();
 }

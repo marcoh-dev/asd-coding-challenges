@@ -21,9 +21,7 @@ export function getPosts({ author, sort }: TPostParams = {}) {
 	const posts = loadPosts();
 
 	const filteredPosts = author
-		? posts.filter((post) =>
-				post.author.toLowerCase().includes(author.toLowerCase()),
-			)
+		? posts.filter((post) => post.author.toLowerCase().includes(author.toLowerCase()))
 		: posts;
 
 	return [...filteredPosts].sort((a, b) => {
@@ -48,11 +46,7 @@ export async function getAllBlogEntries(): Promise<IBlogEntry[]> {
 	return await db.all<IBlogEntry[]>("SELECT * FROM blog_entries");
 }
 
-export async function getBlogEntryById(
-	id: number,
-): Promise<IBlogEntry | undefined> {
+export async function getBlogEntryById(id: number): Promise<IBlogEntry | undefined> {
 	const db = getDB();
-	return await db.get<IBlogEntry>("SELECT * FROM blog_entries WHERE id = ?", [
-		id,
-	]);
+	return await db.get<IBlogEntry>("SELECT * FROM blog_entries WHERE id = ?", [id]);
 }

@@ -17,13 +17,13 @@ You can use the following hints as guideline:
 
 - `SWR` is already installed, so you just have to import it.
 - Switch to `./pages/characters/1.js`:
-  - fetch only the first character using https://swapi.py4e.com/api/people/1;
-  - instead of the hard coded `/1`, interpolate the `id` variable.
-  - implement a loading state;
-  - to implement a proper error state based on an error object, you need to adapt the fetcher function [as explained in the SWR docs](https://swr.vercel.app/docs/error-handling#status-code-and-error-object).
+    - fetch only the first character using https://swapi.py4e.com/api/people/1;
+    - instead of the hard coded `/1`, interpolate the `id` variable.
+    - implement a loading state;
+    - to implement a proper error state based on an error object, you need to adapt the fetcher function [as explained in the SWR docs](https://swr.vercel.app/docs/error-handling#status-code-and-error-object).
 - Adapt the return statement so that you pass the correct fetched data to the `Card` component.
 - When you are done, reload the browser with `characters/1`: it should now return the fetched data of Luke Skywalker.
-  - Note: Because we declared the `id` variable with `1`, it's currently not possible to fetch another character by changing the url to, e.g., `characters/2`. We will fix this when implementing dynamic routes in the next step.
+    - Note: Because we declared the `id` variable with `1`, it's currently not possible to fetch another character by changing the url to, e.g., `characters/2`. We will fix this when implementing dynamic routes in the next step.
 
 ✨ Congratulations, you have fetched an API with the help of `SWR`!
 
@@ -39,8 +39,8 @@ By now, there is only one static route `/1` fetching one static character. Let's
 ## Notes
 
 - You only have to touch the following files:
-  - `./pages/index.js`,
-  - `./pages/characters/1.js`.
+    - `./pages/index.js`,
+    - `./pages/characters/1.js`.
 
 ## Development
 

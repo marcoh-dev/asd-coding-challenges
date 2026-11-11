@@ -2,28 +2,28 @@ import dbConnect from "@/db/connect";
 import Product from "@/db/models/Product";
 
 export default async function handler(request, response) {
-  await dbConnect();
+	await dbConnect();
 
-  try {
-    if (request.method === "GET") {
-      const products = await Product.find().populate("reviews");
+	try {
+		if (request.method === "GET") {
+			const products = await Product.find().populate("reviews");
 
-      response.status(200).json(products);
-      return;
-    }
+			response.status(200).json(products);
+			return;
+		}
 
-    if (request.method === "POST") {
-      const productData = request.body;
+		if (request.method === "POST") {
+			const productData = request.body;
 
-      await Product.create(productData);
+			await Product.create(productData);
 
-      response.status(201).json({ status: "Product created." });
-      return;
-    }
-  } catch (error) {
-    console.error(error);
-    return response.status(500).json({ status: "Internal Server Error." });
-  }
+			response.status(201).json({ status: "Product created." });
+			return;
+		}
+	} catch (error) {
+		console.error(error);
+		return response.status(500).json({ status: "Internal Server Error." });
+	}
 
-  response.status(405).json({ status: "Method not allowed." });
+	response.status(405).json({ status: "Method not allowed." });
 }

@@ -7,61 +7,61 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-  font-family: system-ui;
-  background-color: #f1f4f7;
-  padding: 0 48px;
-  color: #021414;
+	font-family: system-ui;
+	background-color: #f1f4f7;
+	padding: 0 48px;
+	color: #021414;
 }
 
 main,
 aside {
-  max-width: 800px;
-  margin: 24px auto;
-  padding: 16px 32px;
-  border: 2px dotted lightslategray;
-  border-radius: 4px;
-  position: relative;
+	max-width: 800px;
+	margin: 24px auto;
+	padding: 16px 32px;
+	border: 2px dotted lightslategray;
+	border-radius: 4px;
+	position: relative;
 }
 
 ul {
-  width: max-content;
+	width: max-content;
 }
 
 li {
-  margin: 8px 0;
+	margin: 8px 0;
 }
 
 .user {
-  position: relative;
-  border: 2px solid lightslategray;
-  border-radius: 8px;
-  box-shadow: 4px 4px 0 lightslategray;
-  padding: 20px;
-  max-width: 400px;
-  margin: 0;
-  background-color: white;
+	position: relative;
+	border: 2px solid lightslategray;
+	border-radius: 8px;
+	box-shadow: 4px 4px 0 lightslategray;
+	padding: 20px;
+	max-width: 400px;
+	margin: 0;
+	background-color: white;
 }
 
 .name {
-  font-size: 18px;
-  text-transform: uppercase;
-  margin: 0;
+	font-size: 18px;
+	text-transform: uppercase;
+	margin: 0;
 }
 
 .bio {
-  font-size: 14px;
-  color: darkslategray;
+	font-size: 14px;
+	color: darkslategray;
 }
 
 .location {
-  font-size: 12px;
-  font-weight: 600;
-  text-align: end;
-  margin: 0;
+	font-size: 12px;
+	font-weight: 600;
+	text-align: end;
+	margin: 0;
 }
 
 /*
@@ -85,22 +85,22 @@ li {
 */
 
 aside .user {
-  max-width: 250px;
-  padding: 12px;
-  border-radius: 4px;
+	max-width: 250px;
+	padding: 12px;
+	border-radius: 4px;
 }
 
 aside .user .name {
-  font-size: 16px;
+	font-size: 16px;
 }
 
 aside .user .location {
-  font-size: 10px;
+	font-size: 10px;
 }
 
 aside .user .bio {
-  font-size: 12px;
-  margin: 6px 0;
+	font-size: 12px;
+	margin: 6px 0;
 }
 
 /*
@@ -116,9 +116,9 @@ aside .user .bio {
 */
 
 ul .user .bio {
-  display: none;
+	display: none;
 }
 
 ul .user .location {
-  color: darkslategray;
+	color: darkslategray;
 }

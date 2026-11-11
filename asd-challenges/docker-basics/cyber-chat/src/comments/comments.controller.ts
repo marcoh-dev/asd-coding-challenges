@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Delete,
-  Get,
-  Param,
-  UseGuards,
-  Request,
-  ParseIntPipe,
-} from "@nestjs/common";
+import { Controller, Delete, Get, Param, UseGuards, Request, ParseIntPipe } from "@nestjs/common";
 import { CommentsService } from "./comments.service";
 import type { CommentResponse } from "./dto/CommentResponseDto";
 import { AuthGuard } from "@nestjs/passport";
@@ -15,21 +7,19 @@ import type { ValidatedUser } from "../users/entity/user.entity";
 
 @Controller("comments")
 export class CommentsController {
-  constructor(private readonly commentsService: CommentsService) {}
+	constructor(private readonly commentsService: CommentsService) {}
 
-  @Get(":id")
-  async getById(
-    @Param("id", ParseIntPipe) id: number,
-  ): Promise<CommentResponse> {
-    return this.commentsService.getById(id);
-  }
+	@Get(":id")
+	async getById(@Param("id", ParseIntPipe) id: number): Promise<CommentResponse> {
+		return this.commentsService.getById(id);
+	}
 
-  @UseGuards(AuthGuard("jwt"))
-  @Delete(":id")
-  async delete(
-    @Param("id", ParseIntPipe) id: number,
-    @Request() request: RequestWith<ValidatedUser>,
-  ): Promise<boolean> {
-    return this.commentsService.softDelete(id, request.user);
-  }
+	@UseGuards(AuthGuard("jwt"))
+	@Delete(":id")
+	async delete(
+		@Param("id", ParseIntPipe) id: number,
+		@Request() request: RequestWith<ValidatedUser>,
+	): Promise<boolean> {
+		return this.commentsService.softDelete(id, request.user);
+	}
 }

@@ -57,7 +57,7 @@ const values = [1, 6, 7, 9, 12, 5, 4];
 export const result = add(...values); // Spread values inside this function call
 
 function add(...values) {
-  return values.reduce((previousValue, currentValue) => previousValue + currentValue);
+	return values.reduce((previousValue, currentValue) => previousValue + currentValue);
 }
 
 console.log(result);

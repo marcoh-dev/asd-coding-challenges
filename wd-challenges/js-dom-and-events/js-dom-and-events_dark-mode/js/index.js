@@ -6,13 +6,13 @@ const lightModeButton = document.querySelector('[data-js="light-mode-button"]');
 const toggleButton = document.querySelector('[data-js="toggle-button"]');
 
 darkModeButton.addEventListener("click", () => {
-  bodyElement.classList.add("dark");
+	bodyElement.classList.add("dark");
 });
 
 lightModeButton.addEventListener("click", () => {
-  bodyElement.classList.remove("dark");
+	bodyElement.classList.remove("dark");
 });
 
 toggleButton.addEventListener("click", () => {
-  bodyElement.classList.toggle("dark");
+	bodyElement.classList.toggle("dark");
 });

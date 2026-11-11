@@ -1,23 +1,23 @@
 {
-  "name": "css-structure_taco-truck",
-  "version": "0.0.0-unreleased",
-  "description": "Static HTML template with CSS",
-  "main": "index.html",
-  "nf": {
-    "template": "html-css"
-  },
-  "scripts": {
-    "start": "vite --port 3000 --open"
-  },
-  "packageManager": "pnpm@12.18.0",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^12.18.0",
-      "onFail": "download"
-    }
-  },
-  "devDependencies": {
-    "vite": "^8.3.7"
-  }
+	"name": "css-structure_taco-truck",
+	"version": "0.0.0-unreleased",
+	"description": "Static HTML template with CSS",
+	"main": "index.html",
+	"nf": {
+		"template": "html-css"
+	},
+	"scripts": {
+		"start": "vite --port 3000 --open"
+	},
+	"packageManager": "pnpm@12.18.0",
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "^12.18.0",
+			"onFail": "download"
+		}
+	},
+	"devDependencies": {
+		"vite": "^8.3.7"
+	}
 }

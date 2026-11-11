@@ -3,17 +3,17 @@ export type Role = "USER" | "ADMIN" | "SUPER_ADMIN";
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn("uuid")
-  id!: string;
+	@PrimaryGeneratedColumn("uuid")
+	id!: string;
 
-  @Column({ unique: true })
-  username!: string;
+	@Column({ unique: true })
+	username!: string;
 
-  @Column()
-  password!: string;
+	@Column()
+	password!: string;
 
-  @Column({ type: "simple-array", default: ["USER"] })
-  roles!: Role[];
+	@Column({ type: "simple-array", default: ["USER"] })
+	roles!: Role[];
 }
 
 export type ValidatedUser = Omit<User, "password">;

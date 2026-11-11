@@ -44,10 +44,10 @@ Then:
 
 // --v-- write your code here --v--
 function logBookData(bookTitle, bookAuthor, bookRating, bookSales) {
-  console.log("Title: " + bookTitle);
-  console.log("Author: " + bookAuthor);
-  console.log("Rating: " + bookRating);
-  console.log("Sales: " + bookSales);
+	console.log("Title: " + bookTitle);
+	console.log("Author: " + bookAuthor);
+	console.log("Rating: " + bookRating);
+	console.log("Sales: " + bookSales);
 }
 
 logBookData(bookTitle, bookAuthor, bookRating, bookSales);

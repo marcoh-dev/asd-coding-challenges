@@ -11,6 +11,7 @@ In this exercise you train to write a `switch` statement. Please also refer to t
 - Write a `switch` statement that checks the result of [`typeof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof) data and logs a different string depending on the type or value of `data`.
 
 The possible strings to log are:
+
 - "undefined!"
 - "null!"
 - "number!"
@@ -24,17 +25,16 @@ The possible strings to log are:
 
 > 💡 Hint: For checking if `data` is `null`, an `array`, or a regular `object`, you’ll need to handle these cases specifically in JavaScript, as `typeof` returns "object" for all of them.
 
-
 ### Running the Code
 
 > 💡 Since this project is JavaScript only, there is nothing to preview in the browser. You will run the JavaScript code directly in the terminal using Node.js.
 
 - To run your code:
-  - Open your terminal.
-  - Navigate to the folder where `index.js` is located.
-  - Run `pnpm start` to execute the `index.js` file using Node.js.
-  - The script will run using Node.js, and the output will be logged in the terminal.
-  - Check the terminal output to see if the correct messages are displayed based on the weather conditions and temperature.
+    - Open your terminal.
+    - Navigate to the folder where `index.js` is located.
+    - Run `pnpm start` to execute the `index.js` file using Node.js.
+    - The script will run using Node.js, and the output will be logged in the terminal.
+    - Check the terminal output to see if the correct messages are displayed based on the weather conditions and temperature.
 
 ### Notes
 

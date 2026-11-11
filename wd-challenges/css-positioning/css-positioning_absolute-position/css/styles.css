@@ -1,29 +1,29 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: system-ui;
+	margin: 0;
+	font-family: system-ui;
 }
 
 main {
-  width: 500px;
-  height: 600px;
-  border: 1px solid black;
-  margin: 5em auto;
-  position: relative;
+	width: 500px;
+	height: 600px;
+	border: 1px solid black;
+	margin: 5em auto;
+	position: relative;
 }
 
 .box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80px;
-  width: 80px;
-  text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 80px;
+	width: 80px;
+	text-align: center;
 }
 
 /**
@@ -36,37 +36,37 @@ main {
  */
 
 .box {
-  position: absolute;
+	position: absolute;
 }
 
 [class*="top"] {
-  top: 0;
+	top: 0;
 }
 
 [class*="bottom"] {
-  bottom: 0;
+	bottom: 0;
 }
 
 [class*="right"] {
-  right: 0;
+	right: 0;
 }
 
 [class*="left"] {
-  left: 0;
+	left: 0;
 }
 
 .box--top-left {
-  background-color: #aed6f1;
+	background-color: #aed6f1;
 }
 
 .box--top-right {
-  background-color: #5dade2;
+	background-color: #5dade2;
 }
 
 .box--bottom-left {
-  background-color: #2874a6;
+	background-color: #2874a6;
 }
 
 .box--bottom-right {
-  background-color: #1b4f72;
+	background-color: #1b4f72;
 }

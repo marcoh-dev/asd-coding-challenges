@@ -11,8 +11,8 @@ Let’s organize it by refactoring the code with JavaScript modules.
 Consider the following hints to guide you:
 
 - Think in terms of components:
-  - Identify the distinct components of the app.
-  - Each component should have its own JavaScript file containing all related functions.
+    - Identify the distinct components of the app.
+    - Each component should have its own JavaScript file containing all related functions.
 - Ultimately, `./index.js` should only include imports, function calls, and the main `render()` function.
 - Don’t forget to update the `index.html` file to let the browser know you’re using modules.
 

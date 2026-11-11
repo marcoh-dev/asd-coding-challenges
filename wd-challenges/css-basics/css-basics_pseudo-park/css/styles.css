@@ -9,26 +9,26 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .park {
-  margin: 16px;
-  border: 2px dashed silver;
-  overflow: hidden;
-  border-radius: 8px;
-  background-color: lightgoldenrodyellow;
+	margin: 16px;
+	border: 2px dashed silver;
+	overflow: hidden;
+	border-radius: 8px;
+	background-color: lightgoldenrodyellow;
 }
 
 .animal {
-  padding: 16px;
+	padding: 16px;
 
-  /*
+	/*
     The animals are very small.
     The size of the emojis is controlled via the font size.
     Set the font size to 32px.
   */
-  font-size: 32px;
+	font-size: 32px;
 }
 
 /*
@@ -39,7 +39,7 @@
   💡 Select the animals by their class names and use the text-align property.
 */
 .giraffe {
-  text-align: center;
+	text-align: center;
 }
 
 /* 
@@ -53,13 +53,13 @@
 */
 
 .crocodile:hover {
-  background-color: lightblue;
+	background-color: lightblue;
 }
 
 .giraffe:hover {
-  background-color: lightgreen;
+	background-color: lightgreen;
 }
 
 .dino:hover {
-  background-color: lightsalmon;
+	background-color: lightsalmon;
 }

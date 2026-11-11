@@ -5,9 +5,7 @@ function sortWords(inputString: string): string {
 	if (wordArray.length < 2) return inputString;
 
 	for (let i = 0; i < wordArray.length; i++) {
-		const word: string | undefined = wordArray.find((word) =>
-			word.includes(String(i + 1)),
-		);
+		const word: string | undefined = wordArray.find((word) => word.includes(String(i + 1)));
 
 		if (word) {
 			sortedWordArray.push(word);

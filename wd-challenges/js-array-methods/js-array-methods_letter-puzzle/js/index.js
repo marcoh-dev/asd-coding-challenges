@@ -11,9 +11,7 @@ const hasEmployeesOlderThan65 = employees.some((employee) => employee.age > 65);
 // QUESTION 2: Is there any employee with first name 'Frederique'?
 // Hint: use some()
 
-const employeeNamedFrederique = employees.some(
-  (element) => element.firstName === "Frederique"
-);
+const employeeNamedFrederique = employees.some((element) => element.firstName === "Frederique");
 console.log(employeeNamedFrederique);
 
 //----------------------------------------
@@ -34,9 +32,7 @@ console.log(everyEmployeeHasPhoneNumber);
 // QUESTION 5: Does every id start with '0'?
 // Hint: Use every()
 
-const everyIdStartsWith0 = employees.every((element) =>
-  element.id.startsWith("0")
-);
+const everyIdStartsWith0 = employees.every((element) => element.id.startsWith("0"));
 console.log(everyIdStartsWith0);
 
 //----------------------------------------
@@ -44,7 +40,7 @@ console.log(everyIdStartsWith0);
 // Hint: use every()
 
 const everyEmployeeHasFirstAndLastName = employees.every(
-  (element) => element.firstName && element.lastName
+	(element) => element.firstName && element.lastName,
 );
 console.log(everyEmployeeHasFirstAndLastName);
 
@@ -53,7 +49,7 @@ console.log(everyEmployeeHasFirstAndLastName);
 // Hint: use find()
 
 const employeeLouise33 = employees.find(
-  (element) => element.firstName === "Louise" && element.age === 33
+	(element) => element.firstName === "Louise" && element.age === 33,
 );
 console.log(employeeLouise33);
 
@@ -61,9 +57,7 @@ console.log(employeeLouise33);
 // QUESTION 8: We need to find the employee with the id '0.0795620650485831'
 // Hint: Use find()
 
-const employeeWithId = employees.find(
-  (element) => element.id === "0.0795620650485831"
-);
+const employeeWithId = employees.find((element) => element.id === "0.0795620650485831");
 console.log(employeeWithId);
 
 //----------------------------------------
@@ -71,8 +65,7 @@ console.log(employeeWithId);
 // Hint: use find()
 
 const ednaInvestment = employees.find(
-  (element) =>
-    element.firstName === "Edna" && element.profession === "Investment Manager"
+	(element) => element.firstName === "Edna" && element.profession === "Investment Manager",
 );
 console.log(ednaInvestment);
 
@@ -88,11 +81,11 @@ console.log(employeesSortedByAge);
 // Hint use toSorted()
 
 const employeesSortedByLastName = employees.toSorted((a, b) =>
-  a.lastName.toLowerCase() < b.lastName.toLowerCase()
-    ? 1
-    : a.lastName.toLowerCase() > b.lastName.toLowerCase()
-      ? -1
-      : 0
+	a.lastName.toLowerCase() < b.lastName.toLowerCase()
+		? 1
+		: a.lastName.toLowerCase() > b.lastName.toLowerCase()
+			? -1
+			: 0,
 );
 
 // const employeesSortedByLastName = employees.toSorted((a, b) =>
@@ -103,15 +96,15 @@ console.log(employeesSortedByLastName);
 // Great! 🎉 You got it! 🚀 Now you can read the solution of the letter puzzle. 💪
 
 export {
-  hasEmployeesOlderThan65,
-  employeesSortedByAge,
-  employeeNamedFrederique,
-  employeeWithId,
-  employeeYoungerThan18,
-  everyEmployeeHasPhoneNumber,
-  employeesSortedByLastName,
-  everyIdStartsWith0,
-  everyEmployeeHasFirstAndLastName,
-  employeeLouise33,
-  ednaInvestment,
+	hasEmployeesOlderThan65,
+	employeesSortedByAge,
+	employeeNamedFrederique,
+	employeeWithId,
+	employeeYoungerThan18,
+	everyEmployeeHasPhoneNumber,
+	employeesSortedByLastName,
+	everyIdStartsWith0,
+	everyEmployeeHasFirstAndLastName,
+	employeeLouise33,
+	ednaInvestment,
 };

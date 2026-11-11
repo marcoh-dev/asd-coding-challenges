@@ -1,4 +1,4 @@
 allowBuilds:
-  '@scarf/scarf': false
+  "@scarf/scarf": false
   better-sqlite3: true
   sqlite3: true

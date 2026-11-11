@@ -2,13 +2,13 @@ import Card from "../Card/Card.js";
 import { cards } from "../App/App.js";
 
 export default function CardList() {
-  const cardList = document.createElement("section");
-  cardList.classList.add("card-list");
+	const cardList = document.createElement("section");
+	cardList.classList.add("card-list");
 
-  cards.forEach((card) => {
-    const cardElement = Card(card);
-    cardList.append(cardElement);
-  });
+	cards.forEach((card) => {
+		const cardElement = Card(card);
+		cardList.append(cardElement);
+	});
 
-  return cardList;
+	return cardList;
 }
