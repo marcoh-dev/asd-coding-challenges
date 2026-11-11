@@ -1,0 +1,47 @@
+{
+	"expo": {
+		"name": "React Native Styling Comparison",
+		"slug": "react-native-styling-comparison",
+		"scheme": "reactnativestylingcomparison",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"userInterfaceStyle": "automatic",
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"backgroundColor": "#E6F4FE",
+				"foregroundImage": "./assets/android-icon-foreground.png",
+				"backgroundImage": "./assets/android-icon-background.png",
+				"monochromeImage": "./assets/android-icon-monochrome.png"
+			},
+			"predictiveBackGestureEnabled": false
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"plugins": [
+			[
+				"expo-splash-screen",
+				{
+					"backgroundColor": "#F3F2EE",
+					"image": "./assets/splash-icon.png",
+					"imageWidth": 120,
+					"resizeMode": "contain",
+					"dark": {
+						"backgroundColor": "#242831",
+						"image": "./assets/splash-icon.png"
+					}
+				}
+			],
+			"expo-image",
+			"expo-router"
+		],
+		"experiments": {
+			"typedRoutes": true,
+			"reactCompiler": true
+		}
+	}
+}
