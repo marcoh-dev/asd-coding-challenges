@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  compiler: {
-    styledComponents: true,
-  },
-  reactStrictMode: true,
-  images: {
-    remotePatterns: [{ protocol: "https", hostname: "upload.wikimedia.org" }],
-  },
+	compiler: {
+		styledComponents: true,
+	},
+	reactStrictMode: true,
+	images: {
+		remotePatterns: [{ protocol: "https", hostname: "upload.wikimedia.org" }],
+	},
 };
 
 module.exports = nextConfig;

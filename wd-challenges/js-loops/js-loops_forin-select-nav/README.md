@@ -30,9 +30,9 @@ Guidelines:
 
 - Write a `for...in` loop for the `nav` object.
 - In each iteration:
-  - Create a list item and an anchor tag.
-  - Set the anchor's `href` and `textContent` properties using values from the `nav` object, accessed via bracket notation and the iterator variable.
-  - Append the list item and anchor tag to their respective parent elements.
+    - Create a list item and an anchor tag.
+    - Set the anchor's `href` and `textContent` properties using values from the `nav` object, accessed via bracket notation and the iterator variable.
+    - Append the list item and anchor tag to their respective parent elements.
 
 Switch to `./js/index.js` to begin!
 

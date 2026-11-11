@@ -23,8 +23,14 @@ export async function listPosts(req: Request, res: Response) {
 
 export async function newPost(_req: Request, res: Response) {
 	try {
-		const entry: Omit<IBlogEntry, "id" | "createdAt"> = {title:"", teaser:"", author:"", image:"", content:""}
-		res.render("adminNew.njk", {entry});
+		const entry: Omit<IBlogEntry, "id" | "createdAt"> = {
+			title: "",
+			teaser: "",
+			author: "",
+			image: "",
+			content: "",
+		};
+		res.render("adminNew.njk", { entry });
 	} catch (err) {
 		res.status(500).json({ error: "Failed to fetch blog entry" });
 	}
@@ -33,7 +39,7 @@ export async function newPost(_req: Request, res: Response) {
 export async function editPost(req: Request<{ slug: string }>, res: Response) {
 	try {
 		const entry = await getBlogEntryBySlug(req.params.slug);
-		
+
 		res.render("adminEdit.njk", {
 			entry,
 		});
@@ -73,13 +79,12 @@ export async function updatePost(
 }
 
 export async function deletePost(req: Request<{ slug: string }>, res: Response) {
-  try {
-
-	const entry = await getBlogEntryBySlug(req.params.slug);
-    await deleteBlogEntry(Number(entry!.id));
-    //res.status(200).json({ message: "Blog entry deleted" });
-	res.redirect(`/admin?action=deleted&id=${entry!.id}`);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to delete blog entry" });
-  }
+	try {
+		const entry = await getBlogEntryBySlug(req.params.slug);
+		await deleteBlogEntry(Number(entry!.id));
+		//res.status(200).json({ message: "Blog entry deleted" });
+		res.redirect(`/admin?action=deleted&id=${entry!.id}`);
+	} catch (err) {
+		res.status(500).json({ error: "Failed to delete blog entry" });
+	}
 }

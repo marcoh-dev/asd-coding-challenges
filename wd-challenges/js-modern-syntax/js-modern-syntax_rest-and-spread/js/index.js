@@ -9,10 +9,10 @@ c) Make sure to export your variable as shown in the example below to make the t
 */
 
 const person = {
-  name: "Jane Doe",
-  age: 32,
-  email: "jane@doe.com",
-  phone: "12345",
+	name: "Jane Doe",
+	age: 32,
+	email: "jane@doe.com",
+	phone: "12345",
 };
 // Example: export const { value 1 } = myObject;
 export const { age, ...contact } = person;
@@ -35,7 +35,7 @@ d) Note that the optional chaining `?.` is used to prevent an error from occurin
 */
 
 function add(...allNumbers) {
-  return allNumbers.reduce?.((a, b) => a + b);
+	return allNumbers.reduce?.((a, b) => a + b);
 }
 
 export const sum = add(3, 2, 3, 2, 1, 2, 3, 4);

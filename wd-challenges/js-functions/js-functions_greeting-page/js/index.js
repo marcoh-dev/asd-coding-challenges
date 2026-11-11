@@ -23,33 +23,33 @@ Update the content and style of the page based on the current day and time.
 const display = document.querySelector('[data-js="display"]');
 
 function getGreeting() {
-  //const time = new Date().getHours();
-  const time = 23;
-  console.log(time);
-  switch (true) {
-    case time >= 6 && time <= 12:
-      return "Good Morning";
-    case time >= 13 && time <= 18:
-      return "Good Afternoon";
-    case time >= 19 && time <= 22:
-      return "Good Evening";
-    case time >= 23 || time <= 5:
-      return "Good Night";
-  }
+	//const time = new Date().getHours();
+	const time = 23;
+	console.log(time);
+	switch (true) {
+		case time >= 6 && time <= 12:
+			return "Good Morning";
+		case time >= 13 && time <= 18:
+			return "Good Afternoon";
+		case time >= 19 && time <= 22:
+			return "Good Evening";
+		case time >= 23 || time <= 5:
+			return "Good Night";
+	}
 }
 
 function getDayColor() {
-  const day = new Date().getDay();
-  //const day = 3;
-  console.log(day);
-  switch (true) {
-    case day === 1:
-      return "darkgray";
-    case day >= 2 && day <= 5:
-      return "lightblue";
-    case day >= 6 && day <= 7:
-      return "hotpink";
-  }
+	const day = new Date().getDay();
+	//const day = 3;
+	console.log(day);
+	switch (true) {
+		case day === 1:
+			return "darkgray";
+		case day >= 2 && day <= 5:
+			return "lightblue";
+		case day >= 6 && day <= 7:
+			return "hotpink";
+	}
 }
 
 display.textContent = getGreeting();

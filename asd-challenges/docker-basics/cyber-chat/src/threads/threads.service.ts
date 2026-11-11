@@ -1,8 +1,8 @@
 import {
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-  UnauthorizedException,
+	Injectable,
+	InternalServerErrorException,
+	NotFoundException,
+	UnauthorizedException,
 } from "@nestjs/common";
 import { CommentsService } from "../comments/comments.service";
 import { InjectRepository } from "@nestjs/typeorm";
@@ -15,72 +15,70 @@ import type { ValidatedUser } from "../users/entity/user.entity";
 
 @Injectable()
 export class ThreadsService {
-  constructor(
-    @InjectRepository(Thread)
-    private readonly threadsRepository: Repository<Thread>,
-    private readonly commentsService: CommentsService,
-  ) {}
+	constructor(
+		@InjectRepository(Thread)
+		private readonly threadsRepository: Repository<Thread>,
+		private readonly commentsService: CommentsService,
+	) {}
 
-  async getAll(): Promise<ThreadResponseDto[]> {
-    const threads = await this.threadsRepository.find();
-    const instance = plainToInstance(ThreadResponseDto, threads);
-    return instance;
-  }
+	async getAll(): Promise<ThreadResponseDto[]> {
+		const threads = await this.threadsRepository.find();
+		const instance = plainToInstance(ThreadResponseDto, threads);
+		return instance;
+	}
 
-  async getById(id: number): Promise<ThreadWithCommentsResponseDto> {
-    const thread = await this.threadsRepository.findOneBy({ id });
+	async getById(id: number): Promise<ThreadWithCommentsResponseDto> {
+		const thread = await this.threadsRepository.findOneBy({ id });
 
-    if (!thread) throw new NotFoundException("Thread not found");
+		if (!thread) throw new NotFoundException("Thread not found");
 
-    const comments = await this.commentsService.getByThreadId(id);
+		const comments = await this.commentsService.getByThreadId(id);
 
-    return plainToInstance(ThreadWithCommentsResponseDto, {
-      ...thread,
-      comments,
-    });
-  }
+		return plainToInstance(ThreadWithCommentsResponseDto, {
+			...thread,
+			comments,
+		});
+	}
 
-  async create(thread: CreateThreadPayload): Promise<Thread> {
-    return plainToInstance(
-      ThreadWithCommentsResponseDto,
-      await this.threadsRepository.save(thread),
-    );
-  }
+	async create(thread: CreateThreadPayload): Promise<Thread> {
+		return plainToInstance(
+			ThreadWithCommentsResponseDto,
+			await this.threadsRepository.save(thread),
+		);
+	}
 
-  async delete(id: number, user: ValidatedUser): Promise<boolean> {
-    const thread = await this.threadsRepository.findOneBy({ id });
+	async delete(id: number, user: ValidatedUser): Promise<boolean> {
+		const thread = await this.threadsRepository.findOneBy({ id });
 
-    if (!thread) {
-      throw new NotFoundException("Thread not found");
-    }
+		if (!thread) {
+			throw new NotFoundException("Thread not found");
+		}
 
-    const isAuthor = thread.author === user.username;
-    const isAdmin = user.roles.includes("ADMIN");
+		const isAuthor = thread.author === user.username;
+		const isAdmin = user.roles.includes("ADMIN");
 
-    if (!isAuthor && !isAdmin) {
-      throw new UnauthorizedException(
-        "You are not authorized to delete this thread",
-      );
-    }
+		if (!isAuthor && !isAdmin) {
+			throw new UnauthorizedException("You are not authorized to delete this thread");
+		}
 
-    const deletionSuccess = await this.threadsRepository.delete(id);
+		const deletionSuccess = await this.threadsRepository.delete(id);
 
-    if (!deletionSuccess) {
-      throw new InternalServerErrorException("Thread could not be deleted");
-    }
+		if (!deletionSuccess) {
+			throw new InternalServerErrorException("Thread could not be deleted");
+		}
 
-    this.commentsService.deleteByThreadId(id);
+		this.commentsService.deleteByThreadId(id);
 
-    return true;
-  }
+		return true;
+	}
 
-  async update(id: number, thread: Partial<Thread>): Promise<UpdateResult> {
-    const updatedThread = await this.threadsRepository.update({ id }, thread);
+	async update(id: number, thread: Partial<Thread>): Promise<UpdateResult> {
+		const updatedThread = await this.threadsRepository.update({ id }, thread);
 
-    if (!updatedThread) {
-      throw new NotFoundException("Thread not found");
-    }
+		if (!updatedThread) {
+			throw new NotFoundException("Thread not found");
+		}
 
-    return updatedThread;
-  }
+		return updatedThread;
+	}
 }

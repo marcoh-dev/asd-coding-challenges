@@ -5,20 +5,20 @@ import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @InjectRepository(User)
-    private readonly usersRepository: Repository<User>,
-  ) {}
+	constructor(
+		@InjectRepository(User)
+		private readonly usersRepository: Repository<User>,
+	) {}
 
-  findById(id: string) {
-    return this.usersRepository.findOneBy({ id });
-  }
+	findById(id: string) {
+		return this.usersRepository.findOneBy({ id });
+	}
 
-  findByUsername(username: string) {
-    return this.usersRepository.findOneBy({ username });
-  }
+	findByUsername(username: string) {
+		return this.usersRepository.findOneBy({ username });
+	}
 
-  create(user: User) {
-    return this.usersRepository.save(user);
-  }
+	create(user: User) {
+		return this.usersRepository.save(user);
+	}
 }

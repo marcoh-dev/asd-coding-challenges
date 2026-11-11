@@ -9,25 +9,25 @@ import { LocalStrategy } from "./local.strategy";
 import { JwtStrategy } from "./jwt.strategy";
 
 @Module({
-  imports: [
-    UsersModule,
-    PassportModule,
-    ConfigModule,
-    JwtModule.registerAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        secret: config.get<string>("JWT_SECRET"),
-        signOptions: { expiresIn: "1d" },
-      }),
-    }),
-    // JwtModule.register({
-    //   secret: process.env.JWT_SECRET,
-    //   signOptions: { expiresIn: "1d" },
-    // }),
-  ],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
-  controllers: [AuthController],
-  exports: [AuthService, JwtModule],
+	imports: [
+		UsersModule,
+		PassportModule,
+		ConfigModule,
+		JwtModule.registerAsync({
+			imports: [ConfigModule],
+			inject: [ConfigService],
+			useFactory: (config: ConfigService) => ({
+				secret: config.get<string>("JWT_SECRET"),
+				signOptions: { expiresIn: "1d" },
+			}),
+		}),
+		// JwtModule.register({
+		//   secret: process.env.JWT_SECRET,
+		//   signOptions: { expiresIn: "1d" },
+		// }),
+	],
+	providers: [AuthService, LocalStrategy, JwtStrategy],
+	controllers: [AuthController],
+	exports: [AuthService, JwtModule],
 })
 export class AuthModule {}

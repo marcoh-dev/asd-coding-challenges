@@ -1,21 +1,21 @@
 {
-  "name": "library-management-system",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "undo-redo": "vite src --open /undo-redo.html"
-  },
-  "devDependencies": {
-    "@types/node": "^24.19.2",
-    "tsx": "^4.23.15",
-    "vite": "^8.3.7"
-  },
-  "packageManager": "pnpm@12.18.0",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^12.18.0",
-      "onFail": "download"
-    }
-  }
+	"name": "library-management-system",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"undo-redo": "vite src --open /undo-redo.html"
+	},
+	"devDependencies": {
+		"@types/node": "^24.19.2",
+		"tsx": "^4.23.15",
+		"vite": "^8.3.7"
+	},
+	"packageManager": "pnpm@12.18.0",
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "^12.18.0",
+			"onFail": "download"
+		}
+	}
 }

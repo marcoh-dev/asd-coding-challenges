@@ -1,24 +1,24 @@
 console.clear();
 
 const animalStrings = [
-  "cat",
-  "dog",
-  "elephant",
-  "rabbit",
-  "lion",
-  "tiger",
-  "horse",
-  "giraffe",
-  "zebra",
-  "penguin",
-  "polar bear",
-  "panda",
-  "koala",
-  "kangoroo",
-  "monkey",
-  "sloth",
-  "hippo",
-  "rhino",
+	"cat",
+	"dog",
+	"elephant",
+	"rabbit",
+	"lion",
+	"tiger",
+	"horse",
+	"giraffe",
+	"zebra",
+	"penguin",
+	"polar bear",
+	"panda",
+	"koala",
+	"kangoroo",
+	"monkey",
+	"sloth",
+	"hippo",
+	"rhino",
 ];
 
 const hippoExists = animalStrings.includes("hippo");
@@ -54,16 +54,16 @@ const everyAnimalHasMoreThanTwoLetters = animalStrings.every((element) => elemen
 //const sumOfAllAnimalCharacters = animalStrings.reduce((total, current) => total + current).length;
 // OR
 const sumOfAllAnimalCharacters = animalStrings
-  .map((element) => element.length)
-  .reduce((total, current) => total + current);
+	.map((element) => element.length)
+	.reduce((total, current) => total + current);
 
 export {
-  hippoExists,
-  catStartingFromIndexFiveExists,
-  firstAnimalStartingWithLetterP,
-  indexOfGiraffe,
-  animalsSortedAlphabetically,
-  anyAnimalEndsWithLetterZ,
-  everyAnimalHasMoreThanTwoLetters,
-  sumOfAllAnimalCharacters,
+	hippoExists,
+	catStartingFromIndexFiveExists,
+	firstAnimalStartingWithLetterP,
+	indexOfGiraffe,
+	animalsSortedAlphabetically,
+	anyAnimalEndsWithLetterZ,
+	everyAnimalHasMoreThanTwoLetters,
+	sumOfAllAnimalCharacters,
 };

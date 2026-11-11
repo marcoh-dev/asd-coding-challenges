@@ -12,18 +12,18 @@ You will need to fetch on interval and refetch on click of a button.
 
 - Comment out all unnecessary code:
 
-  - the `coords` state,
-  - the `getISSCoords` function,
-  - the `useEffect`,
-  - for now: the `onRefresh` prop passed to the `Controls` component (you will adapt this in a minute).
+    - the `coords` state,
+    - the `getISSCoords` function,
+    - the `useEffect`,
+    - for now: the `onRefresh` prop passed to the `Controls` component (you will adapt this in a minute).
 
 - Implement fetching of the same data with `SWR`.
 
-  - `SWR` is already installed, so you just have to import it.
-  - Handle the `isLoading` and `error` states provided by `SWR` as well.
-  - Make sure `data` is defined before working with it.
-  - Remember to adapt the `fetcher` function to create a proper `error` state [as explained in the SWR docs](https://swr.vercel.app/docs/error-handling#status-code-and-error-object).
-  - Note: `SWR` needs you to destructure a `data` object, but the `Map` and `Controls` component need `longitude` and `latitude` as separate props; how can you simply pass the coordinates from `data` without changing the `Map/index.js` and `Controls/index.js` files? (Hint: there are several ways to do this!)
+    - `SWR` is already installed, so you just have to import it.
+    - Handle the `isLoading` and `error` states provided by `SWR` as well.
+    - Make sure `data` is defined before working with it.
+    - Remember to adapt the `fetcher` function to create a proper `error` state [as explained in the SWR docs](https://swr.vercel.app/docs/error-handling#status-code-and-error-object).
+    - Note: `SWR` needs you to destructure a `data` object, but the `Map` and `Controls` component need `longitude` and `latitude` as separate props; how can you simply pass the coordinates from `data` without changing the `Map/index.js` and `Controls/index.js` files? (Hint: there are several ways to do this!)
 
 ✨ You should now see the exact position of the ISS again when refreshing the page!
 

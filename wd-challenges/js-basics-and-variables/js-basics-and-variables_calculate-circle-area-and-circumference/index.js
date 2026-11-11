@@ -18,7 +18,4 @@ const radius = 5;
 const circleArea = Math.PI * radius ** 2;
 const circumference = 2 * Math.PI * radius;
 
-console.log(
-  "area:" + circleArea + " cm²",
-  "circumference:" + circumference + " cm",
-);
+console.log("area:" + circleArea + " cm²", "circumference:" + circumference + " cm");

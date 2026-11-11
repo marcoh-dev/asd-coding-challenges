@@ -5,34 +5,34 @@ import StyledLink from "@/components/Link";
 import Comments from "@/components/Comments";
 
 export default function Product() {
-  const router = useRouter();
-  const { id } = router.query;
+	const router = useRouter();
+	const { id } = router.query;
 
-  const { data, isLoading } = useSWR(`/api/products/${id}`);
+	const { data, isLoading } = useSWR(`/api/products/${id}`);
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
+	if (isLoading) {
+		return <h1>Loading...</h1>;
+	}
 
-  if (!data) {
-    return;
-  }
+	if (!data) {
+		return;
+	}
 
-  return (
-    <ProductCard>
-      <h2>{data.name}</h2>
-      <p>Description: {data.description}</p>
-      <p>
-        Price: {data.price} {data.currency}
-      </p>
+	return (
+		<ProductCard>
+			<h2>{data.name}</h2>
+			<p>Description: {data.description}</p>
+			<p>
+				Price: {data.price} {data.currency}
+			</p>
 
-      <Comments reviews={data.reviews} />
-      <StyledLink href="/">Back to all</StyledLink>
-    </ProductCard>
-  );
+			<Comments reviews={data.reviews} />
+			<StyledLink href="/">Back to all</StyledLink>
+		</ProductCard>
+	);
 }
 
 export const ProductCard = styled.article`
-  padding: 0.5rem 1rem;
-  box-shadow: 0px 1px 5px -2px var(--color-granite);
+	padding: 0.5rem 1rem;
+	box-shadow: 0px 1px 5px -2px var(--color-granite);
 `;

@@ -1,11 +1,5 @@
 import { Thread } from "../../threads/entities/thread.entity";
-import {
-	Entity,
-	PrimaryGeneratedColumn,
-	Column,
-	CreateDateColumn,
-	ManyToOne,
-} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne } from "typeorm";
 
 @Entity("comments")
 export class Comment {

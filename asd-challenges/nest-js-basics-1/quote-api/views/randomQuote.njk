@@ -3,13 +3,13 @@
 {% block title %}Random Quote{% endblock title %}
 
 {% block main %}
-  <h1>Random Quote</h1>
-  {% if quote %}
-    <blockquote>
-      <p>{{ quote.quote }}</p>
-    </blockquote>
-    <p>— {{ quote.author }}</p>
-  {% else %}
-    <p>No quotes found.</p>
-  {% endif %}
+	<h1>Random Quote</h1>
+	{% if quote %}
+		<blockquote>
+			<p>{{ quote.quote }}</p>
+		</blockquote>
+		<p>— {{ quote.author }}</p>
+	{% else %}
+		<p>No quotes found.</p>
+	{% endif %}
 {% endblock main %}

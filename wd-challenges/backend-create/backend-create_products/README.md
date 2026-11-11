@@ -51,7 +51,7 @@ Your task is to fetch your new `POST` route and send the data to your database. 
 
 - call `useSWR` in your `ProductForm` component with the API endpoint and destructure the `mutate` method.
 - inside the handleSubmit function:
-  > 💡 Hint: have a look at the handout if you get stuck here.
+    > 💡 Hint: have a look at the handout if you get stuck here.
 - send a "POST" request with `fetch` using the following options as the second argument.
 
 ```js
@@ -74,8 +74,8 @@ Open [`localhost:3000/`](http://localhost:3000/) in your browser, submit a new f
 You can find the fish shop data in [this folder](./resources/).
 
 - The files are already in the correct structure for the app.
-  - `products.json` contains the data for the all fish,
-  - `reviews.json` contain the data for all reviews.
+    - `products.json` contains the data for the all fish,
+    - `reviews.json` contain the data for all reviews.
 - Import them into the correct collection of your MongoDB when you are asked to.
 
 ## Development

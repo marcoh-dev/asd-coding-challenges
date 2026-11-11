@@ -10,16 +10,16 @@ app.use(logger);
 app.use(cors());
 
 nunjucks.configure("src/views", {
-  autoescape: true,
-  express: app,
+	autoescape: true,
+	express: app,
 });
 
 app.get("/", (req, res) => {
-  res.render("index.njk", {
-    title: "Burn on Read",
-  });
+	res.render("index.njk", {
+		title: "Burn on Read",
+	});
 });
 
 app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
+	console.log(`Server is listening on port ${port}`);
 });

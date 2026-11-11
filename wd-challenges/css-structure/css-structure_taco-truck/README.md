@@ -43,9 +43,9 @@ Now, it's time to refactor the CSS for a more modular and maintainable structure
 ## Notes
 
 - You only have to work with the following files:
-  - `./styles.css`
-  - `.theme.css`
-  - `index.html`
+    - `./styles.css`
+    - `.theme.css`
+    - `index.html`
 - You will have to create at least three **new** files!
 
 ## Development

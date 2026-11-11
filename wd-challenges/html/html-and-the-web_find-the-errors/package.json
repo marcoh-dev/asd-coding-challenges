@@ -1,18 +1,18 @@
 {
-  "name": "html-and-the-web_find-the-errors",
-  "version": "0.0.0-unreleased",
-  "description": "HTML and the web: Find the errors",
-  "main": "n.a.",
-  "nf": {
-    "template": "empty"
-  },
-  "private": true,
-  "packageManager": "pnpm@12.18.0",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^12.18.0",
-      "onFail": "download"
-    }
-  }
+	"name": "html-and-the-web_find-the-errors",
+	"version": "0.0.0-unreleased",
+	"description": "HTML and the web: Find the errors",
+	"main": "n.a.",
+	"nf": {
+		"template": "empty"
+	},
+	"private": true,
+	"packageManager": "pnpm@12.18.0",
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "^12.18.0",
+			"onFail": "download"
+		}
+	}
 }

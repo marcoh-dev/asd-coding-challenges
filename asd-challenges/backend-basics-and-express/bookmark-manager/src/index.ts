@@ -11,9 +11,7 @@ app.get("/", (_req, res) => {
 });
 
 app.get("/bookmarks/:id", (req, res) => {
-	const bookmark = bookmarks.find(
-		(bookmark) => bookmark.id === Number(req.params.id),
-	);
+	const bookmark = bookmarks.find((bookmark) => bookmark.id === Number(req.params.id));
 
 	if (!bookmark) {
 		res.status(404).json({ error: "Bookmark not found" });
@@ -42,11 +40,9 @@ app.post("/bookmarks", (req, res) => {
 	}
 
 	if (fieldsMissing.length > 0) {
-		res
-			.status(404)
-			.json({
-				error: `Missing required field${fieldsMissing.length !== 1 ? "s" : ""}: ${fieldsMissing.join(", ")}`,
-			});
+		res.status(404).json({
+			error: `Missing required field${fieldsMissing.length !== 1 ? "s" : ""}: ${fieldsMissing.join(", ")}`,
+		});
 		return;
 	}
 
@@ -56,9 +52,7 @@ app.post("/bookmarks", (req, res) => {
 });
 
 app.patch("/bookmarks/:id", (req, res) => {
-	const index = bookmarks.findIndex(
-		(bookmark) => bookmark.id === Number(req.params.id),
-	);
+	const index = bookmarks.findIndex((bookmark) => bookmark.id === Number(req.params.id));
 
 	if (index === -1) {
 		res.status(404).json({ error: "Bookmark not found" });

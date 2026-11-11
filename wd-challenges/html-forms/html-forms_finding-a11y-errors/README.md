@@ -15,8 +15,8 @@ The following hints may guide you:
 - Does every interactive field have its own label?
 - Are all labels properly linked to their interactive fields using the correct attributes?
 - Do these connections work as expected?
-  - Test it by clicking on the label in your browser. Does the corresponding input field get focused?
-  - If not, could there be a spelling mistake?
+    - Test it by clicking on the label in your browser. Does the corresponding input field get focused?
+    - If not, could there be a spelling mistake?
 - Is the provided placeholder necessary for accessibility, or could it cause confusion?
 
 ## Notes

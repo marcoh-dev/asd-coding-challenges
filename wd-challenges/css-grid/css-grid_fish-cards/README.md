@@ -8,8 +8,8 @@ In this challenge, you will encounter the following tasks:
 
 Use grid to change the layout:
 
-- [ ]  Three cards are displayed below to each other
-- [ ]  In each card, the fish is displayed to the right of the headline and the paragraph
+- [ ] Three cards are displayed below to each other
+- [ ] In each card, the fish is displayed to the right of the headline and the paragraph
 
 <details>
 <summary>

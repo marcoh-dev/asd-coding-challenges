@@ -1,27 +1,27 @@
 .bookmark {
-  border: none;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  background: var(--secondary);
-  color: var(--white);
+	border: none;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	background: var(--secondary);
+	color: var(--white);
 }
 
 .bookmark:hover {
-  background-color: var(--primary);
-  cursor: pointer;
+	background-color: var(--primary);
+	cursor: pointer;
 }
 
 .bookmark--active:hover {
-  color: var(--secondary);
+	color: var(--secondary);
 }
 
 .bookmark--active {
-  color: var(--primary-dark);
+	color: var(--primary-dark);
 }
 
 .bookmark__icon {
-  fill: currentcolor;
-  width: 24px;
-  height: 24px;
+	fill: currentcolor;
+	width: 24px;
+	height: 24px;
 }

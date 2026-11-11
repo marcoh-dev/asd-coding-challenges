@@ -1,29 +1,29 @@
 console.clear();
 const recipes = [
-  {
-    title: "Crepes",
-    duration: 60,
-    ingredients: ["butter", "flour", "eggs", "milk", "salt"],
-    servings: 3,
-  },
-  {
-    title: "Scrambled Eggs",
-    duration: 20,
-    ingredients: ["eggs", "milk", "salt"],
-    servings: 2,
-  },
-  {
-    title: "Vegan Salmon",
-    duration: 60 * 24 * 3, // 3 days
-    ingredients: ["carrots", "olive oil", "nori sheets", "liquid smoke", "soy sauce"],
-    servings: 10,
-  },
-  {
-    title: "Carrot Cake",
-    duration: 120,
-    ingredients: ["carrots", "flour", "eggs", "salt", "milk", "sugar"],
-    servings: 10,
-  },
+	{
+		title: "Crepes",
+		duration: 60,
+		ingredients: ["butter", "flour", "eggs", "milk", "salt"],
+		servings: 3,
+	},
+	{
+		title: "Scrambled Eggs",
+		duration: 20,
+		ingredients: ["eggs", "milk", "salt"],
+		servings: 2,
+	},
+	{
+		title: "Vegan Salmon",
+		duration: 60 * 24 * 3, // 3 days
+		ingredients: ["carrots", "olive oil", "nori sheets", "liquid smoke", "soy sauce"],
+		servings: 10,
+	},
+	{
+		title: "Carrot Cake",
+		duration: 120,
+		ingredients: ["carrots", "flour", "eggs", "salt", "milk", "sugar"],
+		servings: 10,
+	},
 ];
 
 /*
@@ -54,14 +54,16 @@ const recipesThatOnlyTake60minutesOrLess = recipes.filter((element) => element.d
 
 const allRecipesWithMoreThan2Servings = recipes.filter((element) => element.servings > 2);
 
-const allRecipesWithTitlesLongerThan12Characters = recipes.filter((element) => element.title.length > 12);
+const allRecipesWithTitlesLongerThan12Characters = recipes.filter(
+	(element) => element.title.length > 12,
+);
 
 export {
-  onlyTitles,
-  titlesWithDuration,
-  timePerServing,
-  allTitlesInOneString,
-  recipesThatOnlyTake60minutesOrLess,
-  allRecipesWithMoreThan2Servings,
-  allRecipesWithTitlesLongerThan12Characters,
+	onlyTitles,
+	titlesWithDuration,
+	timePerServing,
+	allTitlesInOneString,
+	recipesThatOnlyTake60minutesOrLess,
+	allRecipesWithMoreThan2Servings,
+	allRecipesWithTitlesLongerThan12Characters,
 };

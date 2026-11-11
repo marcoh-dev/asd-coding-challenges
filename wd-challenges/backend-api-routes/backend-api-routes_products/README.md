@@ -18,8 +18,8 @@ Create an api route which returns all products.
 - Create the file structure `pages/api/products/index.js`.
 - Switch to `/api/products/index.js`; import the `getAllProducts` function from `/services/productServices.js`.
 - Write a handler function which responds
-  - with a `200` status code and
-  - with the return value of `getAllProducts`, parsed with the `.json()` method.
+    - with a `200` status code and
+    - with the return value of `getAllProducts`, parsed with the `.json()` method.
 
 Check your api route:
 
@@ -33,9 +33,9 @@ Create an api route which returns a single product based on the id passed as que
 - Create the file `/api/products/[id].js`.
 - Switch to `/api/products/[id].js`; import the `getProductById` function from `/services/productServices.js`.
 - Write a handler function which responds
-  - with a `200` status code and
-  - with the return value of `getProductById()`, parsed with the `.json()` method.
-  - To access the `id` from the url, destructure the `id` variable from `request.query` and pass `id` as argument to `getProductById(id)`.
+    - with a `200` status code and
+    - with the return value of `getProductById()`, parsed with the `.json()` method.
+    - To access the `id` from the url, destructure the `id` variable from `request.query` and pass `id` as argument to `getProductById(id)`.
 
 Check your api route:
 

@@ -15,10 +15,7 @@ function getAlbumTrack(track: ISong): HTMLElement {
 	return albumTrack;
 }
 
-export function getAlbumCard(
-	album: IAlbum,
-	isBookmarkedList: boolean = false,
-): HTMLElement {
+export function getAlbumCard(album: IAlbum, isBookmarkedList: boolean = false): HTMLElement {
 	const myAlbumIds = getIds("albumIds");
 
 	const albumElement = document.createElement("article");

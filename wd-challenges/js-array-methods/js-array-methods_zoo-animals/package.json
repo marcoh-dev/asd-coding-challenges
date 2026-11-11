@@ -1,32 +1,32 @@
 {
-  "name": "js-array-methods_zoo-animals",
-  "version": "0.0.0-unreleased",
-  "description": "JS Array Methods: Zoo Animals",
-  "main": "index.html",
-  "type": "module",
-  "scripts": {
-    "start": "vite --port 3000 --open",
-    "lint": "eslint .",
-    "test": "vitest run --globals --passWithNoTests"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.5",
-    "@vitest/eslint-plugin": "^1.6.28",
-    "eslint": "^9.39.5",
-    "globals": "^17.14.0",
-    "vite": "^8.3.7",
-    "vitest": "^5.1.0"
-  },
-  "nf": {
-    "template": "html-css-js"
-  },
-  "private": true,
-  "packageManager": "pnpm@12.18.0",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^12.18.0",
-      "onFail": "download"
-    }
-  }
+	"name": "js-array-methods_zoo-animals",
+	"version": "0.0.0-unreleased",
+	"description": "JS Array Methods: Zoo Animals",
+	"main": "index.html",
+	"type": "module",
+	"scripts": {
+		"start": "vite --port 3000 --open",
+		"lint": "eslint .",
+		"test": "vitest run --globals --passWithNoTests"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.39.5",
+		"@vitest/eslint-plugin": "^1.6.28",
+		"eslint": "^9.39.5",
+		"globals": "^17.14.0",
+		"vite": "^8.3.7",
+		"vitest": "^5.1.0"
+	},
+	"nf": {
+		"template": "html-css-js"
+	},
+	"private": true,
+	"packageManager": "pnpm@12.18.0",
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "^12.18.0",
+			"onFail": "download"
+		}
+	}
 }

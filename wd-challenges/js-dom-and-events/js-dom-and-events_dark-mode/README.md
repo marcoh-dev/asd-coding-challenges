@@ -9,9 +9,9 @@ Add interactivity to this website. Use the following hints as a guideline:
 - If the `body` has the class "dark", the page displays in dark mode.
 - Select all 3 buttons by their `data-js` attribute.
 - Add an event listener to each button:
-  - The “Switch to Dark Mode” button should add the class "dark" to the `body`.
-  - The “Switch to Light Mode” button should remove the class "dark" from the `body`.
-  - The “Toggle Mode” button should toggle the "dark" class on the `body`.
+    - The “Switch to Dark Mode” button should add the class "dark" to the `body`.
+    - The “Switch to Light Mode” button should remove the class "dark" from the `body`.
+    - The “Toggle Mode” button should toggle the "dark" class on the `body`.
 
 Switch to the `index.js` file to get started and bring some light to this dark page!
 

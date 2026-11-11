@@ -24,8 +24,7 @@ export function showPost(req: Request<{ slug: string }>, res: Response) {
 }
 
 export function listPosts(req: Request, res: Response) {
-	const authorFilter =
-		typeof req.query.author === "string" ? req.query.author.trim() : "";
+	const authorFilter = typeof req.query.author === "string" ? req.query.author.trim() : "";
 	const sort = req.query.sort === "oldest" ? "oldest" : "newest";
 	const page =
 		typeof req.query.page === "string" && Number.isInteger(Number(req.query.page))
