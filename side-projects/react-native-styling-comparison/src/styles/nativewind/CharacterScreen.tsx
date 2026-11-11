@@ -1,9 +1,16 @@
+import { cssInterop } from "nativewind";
 import { ActivityIndicator, FlatList, Pressable, Text, View } from "react-native";
 
 import { useAppTheme } from "@/hooks/useAppTheme";
 import { useCharacters } from "@/hooks/useCharacters";
 
 import CharacterCard from "./CharacterCard";
+
+cssInterop(FlatList, {
+	className: "style",
+	contentContainerClassName: "contentContainerStyle",
+	columnWrapperClassName: "columnWrapperStyle",
+});
 
 export default function CharacterScreen() {
 	const { theme } = useAppTheme();
